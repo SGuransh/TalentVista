@@ -53,7 +53,7 @@ https://www.superparser.com/documentation
 <img width="987" alt="image" src="https://github.com/SGuransh/TalentVista/assets/91618250/fa9fb2b2-d642-4590-a3a5-36693ceebd68">
 
 ## List of any technical problems blocking progress
-
+We had issues when calling the API directly from our Java machine and code as the API was not properly taking our pdf file for resumes. Through research and troubleshooting, we managed to get it to read a PDF resume, but are worried this will be an issue in the future when reading files and uploading different formats of resumes. Reading the resume was complex code, and we may have issues when integrating the API calling code with our whole project. So we might have to change the API that we are calling in the future.
 
 
 
