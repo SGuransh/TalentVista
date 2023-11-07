@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/LocalRepo/LocalRepo.iml" filepath="$PROJECT_DIR$/LocalRepo/LocalRepo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TalentVista.iml" filepath="$PROJECT_DIR$/TalentVista.iml" />
+    </modules>
+  </component>
+</project>
