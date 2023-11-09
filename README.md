@@ -7,6 +7,18 @@ Problem Domain: Human Resource Management and Employee Engagement Software
 ### Description:
 Our software is designed to streamline and enhance various aspects of human resource management and employee engagement within an organization. It addresses several critical functions that HR departments typically handle. The software aims to improve efficiency, accuracy, and overall employee satisfaction.
 
+## Detailed UseCases
+1. Resume Parsing:
+   1. Upload Resumes
+   2. Displaying and filtering
+   3. Delete Applicant
+   4. Delete all filtered Applicants
+   5. Approve Applicant
+2. Making Employees
+3. Login
+4. Making Leave Request for the Employee
+5. Approving Leave Request for the HR
+
 ### Key Features and Problem Areas:
 
 1. Resume Parsing and Scoring for  the hiring process:
