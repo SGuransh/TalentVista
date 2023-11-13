@@ -1,5 +1,3 @@
-package LocalRepo;
-
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -10,7 +8,8 @@ public class API_Call {
         String apiKey = "JrtEnkroQW3FIvGTkp1JU139SDLuuITr0hYGIAi8";
 
         // Define the file to be uploaded
-        File fileToUpload = new File("C:\\Users\\sgura\\OneDrive\\Pictures\\Documents\\Downloads\\Resume.pdf");
+//        File fileToUpload = new File("C:\\Users\\sgura\\OneDrive\\Pictures\\Documents\\Downloads\\Resume.pdf");
+        File fileToUpload = new File("C:\\Users\\sgura\\OneDrive\\Pictures\\Documents\\Downloads\\Resume of Ayush Aran (Internship).pdf");
 
         // Generate a random boundary string
         String boundary = "----" + System.currentTimeMillis();

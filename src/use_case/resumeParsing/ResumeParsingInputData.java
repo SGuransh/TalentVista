@@ -7,5 +7,5 @@ public class ResumeParsingInputData {
         this.dirPath = dirPath;
     }
 
-    String getFilepath(){return dirPath;}
+    String getDirpath(){return dirPath;}
 }
