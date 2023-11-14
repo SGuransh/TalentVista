@@ -1,12 +1,14 @@
 package dataAccess;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import entity.Applicant;
+import use_case.deleteApplicant.deleteApplicantsDataAccessInterface;
 import use_case.resumeParsing.ResumeParsingDataAccessInterface;
 
-public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInterface {
+public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInterface, deleteApplicantsDataAccessInterface {
     private final Map<String, Applicant> applicants = new HashMap<String, Applicant>();
 
     @Override
@@ -28,6 +30,13 @@ public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInt
             return applicants.get(id);
         }
         return null;
+    }
+
+    @Override
+    public void deleteApplicants(ArrayList<String> applicantIDs) {
+        for (String applicantID: applicantIDs){
+            applicants.remove(applicantID);
+        }
     }
 }
 

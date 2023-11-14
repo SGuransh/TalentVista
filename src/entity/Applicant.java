@@ -1,19 +1,20 @@
 package entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Applicant {
     private final String id;
     private final String name;
-    private final HashMap<String, String> skills;
+    private final ArrayList<String> skills;
     private final int age;
     private final LocalDateTime uploadDate;
     private final String linkedin;
     private final String github;
     private final HashMap<String, String> contactInfo;
 
-    public Applicant(String id, String name, HashMap<String, String> skills, int age, LocalDateTime uploadDate, HashMap<String, String> contactInfo, String linkedin, String github) {
+    public Applicant(String id, String name, ArrayList<String> skills, int age, LocalDateTime uploadDate, HashMap<String, String> contactInfo, String linkedin, String github) {
         this.id = id;
         this.name = name;
         this.skills = skills;
@@ -32,7 +33,7 @@ public class Applicant {
         return name;
     }
 
-    public HashMap<String, String> getSkills() {
+    public ArrayList<String> getSkills() {
         return skills;
     }
 
