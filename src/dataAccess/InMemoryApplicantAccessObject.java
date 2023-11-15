@@ -38,5 +38,9 @@ public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInt
             applicants.remove(applicantID);
         }
     }
+
+    public Map<String, Applicant> getApplicants(){
+        return applicants;
+    }
 }
 
