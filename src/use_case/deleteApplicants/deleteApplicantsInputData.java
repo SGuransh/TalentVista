@@ -1,4 +1,4 @@
-package use_case.deleteApplicant;
+package use_case.deleteApplicants;
 import java.util.ArrayList;
 
 public class deleteApplicantsInputData {

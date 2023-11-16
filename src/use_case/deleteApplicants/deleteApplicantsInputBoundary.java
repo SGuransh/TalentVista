@@ -1,4 +1,4 @@
-package use_case.deleteApplicant;
+package use_case.deleteApplicants;
 
 public interface deleteApplicantsInputBoundary {
     void execute (deleteApplicantsInputData inputData);
