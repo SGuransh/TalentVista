@@ -1,25 +1,21 @@
 package entity;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Applicant {
     private final String id;
     private final String name;
-    private final HashMap<String, String> skills;
-    private final int age;
-    private final LocalDateTime uploadDate;
-    private final String linkedin;
-    private final String github;
+    private final ArrayList<String> skills;
+    private final String uploadDate;
+    private final ArrayList<String> personal_urls;
     private final HashMap<String, String> contactInfo;
 
-    public Applicant(String id, String name, HashMap<String, String> skills, int age, LocalDateTime uploadDate, HashMap<String, String> contactInfo, String linkedin, String github) {
+    public Applicant(String id, String name, ArrayList<String> skills, String uploadDate, HashMap<String, String> contactInfo, ArrayList<String> personal_urls) {
         this.id = id;
         this.name = name;
         this.skills = skills;
-        this.age = age;
-        this.linkedin = linkedin;
-        this.github = github;
+        this.personal_urls = personal_urls;
         this.uploadDate = uploadDate;
         this.contactInfo = contactInfo;
     }
@@ -32,24 +28,16 @@ public class Applicant {
         return name;
     }
 
-    public HashMap<String, String> getSkills() {
+    public ArrayList<String> getSkills() {
         return skills;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public LocalDateTime getUploadDate() {
+    public String getUploadDate() {
         return uploadDate;
     }
 
-    public String getLinkedin() {
-        return this.linkedin;
-    }
-
-    public String getGithub() {
-        return this.github;
+    public ArrayList<String> personal_urls() {
+        return this.personal_urls;
     }
 
     public HashMap<String, String> getContactInfo() {
