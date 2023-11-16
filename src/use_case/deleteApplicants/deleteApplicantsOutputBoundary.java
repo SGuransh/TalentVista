@@ -1,6 +1,4 @@
-package use_case.deleteApplicant;
-
-import use_case.resumeParsing.ResumeParsingOutputData;
+package use_case.deleteApplicants;
 
 public interface deleteApplicantsOutputBoundary {
     void prepareSuccessView(deleteApplicantsOutputData outputData);

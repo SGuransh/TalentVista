@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import entity.Applicant;
-import use_case.deleteApplicant.deleteApplicantsDataAccessInterface;
+import use_case.deleteApplicants.deleteApplicantsDataAccessInterface;
 import use_case.resumeParsing.ResumeParsingDataAccessInterface;
 import use_case.showHireApplicantPage.showHireApplicantPageDataAccessInterface;
 
