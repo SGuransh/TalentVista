@@ -1,5 +1,3 @@
-package LocalRepo;
-
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -11,6 +9,7 @@ public class API_Call {
 
         // Define the file to be uploaded
         File fileToUpload = new File("C:\\Users\\sgura\\OneDrive\\Pictures\\Documents\\Downloads\\Resume.pdf");
+//        File fileToUpload = new File("C:\\Users\\sgura\\OneDrive\\Pictures\\Documents\\Downloads\\Resume of Ayush Aran (Internship).pdf");
 
         // Generate a random boundary string
         String boundary = "----" + System.currentTimeMillis();
@@ -66,7 +65,6 @@ public class API_Call {
                 while ((line = reader.readLine()) != null) {
                     response.append(line);
                 }
-                System.out.println(response.toString());
             }
         } else {
             System.err.println("HTTP Request Failed with status code: " + responseCode);
