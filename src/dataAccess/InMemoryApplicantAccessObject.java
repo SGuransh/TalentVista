@@ -6,10 +6,11 @@ import java.util.Map;
 
 import entity.Applicant;
 import use_case.deleteApplicants.deleteApplicantsDataAccessInterface;
+import use_case.filter.FilterUserDataAccessInterface;
 import use_case.resumeParsing.ResumeParsingDataAccessInterface;
 import use_case.showHireApplicantPage.showHireApplicantPageDataAccessInterface;
 
-public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInterface, deleteApplicantsDataAccessInterface, showHireApplicantPageDataAccessInterface {
+public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInterface, deleteApplicantsDataAccessInterface, showHireApplicantPageDataAccessInterface, FilterUserDataAccessInterface {
     private final Map<String, Applicant> applicants = new HashMap<String, Applicant>();
 
     @Override
