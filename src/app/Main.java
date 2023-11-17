@@ -6,10 +6,11 @@ import interface_adapter.login.LoginViewModel;
 import view.HrDashboardView;
 import view.LoginView;
 import view.ViewManager;
-
+import app.HrDashboardUseCaseFactory;
+import interface_adapter.showEmployees.ShowEmployeesViewModel;
+import interface_adapter.showApplicants.ShowApplicantsViewModel;
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
@@ -36,21 +37,21 @@ public class Main {
         // be observed by the Views.
         LoginViewModel loginViewModel = new LoginViewModel();
         HrDashboardViewModel hrDashboardViewModel = new HrDashboardViewModel();
+        ShowEmployeesViewModel showEmployeesViewModel = new ShowEmployeesViewModel();
+        ShowApplicantsViewModel showApplicantsViewModel = new ShowApplicantsViewModel();
 
 
-        InMemoryApplicantAccessObject applicantsDataAccessObject;
-        InMemoryEmployeeAccessObject employeeDataAccessObject;
+        InMemoryApplicantAccessObject applicantsDataAccessObject = new InMemoryApplicantAccessObject();
+        InMemoryEmployeeAccessObject employeeDataAccessObject = new InMemoryEmployeeAccessObject();
 
-        HrDashboardView hrDashboardView = HrDashboardUseCaseFactory.create(viewManagerModel, hrDashboardViewModel, showEmployeesViewModel, showApplicants);
-        views.add(signupView, signupView.viewName);
+        HrDashboardView hrDashboardView = HrDashboardUseCaseFactory.create(viewManagerModel, hrDashboardViewModel, showEmployeesViewModel, showApplicantsViewModel, applicantsDataAccessObject, employeeDataAccessObject);
+        views.add(hrDashboardView, hrDashboardView.viewName);
 
-        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject);
-        views.add(loginView, loginView.viewName);
+//        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject);
+//        views.add(loginView, loginView.viewName);
 
-        LoggedInView loggedInView = new LoggedInView(loggedInViewModel);
-        views.add(loggedInView, loggedInView.viewName);
 
-        viewManagerModel.setActiveView(signupView.viewName);
+        viewManagerModel.setActiveView(hrDashboardView.viewName);
         viewManagerModel.firePropertyChanged();
 
         application.pack();

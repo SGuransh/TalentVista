@@ -1,12 +1,13 @@
 package interface_adapter.deleteApplicants;
 
+import interface_adapter.HrDashboard.HrDashboardViewModel;
 import use_case.deleteApplicants.deleteApplicantsOutputBoundary;
 import use_case.deleteApplicants.deleteApplicantsOutputData;
 
 public class deleteApplicantsPresenter implements deleteApplicantsOutputBoundary {
-    private final DashboardHrApplicantsViewModel applicantPageViewModel;
+    private final HrDashboardViewModel applicantPageViewModel;
 
-    public deleteApplicantsPresenter(DashboardHrApplicantsViewModel applicantPageView) {
+    public deleteApplicantsPresenter(HrDashboardViewModel applicantPageView) {
         this.applicantPageViewModel = applicantPageView;
     }
 
