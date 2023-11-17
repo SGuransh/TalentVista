@@ -2,6 +2,7 @@ package dataAccess;
 
 import entity.Applicant;
 import use_case.deleteApplicants.deleteApplicantsDataAccessInterface;
+import use_case.filter.FilterUserDataAccessInterface;
 import use_case.resumeParsing.ResumeParsingDataAccessInterface;
 import use_case.showHireApplicantPage.showHireApplicantPageDataAccessInterface;
 
@@ -50,5 +51,25 @@ public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInt
     public Integer getId() {
         return id;
     }
-}
 
+    public String getPresentableApplicants(){
+        StringBuilder presentableApplicants = new StringBuilder();
+        for (String applicantID: applicants.keySet()){
+            Map<String, Applicant> applicantMap = applicants;
+            Applicant applicant = applicantMap.get(applicantID);
+            String name = applicant.getName();
+            String ID = applicant.getId();
+            ArrayList<String> skillsArray = applicant.getSkills();
+            StringBuilder skillsString = new StringBuilder();
+            for (String skill: skillsArray){
+                skillsString.append(skill).append(", ");
+            }
+            HashMap<String, String> contactInfo = applicant.getContactInfo();
+            String email = contactInfo.get("email");
+            String phoneNum = contactInfo.get("phone");
+            presentableApplicants.append("ID: " + ID+ " NAME: " + name + "SKILLS: " + skillsString + "EMAIL: " + email + "PHONE: " + phoneNum);
+            presentableApplicants.append("\n\n");
+    }
+        return presentableApplicants.toString();
+    }
+}

@@ -11,13 +11,16 @@ public class Applicant {
     private final ArrayList<String> personal_urls;
     private final HashMap<String, String> contactInfo;
 
-    public Applicant(String id, String name, ArrayList<String> skills, String uploadDate, HashMap<String, String> contactInfo, ArrayList<String> personal_urls) {
+    private final String position;
+
+    public Applicant(String id, String name, ArrayList<String> skills, String uploadDate, HashMap<String, String> contactInfo, ArrayList<String> personal_urls, String position) {
         this.id = id;
         this.name = name;
         this.skills = skills;
         this.personal_urls = personal_urls;
         this.uploadDate = uploadDate;
         this.contactInfo = contactInfo;
+        this.position = position;
     }
 
     public String getId() {
