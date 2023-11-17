@@ -2,7 +2,6 @@ package dataAccess;
 
 import entity.Applicant;
 import use_case.deleteApplicants.deleteApplicantsDataAccessInterface;
-import use_case.filter.FilterUserDataAccessInterface;
 import use_case.resumeParsing.ResumeParsingDataAccessInterface;
 import use_case.showHireApplicantPage.showHireApplicantPageDataAccessInterface;
 
