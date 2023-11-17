@@ -1,9 +1,13 @@
 package use_case.resumeParsing;
 
-public class ResumeParsingOutputData {
-    final String applicantData;
+import entity.Applicant;
 
-    public ResumeParsingOutputData(String applicantData) {
+import java.util.ArrayList;
+
+public class ResumeParsingOutputData {
+    final ArrayList<Applicant> applicantData;
+
+    public ResumeParsingOutputData(ArrayList<Applicant> applicantData) {
         this.applicantData = applicantData;
     }
 }

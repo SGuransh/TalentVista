@@ -1,11 +1,11 @@
 package use_case.resumeParsing;
 
 public class ResumeParsingInputData {
-    private final String dirPath;
+    private final String path;
 
-    public ResumeParsingInputData(String dirPath) {
-        this.dirPath = dirPath;
+    public ResumeParsingInputData(String path) {
+        this.path = path;
     }
 
-    String getDirpath(){return dirPath;}
+    String getPath(){return path;}
 }

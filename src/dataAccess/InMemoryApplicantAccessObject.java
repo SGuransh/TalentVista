@@ -1,16 +1,17 @@
 package dataAccess;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import entity.Applicant;
 import use_case.deleteApplicants.deleteApplicantsDataAccessInterface;
 import use_case.resumeParsing.ResumeParsingDataAccessInterface;
 import use_case.showHireApplicantPage.showHireApplicantPageDataAccessInterface;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInterface, deleteApplicantsDataAccessInterface, showHireApplicantPageDataAccessInterface {
     private final Map<String, Applicant> applicants = new HashMap<String, Applicant>();
+    private Integer id = 0;
 
     @Override
     public Boolean existsApplicant(String id) {
@@ -22,6 +23,7 @@ public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInt
         if (existsApplicant(applicant.getId())) {
             return;
         }
+        id += 1;
         applicants.put(applicant.getId(), applicant);
     }
 
@@ -44,5 +46,9 @@ public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInt
         return applicants;
     }
 
+    @Override
+    public Integer getId() {
+        return id;
+    }
 }
 

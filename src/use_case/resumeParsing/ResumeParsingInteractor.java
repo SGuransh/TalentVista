@@ -1,34 +1,65 @@
-//package use_case.resumeParsing;
-//
-//import use_case.login.LoginOutputBoundary;
-//import use_case.login.LoginOutputData;
-//import use_case.login.LoginUserDataAccessInterface;
-//
-//public class ResumeParsingInteractor implements ResumeParsingInputBoundary{
-//    ResumeParsingDataAccessInterface ResumeParsingDataAccessObject;
-//    ResumeParsingOutputBoundary ResumeParsingPresenter;
-//
-//    LoginOutputBoundary FakeResumeParsingPresenter = new ResumeParsingOutputBoundary() {
-//        @Override
-//        public void prepareSuccessView(ResumeParsingOutputData data) {
-//            // Write the success Data to a file
-//            ...
-//        }
-//
-//        @Override
-//        public void prepareFailView(String error) {
-//            ...
-//        }
-//    };
-//
-//    public ResumeParsingInteractor(ResumeParsingDataAccessInterface ResumeParsingDataAccessObject, ResumeParsingOutputBoundary ResumeParsingPresenter) {
-//        this.ResumeParsingDataAccessObject = ResumeParsingDataAccessObject;
-//        this.ResumeParsingPresenter = ResumeParsingPresenter;
-//    }
-//
-//    @Override
-//    public void execute(ResumeParsingInputData inputData) {
-//        // The input to the interactor is the path to the directory which has the pdfs
-//
-//    }
-//}
+package use_case.resumeParsing;
+
+import entity.Applicant;
+import entity.ApplicantFactory;
+
+import java.io.File;
+import java.util.ArrayList;
+
+public class ResumeParsingInteractor implements ResumeParsingInputBoundary {
+    private final ResumeParsingDataAccessInterface inMemoryApplicantAccessObject;
+    private final ResumeParsingOutputBoundary presenter;
+    private final ApplicantFactory applicantFactory;
+
+    public ResumeParsingInteractor(ResumeParsingDataAccessInterface inMemoryApplicantAccessObject, ResumeParsingOutputBoundary resumeParsingPresenter, ApplicantFactory applicantFactory) {
+        this.inMemoryApplicantAccessObject = inMemoryApplicantAccessObject;
+        this.presenter = resumeParsingPresenter;
+        this.applicantFactory = applicantFactory;
+    }
+
+    @Override
+    public void execute(ResumeParsingInputData inputData) {
+        String filepathString = inputData.getPath();
+        ArrayList<Applicant> applicants = new ArrayList<>();
+        try {
+            if (isPDFFile(filepathString)) {
+                int last_number = inMemoryApplicantAccessObject.getId();
+                Applicant applicant = applicantFactory.makeApplicantFromString(filepathString, last_number);
+                inMemoryApplicantAccessObject.addApplicant(applicant);
+                applicants.add(applicant);
+            }
+            else if (isDirectory(filepathString)) {
+                File folder = new File(filepathString);
+                File[] listOfFiles = folder.listFiles();
+                for (File file : listOfFiles) {
+                    if (file.isFile()) {
+                        String filePath = file.getAbsolutePath();
+                        if (isPDFFile(filePath)) {
+                            int last_number = inMemoryApplicantAccessObject.getId();
+                            Applicant applicant = applicantFactory.makeApplicantFromString(filePath, last_number);
+                            inMemoryApplicantAccessObject.addApplicant(applicant);
+                            applicants.add(applicant);
+                        }
+                    }
+                }
+            }
+        }catch (Exception e){
+            System.out.println("Error: " + e.getMessage());
+            // TODO: handle exception in the presenter
+        }
+        ResumeParsingOutputData outputData = new ResumeParsingOutputData(applicants);
+        presenter.prepareSuccessView(outputData);
+    }
+
+    private static boolean isPDFFile(String filePath) {
+        String lowerCaseFilePath = filePath.toLowerCase();
+
+        return lowerCaseFilePath.endsWith(".pdf");
+    }
+
+    private static boolean isDirectory(String filePath) {
+        File file = new File(filePath);
+
+        return file.isDirectory();
+    }
+}
