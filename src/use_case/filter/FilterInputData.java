@@ -4,10 +4,13 @@ import java.util.Date;
 
 public class FilterInputData {
     private final String skill;
-    private final Date uploadDate;
+    private final String uploadDate;
 
-    public FilterInputData(String skill, Date uploadDate) {
+    public FilterInputData(String skill, String uploadDate) {
         this.skill = skill;
         this.uploadDate = uploadDate;
     }
+
+    String getSkill(){return skill;}
+    String getUploadDate(){return uploadDate;}
 }

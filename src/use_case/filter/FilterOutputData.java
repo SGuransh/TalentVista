@@ -5,9 +5,9 @@ import entity.Applicant;
 import java.util.ArrayList;
 
 public class FilterOutputData {
-    private final ArrayList<Applicant> applicants;
+    private final ArrayList<Applicant> filteredApplicants;
 
     public FilterOutputData(ArrayList<Applicant> applicants) {
-        this.applicants = applicants;
+        this.filteredApplicants = applicants;
     }
 }
