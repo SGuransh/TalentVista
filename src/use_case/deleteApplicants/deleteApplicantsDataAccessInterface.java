@@ -9,4 +9,5 @@ public interface deleteApplicantsDataAccessInterface {
     void deleteApplicants(ArrayList<String> applicantIDs);
     Map<String, Applicant> getApplicants();
 
+    String getPresentableApplicants();
 }

@@ -14,7 +14,7 @@ public class deleteApplicantsInteractor implements deleteApplicantsInputBoundary
     @Override
     public void execute(deleteApplicantsInputData inputData) {
         applicantsDataAccessObject.deleteApplicants(inputData.getApplicantIDs());
-        deleteApplicantsOutputData outputData = new deleteApplicantsOutputData(applicantsDataAccessObject.getApplicants());
+        deleteApplicantsOutputData outputData = new deleteApplicantsOutputData(applicantsDataAccessObject.getPresentableApplicants());
         applicantsPresenter.prepareSuccessView(outputData);
     }
 }

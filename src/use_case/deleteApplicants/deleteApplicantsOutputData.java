@@ -5,13 +5,13 @@ import entity.Applicant;
 import java.util.Map;
 
 public class deleteApplicantsOutputData {
-     private final Map<String, Applicant> applicants;
+     private final String applicants;
 
-    public deleteApplicantsOutputData(Map<String, Applicant> applicants) {
+    public deleteApplicantsOutputData(String applicants) {
         this.applicants = applicants;
     }
 
-    public Map<String, Applicant> getApplicants(){
+    public String getApplicants(){
         return applicants;
     }
 }

@@ -1,2 +1,4 @@
-package interface_adapter.deleteApplicants;public class deleteApplicantsController {
+package interface_adapter.deleteApplicants;
+
+public class deleteApplicantsController {
 }

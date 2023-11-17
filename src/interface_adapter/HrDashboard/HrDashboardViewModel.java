@@ -1,2 +1,4 @@
-package interface_adapter.HrDashboard;public class HrDashboardViewModel {
+package interface_adapter.HrDashboard;
+
+public class HrDashboardViewModel {
 }
