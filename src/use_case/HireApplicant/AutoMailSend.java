@@ -13,6 +13,16 @@ public class AutoMailSend{
         this.m_to = mailto;
     }
 
+    public void setRecipient(String mailTo){
+        this.m_to = mailTo;
+    }
+    public void setSubject(String subject){
+        this.m_subject = subject;
+    }
+    public void setText(String text){
+        this.m_text = text;
+    }
+
     public void send() {
         Properties props = new Properties();
         props.put("mail.smtp.user", d_email);
