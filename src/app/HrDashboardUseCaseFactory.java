@@ -8,7 +8,13 @@ import interface_adapter.showApplicants.ShowApplicantsController;
 import interface_adapter.showApplicants.ShowApplicantsPresenter;
 import interface_adapter.showApplicants.ShowApplicantsViewModel;
 import interface_adapter.showEmployees.ShowEmployeesController;
+import interface_adapter.showEmployees.ShowEmployeesPresenter;
 import interface_adapter.showEmployees.ShowEmployeesViewModel;
+import use_case.showApplicants.ShowApplicantsOutputBoundary;
+import use_case.showEmployees.ShowEmployeesDataAccessInterface;
+import use_case.showEmployees.ShowEmployeesInputBoundary;
+import use_case.showEmployees.ShowEmployeesInteractor;
+import use_case.showEmployees.ShowEmployeesOutputBoundary;
 import use_case.showApplicants.*;
 import view.HrDashboardView;
 
@@ -37,7 +43,15 @@ public class HrDashboardUseCaseFactory {
         return new ShowApplicantsController(showApplicantsInteractor);
 
     }
-    private static ShowEmployeesController createShowEmployeesUseCase(ViewManagerModel viewManagerModel, ShowEmployeesViewModel showEmployeesViewModel, InMemoryEmployeeAccessObject employeeDataAccessObject){
+    private static ShowEmployeesController createShowEmployeesUseCase(ViewManagerModel viewManagerModel, ShowEmployeesViewModel showEmployeesViewModel, ShowEmployeesDataAccessInterface employeeDataAccessObject){
+        ShowEmployeesOutputBoundary showEmployeesOutputBoundary = new ShowEmployeesPresenter(viewManagerModel, showEmployeesViewModel);
 
+
+        ShowEmployeesInputBoundary showEmployeesInteractor = new ShowEmployeesInteractor(
+                employeeDataAccessObject, showEmployeesOutputBoundary);
+
+        return new ShowEmployeesController(showEmployeesInteractor);
     }
+
+
 }
