@@ -47,6 +47,11 @@ public class HrDashboardView extends JPanel implements ActionListener, PropertyC
                     }
                 }
         );
+
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        this.add(title);
+        this.add(buttons);
     }
 
 
@@ -60,4 +65,5 @@ public class HrDashboardView extends JPanel implements ActionListener, PropertyC
     public void propertyChange(PropertyChangeEvent evt) {
 
     }
+
 }
