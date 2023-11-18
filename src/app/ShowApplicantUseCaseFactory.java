@@ -1,6 +1,8 @@
 package app;
 
+import entity.ApplicantFactory;
 import interface_adapter.ResumeParsing.ResumeParsingController;
+import interface_adapter.ResumeParsing.ResumeParsingPresenter;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.deleteApplicants.DeleteApplicantsController;
 import interface_adapter.filter.FilterController;
@@ -8,11 +10,18 @@ import interface_adapter.showApplicants.ShowApplicantsController;
 import interface_adapter.showApplicants.ShowApplicantsState;
 import interface_adapter.showApplicants.ShowApplicantsViewModel;
 import interface_adapter.show_hire_applicant_page.ShowHireApplicantPageController;
+import interface_adapter.show_hire_applicant_page.ShowHireApplicantPagePresenter;
 import interface_adapter.show_hire_applicant_page.ShowHireApplicantPageViewModel;
 import use_case.deleteApplicants.DeleteApplicantsDataAccessInterface;
 import use_case.filter.FilterUserDataAccessInterface;
 import use_case.resumeParsing.ResumeParsingDataAccessInterface;
+import use_case.resumeParsing.ResumeParsingInputBoundary;
+import use_case.resumeParsing.ResumeParsingInteractor;
+import use_case.resumeParsing.ResumeParsingOutputBoundary;
 import use_case.showHireApplicantPage.ShowHireApplicantPageDataAccessInterface;
+import use_case.showHireApplicantPage.ShowHireApplicantPageInputBoundary;
+import use_case.showHireApplicantPage.ShowHireApplicantPageInteractor;
+import use_case.showHireApplicantPage.ShowHireApplicantPageOutputBoundary;
 import view.ShowApplicantsView;
 
 public class ShowApplicantUseCaseFactory {
@@ -48,7 +57,13 @@ public class ShowApplicantUseCaseFactory {
                                                                          ShowApplicantsViewModel showApplicantsViewModel,
                                                                          ResumeParsingDataAccessInterface applicantDAO)
     {
-        return null;
+        // Make the Presenter
+        ResumeParsingOutputBoundary resumeParsingPresenter = new ResumeParsingPresenter(viewManagerModel, showApplicantsViewModel);
+        // Make the Interactor
+        ApplicantFactory af = new ApplicantFactory();
+        ResumeParsingInputBoundary resumeParsingInteractor = new ResumeParsingInteractor(applicantDAO,
+                resumeParsingPresenter, af);
+        return new ResumeParsingController(resumeParsingInteractor);
     }
 
     private static ShowHireApplicantPageController createShowHiringUseCase(ViewManagerModel viewManagerModel,
@@ -56,7 +71,14 @@ public class ShowApplicantUseCaseFactory {
                                                                             ShowHireApplicantPageViewModel showHireApplicantPageViewModel,
                                                                             ShowHireApplicantPageDataAccessInterface applicantDAO)
     {
-        return null;
+        // Make the Presenter
+        ShowHireApplicantPageOutputBoundary showHireApplicantPagePresenter = new ShowHireApplicantPagePresenter(
+                viewManagerModel, showApplicantsViewModel, showHireApplicantPageViewModel);
+        // Make the Interactor
+        ShowHireApplicantPageInputBoundary showHireApplicantPageInteractor = new ShowHireApplicantPageInteractor(
+                showHireApplicantPagePresenter, applicantDAO
+        );
+        return new ShowHireApplicantPageController(showHireApplicantPageInteractor);
     }
 
     private static DeleteApplicantsController createDeleteApplicantsUseCase(ViewManagerModel viewManagerModel,
