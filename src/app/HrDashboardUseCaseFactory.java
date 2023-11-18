@@ -25,16 +25,16 @@ public class HrDashboardUseCaseFactory {
     private HrDashboardUseCaseFactory() {};
 
     public static HrDashboardView create(ViewManagerModel viewManagerModel, HrDashboardViewModel hrDashboardViewModel, ShowEmployeesViewModel showEmployeesViewModel, ShowApplicantsViewModel showApplicantsViewModel, ShowApplicantsDataAccessInterface applicantsDataAccessObject, ShowEmployeesDataAccessInterface employeeDataAccessObject){
-        try {
+//        try {
             ShowApplicantsController showApplicantsController = createShowApplicantsUseCase(viewManagerModel, showApplicantsViewModel, applicantsDataAccessObject);
             ShowEmployeesController showEmployeesController = createShowEmployeesUseCase(viewManagerModel, showEmployeesViewModel, employeeDataAccessObject);
             return new HrDashboardView(showApplicantsController, showEmployeesController, hrDashboardViewModel);
-        }
-        catch (IOException e){
-            JOptionPane.showMessageDialog(null, "Fail");
-
-        }
-        return null;
+//        }
+//        catch (IOException e){
+//            JOptionPane.showMessageDialog(null, "Fail");
+//
+//        }
+//        return null;
     }
 
     private static ShowApplicantsController createShowApplicantsUseCase(ViewManagerModel viewManagerModel, ShowApplicantsViewModel showApplicantsViewModel, ShowApplicantsDataAccessInterface applicantsDataAccessObject){

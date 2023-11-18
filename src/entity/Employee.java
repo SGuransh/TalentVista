@@ -9,24 +9,24 @@ public class Employee implements User {
     private final LocalDateTime creationTime;
     private final Integer level = 3;
 
-    private final Double salary;
-
-    private final String position;
+//    private final Double salary;
+//
+//    private final String position;
 
     /**
      * Requires: password is valid.
      *
      * @param name
      * @param password
-     * @param salary
-     * @param position
+//     * @param salary
+//     * @param position
      */
-    Employee(String name, String password, LocalDateTime creationTime, Double salary, String position) {
+    Employee(String name, String password, LocalDateTime creationTime) {
         this.name = name;
         this.password = password;
         this.creationTime = creationTime;
-        this.salary = salary;
-        this.position = position;
+//        this.salary = salary;
+//        this.position = position;
     }
 
     @Override
@@ -44,6 +44,6 @@ public class Employee implements User {
         return creationTime;
     }
 
-    @Override
+
     public Integer getLevel() {return level;}
 }
