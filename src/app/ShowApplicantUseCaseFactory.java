@@ -1,16 +1,15 @@
 package app;
 
+import interface_adapter.ResumeParsing.ResumeParsingController;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.deleteApplicants.DeleteApplicantsController;
 import interface_adapter.filter.FilterController;
+import interface_adapter.hiring.HiringController;
 import interface_adapter.showApplicants.ShowApplicantsController;
 import interface_adapter.showApplicants.ShowApplicantsPresenter;
 import interface_adapter.showApplicants.ShowApplicantsState;
 import interface_adapter.showApplicants.ShowApplicantsViewModel;
 import view.ShowApplicantsView;
-
-import javax.swing.*;
-import java.io.IOException;
 
 public class ShowApplicantUseCaseFactory {
 
@@ -25,19 +24,29 @@ public class ShowApplicantUseCaseFactory {
                                             ShowApplicantsState showApplicantsState,
                                             ViewManagerModel viewManagerModel
                                             ){
-        try {
-            FilterController filterController = createFilterUseCase(showApplicantsViewModel);
-            DeleteApplicantsController deleteApplicantsController = createDeleteApplicantsUseCase(showApplicantsViewModel);
+        FilterController filterController = createFilterUseCase(showApplicantsViewModel);
+        DeleteApplicantsController deleteApplicantsController = createDeleteApplicantsUseCase(showApplicantsViewModel);
+        HiringController hiringController = createHiringUseCase();
+        ResumeParsingController resumeParsingController = createResumeParsingController();
 
-            return new LoginView(showApplicantsViewModel, filterController);
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Could not open user data file.");
-        }
+        return new ShowApplicantsView(showApplicantsViewModel, filterController);
 
+    }
+
+    private static ResumeParsingController createResumeParsingController() {
+        return null;
+    }
+
+    private static HiringController createHiringUseCase() {
+        return null;
+    }
+
+    private static DeleteApplicantsController createDeleteApplicantsUseCase(ShowApplicantsViewModel showApplicantsViewModel) {
         return null;
     }
 
     private static FilterController createFilterUseCase(ShowApplicantsViewModel showApplicantsViewModel) {
 
+        return null;
     }
 }
