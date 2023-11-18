@@ -1,10 +1,13 @@
-import dataAccess.InMemoryApplicantAccessObject;
-import dataAccess.InMemoryEmployeeAccessObject;
+package app;
+
+import data_access.InMemoryApplicantAccessObject;
+import data_access.InMemoryEmployeeAccessObject;
 import interface_adapter.HrDashboard.HrDashboardViewModel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.login.LoginViewModel;
+import use_case.showApplicants.ShowApplicantsDataAccessInterface;
+import use_case.showEmployees.ShowEmployeesDataAccessInterface;
 import view.HrDashboardView;
-import view.LoginView;
 import view.ViewManager;
 import app.HrDashboardUseCaseFactory;
 import interface_adapter.showEmployees.ShowEmployeesViewModel;
@@ -18,7 +21,7 @@ public class Main {
         // various cards, and the layout, and stitch them together.
 
         // The main application window.
-        JFrame application = new JFrame("Login Example");
+        JFrame application = new JFrame("HR DASHBOARD");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         CardLayout cardLayout = new CardLayout();
@@ -35,14 +38,14 @@ public class Main {
         // This information will be changed by a presenter object that is reporting the
         // results from the use case. The ViewModels are observable, and will
         // be observed by the Views.
-        LoginViewModel loginViewModel = new LoginViewModel();
+//        LoginViewModel loginViewModel = new LoginViewModel();
         HrDashboardViewModel hrDashboardViewModel = new HrDashboardViewModel();
         ShowEmployeesViewModel showEmployeesViewModel = new ShowEmployeesViewModel();
         ShowApplicantsViewModel showApplicantsViewModel = new ShowApplicantsViewModel();
 
 
-        InMemoryApplicantAccessObject applicantsDataAccessObject = new InMemoryApplicantAccessObject();
-        InMemoryEmployeeAccessObject employeeDataAccessObject = new InMemoryEmployeeAccessObject();
+        ShowApplicantsDataAccessInterface applicantsDataAccessObject = new InMemoryApplicantAccessObject();
+        ShowEmployeesDataAccessInterface employeeDataAccessObject = new InMemoryEmployeeAccessObject();
 
         HrDashboardView hrDashboardView = HrDashboardUseCaseFactory.create(viewManagerModel, hrDashboardViewModel, showEmployeesViewModel, showApplicantsViewModel, applicantsDataAccessObject, employeeDataAccessObject);
         views.add(hrDashboardView, hrDashboardView.viewName);

@@ -1,10 +1,10 @@
 package interface_adapter.deleteApplicants;
 
 import interface_adapter.HrDashboard.HrDashboardViewModel;
-import use_case.deleteApplicants.deleteApplicantsOutputBoundary;
-import use_case.deleteApplicants.deleteApplicantsOutputData;
+import use_case.deleteApplicants.DeleteApplicantsOutputBoundary;
+import use_case.deleteApplicants.DeleteApplicantsOutputData;
 
-public class DeleteApplicantsPresenter implements deleteApplicantsOutputBoundary {
+public class DeleteApplicantsPresenter implements DeleteApplicantsOutputBoundary {
     private final HrDashboardViewModel applicantPageViewModel;
 
     public DeleteApplicantsPresenter(HrDashboardViewModel applicantPageView) {
@@ -12,11 +12,12 @@ public class DeleteApplicantsPresenter implements deleteApplicantsOutputBoundary
     }
 
     @Override
-    public void prepareSuccessView(deleteApplicantsOutputData outputData) {
-        ApplicantPageState applicantPageState = applicantPageView.getState();
-        applicantPageState.SetApplicants(outputData);
-        applicantPageViewModel.setState(signupState);
-        applicantPageViewModel.firePropertyChanged();
+    public void prepareSuccessView(DeleteApplicantsOutputData outputData) {
+//        //WRONG STATE --- GET GURANSH STATE
+//        HrDashboardState applicantPageState = HrDashboardViewModel.getState();
+//        applicantPageState.setApplicants(outputData);
+//        applicantPageViewModel.setState(applicantPageState);
+//        applicantPageViewModel.firePropertyChanged();
 
     }
 }
