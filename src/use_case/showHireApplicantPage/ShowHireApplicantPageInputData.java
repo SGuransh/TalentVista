@@ -1,9 +1,9 @@
 package use_case.showHireApplicantPage;
 
-public class showHireApplicantPageInputData {
+public class ShowHireApplicantPageInputData {
     private final String applicantID;
 
-    public showHireApplicantPageInputData(String applicantID) {
+    public ShowHireApplicantPageInputData(String applicantID) {
         this.applicantID = applicantID;
     }
 

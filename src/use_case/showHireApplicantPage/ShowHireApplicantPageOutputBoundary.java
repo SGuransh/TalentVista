@@ -2,6 +2,6 @@ package use_case.showHireApplicantPage;
 
 import entity.Applicant;
 
-public interface showHireApplicantPageOutputBoundary {
+public interface ShowHireApplicantPageOutputBoundary {
     public void prepareSuccessView(Applicant applicant);
 }
