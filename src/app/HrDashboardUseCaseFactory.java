@@ -1,13 +1,21 @@
 package app;
 
-import dataAccess.InMemoryApplicantAccessObject;
-import dataAccess.InMemoryEmployeeAccessObject;
+import data_access.InMemoryApplicantAccessObject;
+import data_access.InMemoryEmployeeAccessObject;
+import entity.EmployeeFactory;
+import entity.UserFactory;
 import interface_adapter.HrDashboard.HrDashboardViewModel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.showApplicants.ShowApplicantsController;
 import interface_adapter.showApplicants.ShowApplicantsViewModel;
 import interface_adapter.showEmployees.ShowEmployeesController;
+import interface_adapter.showEmployees.ShowEmployeesPresenter;
 import interface_adapter.showEmployees.ShowEmployeesViewModel;
+import use_case.showApplicants.ShowApplicantsOutputBoundary;
+import use_case.showEmployees.ShowEmployeesDataAccessInterface;
+import use_case.showEmployees.ShowEmployeesInputBoundary;
+import use_case.showEmployees.ShowEmployeesInteractor;
+import use_case.showEmployees.ShowEmployeesOutputBoundary;
 import view.HrDashboardView;
 
 import javax.swing.*;
@@ -31,9 +39,14 @@ public class HrDashboardUseCaseFactory {
 
     private static ShowApplicantsController createShowApplicantsUseCase(ViewManagerModel viewManagerModel, ShowApplicantsViewModel showApplicantsViewModel, InMemoryApplicantAccessObject applicantsDataAccessObject){
 
-
     }
-    private static ShowEmployeesController createShowEmployeesUseCase(ViewManagerModel viewManagerModel, ShowEmployeesViewModel showEmployeesViewModel, InMemoryEmployeeAccessObject employeeDataAccessObject){
+    private static ShowEmployeesController createShowEmployeesUseCase(ViewManagerModel viewManagerModel, ShowEmployeesViewModel showEmployeesViewModel, ShowEmployeesDataAccessInterface employeeDataAccessObject){
+        ShowEmployeesOutputBoundary showEmployeesOutputBoundary = new ShowEmployeesPresenter(viewManagerModel, showEmployeesViewModel);
 
+
+        ShowEmployeesInputBoundary showEmployeesInteractor = new ShowEmployeesInteractor(
+                employeeDataAccessObject, showEmployeesOutputBoundary);
+
+        return new ShowEmployeesController(showEmployeesInteractor);
     }
 }
