@@ -1,7 +1,5 @@
 package app;
 
-import data_access.InMemoryApplicantAccessObject;
-import data_access.InMemoryEmployeeAccessObject;
 import interface_adapter.HrDashboard.HrDashboardViewModel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.showApplicants.ShowApplicantsController;
@@ -10,21 +8,25 @@ import interface_adapter.showApplicants.ShowApplicantsViewModel;
 import interface_adapter.showEmployees.ShowEmployeesController;
 import interface_adapter.showEmployees.ShowEmployeesPresenter;
 import interface_adapter.showEmployees.ShowEmployeesViewModel;
+import use_case.showApplicants.ShowApplicantsDataAccessInterface;
+import use_case.showApplicants.ShowApplicantsInputBoundary;
+import use_case.showApplicants.ShowApplicantsInteractor;
 import use_case.showApplicants.ShowApplicantsOutputBoundary;
 import use_case.showEmployees.ShowEmployeesDataAccessInterface;
 import use_case.showEmployees.ShowEmployeesInputBoundary;
 import use_case.showEmployees.ShowEmployeesInteractor;
 import use_case.showEmployees.ShowEmployeesOutputBoundary;
-import use_case.showApplicants.*;
 import view.HrDashboardView;
-
-import javax.swing.*;
-import java.io.IOException;
 
 public class HrDashboardUseCaseFactory {
     private HrDashboardUseCaseFactory() {};
 
-    public static HrDashboardView create(ViewManagerModel viewManagerModel, HrDashboardViewModel hrDashboardViewModel, ShowEmployeesViewModel showEmployeesViewModel, ShowApplicantsViewModel showApplicantsViewModel, ShowApplicantsDataAccessInterface applicantsDataAccessObject, ShowEmployeesDataAccessInterface employeeDataAccessObject){
+    public static HrDashboardView create(ViewManagerModel viewManagerModel,
+                                         HrDashboardViewModel hrDashboardViewModel,
+                                         ShowEmployeesViewModel showEmployeesViewModel,
+                                         ShowApplicantsViewModel showApplicantsViewModel,
+                                         ShowApplicantsDataAccessInterface applicantsDataAccessObject,
+                                         ShowEmployeesDataAccessInterface employeeDataAccessObject){
 //        try {
             ShowApplicantsController showApplicantsController = createShowApplicantsUseCase(viewManagerModel, showApplicantsViewModel, applicantsDataAccessObject);
             ShowEmployeesController showEmployeesController = createShowEmployeesUseCase(viewManagerModel, showEmployeesViewModel, employeeDataAccessObject);
