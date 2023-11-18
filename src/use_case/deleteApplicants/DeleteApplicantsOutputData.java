@@ -1,13 +1,9 @@
 package use_case.deleteApplicants;
 
-import entity.Applicant;
-
-import java.util.Map;
-
-public class deleteApplicantsOutputData {
+public class DeleteApplicantsOutputData {
      private final String applicants;
 
-    public deleteApplicantsOutputData(String applicants) {
+    public DeleteApplicantsOutputData(String applicants) {
         this.applicants = applicants;
     }
 

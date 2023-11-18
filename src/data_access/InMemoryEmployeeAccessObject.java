@@ -2,12 +2,13 @@ package data_access;
 
 import entity.Employee;
 import use_case.HireApplicant.HireApplicantDataAccessInterface;
+import use_case.showEmployees.ShowEmployeesDataAccessInterface;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InMemoryEmployeeAccessObject implements HireApplicantDataAccessInterface{
+public class InMemoryEmployeeAccessObject implements HireApplicantDataAccessInterface, ShowEmployeesDataAccessInterface {
 
         private final Map<String, Employee> employees = new HashMap<String, Employee>();
 
@@ -25,5 +26,10 @@ public class InMemoryEmployeeAccessObject implements HireApplicantDataAccessInte
     @Override
     public HashMap<String, ArrayList<String>> getEmployees() {
         return null;
+    }
+
+    @Override
+    public String getPresentableEmployees() {
+        return "hello";
     }
 }

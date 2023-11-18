@@ -16,6 +16,7 @@ public class ShowApplicantsInteractor implements ShowApplicantsInputBoundary {
 
     @Override
     public void execute() {
+        System.out.println("APPLICANTS");
         String applicants = applicantsDataAccessObject.getPresentableApplicants();
         ShowApplicantsOutputData outputData = new ShowApplicantsOutputData(applicants);
         showApplicantsPresenter.prepareSuccessView(outputData);
