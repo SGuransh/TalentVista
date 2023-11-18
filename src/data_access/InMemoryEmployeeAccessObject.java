@@ -1,6 +1,5 @@
-package dataAccess;
+package data_access;
 
-import entity.Applicant;
 import entity.Employee;
 import use_case.HireApplicant.HireApplicantDataAccessInterface;
 

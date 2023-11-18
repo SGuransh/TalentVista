@@ -1,4 +1,4 @@
-package dataAccess;
+package data_access;
 
 import entity.Applicant;
 import use_case.deleteApplicants.deleteApplicantsDataAccessInterface;

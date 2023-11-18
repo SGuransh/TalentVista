@@ -1,7 +1,7 @@
 package app;
 
-import dataAccess.InMemoryApplicantAccessObject;
-import dataAccess.InMemoryEmployeeAccessObject;
+import data_access.InMemoryApplicantAccessObject;
+import data_access.InMemoryEmployeeAccessObject;
 import interface_adapter.HrDashboard.HrDashboardViewModel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.showApplicants.ShowApplicantsController;
