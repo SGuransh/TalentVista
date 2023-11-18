@@ -1,6 +1,4 @@
-package use_case.HireApplicant;
-
-import entity.Employee;
+package use_case.HireApplicantButton;
 
 public class HireApplicantInteractor implements HireApplicantInputBoundary{
     final HireApplicantDataAccessInterface EmployeeDataAccessObject;

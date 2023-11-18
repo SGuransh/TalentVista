@@ -1,8 +1,7 @@
 package dataAccess;
 
-import entity.Applicant;
 import entity.Employee;
-import use_case.HireApplicant.HireApplicantDataAccessInterface;
+import use_case.HireApplicantButton.HireApplicantDataAccessInterface;
 
 import java.util.ArrayList;
 import java.util.HashMap;

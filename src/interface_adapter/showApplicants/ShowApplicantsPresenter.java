@@ -1,2 +1,4 @@
-package interface_adapter.showApplicants;public class ShowApplicantsPresenter {
+package interface_adapter.showApplicants;
+
+public class ShowApplicantsPresenter {
 }

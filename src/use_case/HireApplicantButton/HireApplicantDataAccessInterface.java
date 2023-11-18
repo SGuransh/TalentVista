@@ -1,9 +1,7 @@
-package use_case.HireApplicant;
+package use_case.HireApplicantButton;
 
-import entity.Applicant;
 import entity.Employee;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 

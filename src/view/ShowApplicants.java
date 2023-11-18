@@ -1,2 +1,4 @@
-package view;public class ShowApplicants {
+package view;
+
+public class ShowApplicants {
 }
