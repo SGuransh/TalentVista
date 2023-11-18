@@ -11,8 +11,8 @@ public class ResumeParsingController {
         this.resumeParsingInteractor = resumeParsingInteractor;
     }
 
-    public void execute(String path){
-        ResumeParsingInputData inputData = new ResumeParsingInputData(path);
+    public void execute(String path, String position){
+        ResumeParsingInputData inputData = new ResumeParsingInputData(path, position);
         resumeParsingInteractor.execute(inputData);
     }
 }
