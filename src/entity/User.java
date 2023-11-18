@@ -10,8 +10,4 @@ public interface User {
 
     LocalDateTime getCreationTime();
 
-    Integer getLevel();
-    // 1. SuperUser
-    // 2. HR
-    // 3. Employee
 }
