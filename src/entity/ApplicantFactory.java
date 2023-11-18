@@ -152,7 +152,7 @@ public class ApplicantFactory{
     public static void main(String[] args) {
         ApplicantFactory af = new ApplicantFactory();
         try {
-            Applicant a = af.makeApplicantFromString("C:\\Users\\sgura\\OneDrive\\Pictures\\Documents\\Downloads\\Resume.pdf", 1);
+            Applicant a = af.makeApplicantFromString("C:\\Users\\sgura\\OneDrive\\Pictures\\Documents\\Downloads\\Resume.pdf", 1, "dev");
             System.out.println(a.getId());
             System.out.println(a.getName());
             System.out.println(a.getSkills());
