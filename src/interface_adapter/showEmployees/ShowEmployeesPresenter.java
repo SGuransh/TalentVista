@@ -15,6 +15,12 @@ public class ShowEmployeesPresenter implements ShowEmployeesOutputBoundary {
 
     @Override
     public void prepareSuccessView(ShowEmployeesOutputData outputData) {
+        ShowEmployeesState showEmployeesState = showEmployeesViewModel.getState();
+        showEmployeesState.setEmployees(outputData.getEmployees());
+        this.showEmployeesViewModel.setState(showEmployeesState);
+        this.showEmployeesViewModel.firePropertyChanged();
 
+        this.viewManagerModel.setActiveView(showEmployeesViewModel.getViewName());
+        this.viewManagerModel.firePropertyChanged();
     }
 }

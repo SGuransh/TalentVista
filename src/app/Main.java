@@ -7,6 +7,7 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.login.LoginViewModel;
 import use_case.showApplicants.ShowApplicantsDataAccessInterface;
 import use_case.showEmployees.ShowEmployeesDataAccessInterface;
+import view.DashboardEmployeeView;
 import view.HrDashboardView;
 import view.ViewManager;
 import app.HrDashboardUseCaseFactory;
@@ -49,6 +50,10 @@ public class Main {
 
         HrDashboardView hrDashboardView = HrDashboardUseCaseFactory.create(viewManagerModel, hrDashboardViewModel, showEmployeesViewModel, showApplicantsViewModel, applicantsDataAccessObject, employeeDataAccessObject);
         views.add(hrDashboardView, hrDashboardView.viewName);
+
+        DashboardEmployeeView employeeView = new DashboardEmployeeView(showEmployeesViewModel);
+        views.add(employeeView, employeeView.viewName);
+
 
 //        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject);
 //        views.add(loginView, loginView.viewName);
