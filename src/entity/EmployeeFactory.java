@@ -10,5 +10,5 @@ public class EmployeeFactory {
      * @return
      */
 
-    public Employee create(String name, String password, LocalDateTime ltd, Double salary, String position) {return new Employee(name, password, ltd, salary, position);}
+    public Employee create(String name, String password, LocalDateTime ltd, Double salary, String position, String email) {return new Employee(name, password, ltd, salary, position, email);}
 }
