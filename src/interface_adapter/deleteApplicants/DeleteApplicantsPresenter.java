@@ -1,20 +1,18 @@
 package interface_adapter.deleteApplicants;
 
-import interface_adapter.HrDashboard.HrDashboardState;
 import interface_adapter.HrDashboard.HrDashboardViewModel;
-import use_case.deleteApplicants.deleteApplicantsOutputBoundary;
-import use_case.deleteApplicants.deleteApplicantsOutputData;
-import view.HrDashboardView;
+import use_case.deleteApplicants.DeleteApplicantsOutputBoundary;
+import use_case.deleteApplicants.DeleteApplicantsOutputData;
 
-public class deleteApplicantsPresenter implements deleteApplicantsOutputBoundary {
+public class DeleteApplicantsPresenter implements DeleteApplicantsOutputBoundary {
     private final HrDashboardViewModel applicantPageViewModel;
 
-    public deleteApplicantsPresenter(HrDashboardViewModel applicantPageView) {
+    public DeleteApplicantsPresenter(HrDashboardViewModel applicantPageView) {
         this.applicantPageViewModel = applicantPageView;
     }
 
     @Override
-    public void prepareSuccessView(deleteApplicantsOutputData outputData) {
+    public void prepareSuccessView(DeleteApplicantsOutputData outputData) {
 //        //WRONG STATE --- GET GURANSH STATE
 //        HrDashboardState applicantPageState = HrDashboardViewModel.getState();
 //        applicantPageState.setApplicants(outputData);

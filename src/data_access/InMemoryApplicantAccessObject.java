@@ -1,7 +1,7 @@
 package data_access;
 
 import entity.Applicant;
-import use_case.deleteApplicants.deleteApplicantsDataAccessInterface;
+import use_case.deleteApplicants.DeleteApplicantsDataAccessInterface;
 import use_case.resumeParsing.ResumeParsingDataAccessInterface;
 import use_case.showApplicants.ShowApplicantsDataAccessInterface;
 import use_case.showHireApplicantPage.ShowHireApplicantPageDataAccessInterface;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInterface, deleteApplicantsDataAccessInterface, ShowHireApplicantPageDataAccessInterface, ShowApplicantsDataAccessInterface {
+public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInterface, DeleteApplicantsDataAccessInterface, ShowHireApplicantPageDataAccessInterface, ShowApplicantsDataAccessInterface {
     private final Map<String, Applicant> applicants = new HashMap<String, Applicant>();
     private Integer id = 0;
 
