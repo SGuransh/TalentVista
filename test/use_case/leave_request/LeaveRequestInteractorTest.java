@@ -1,10 +1,7 @@
 package use_case.leave_request;
 
 import data_access.InMemoryLeaveRequestAccessObject;
-import entity.EmployeeFactory;
-import entity.Leave;
-import entity.Project;
-import entity.User;
+import entity.*;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -20,7 +17,7 @@ class LeaveRequestInteractorTest {
                 "02/01/2023", "medical emergency", "Alpha");
         LeaveRequestUserDataAccessInterface userRepository = new InMemoryLeaveRequestAccessObject();
         EmployeeFactory employeeFactory = new EmployeeFactory();
-        User employee = employeeFactory.create("Paul", "password", LocalDateTime.now());
+        Employee employee = employeeFactory.create("Paul", "password", LocalDateTime.now(), 500.00, "Dev");
         Project project = new Project( "Alpha", new ArrayList<>());
         project.addMember(employee);
         userRepository.addUser(employee);

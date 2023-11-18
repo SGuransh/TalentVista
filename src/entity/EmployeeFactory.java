@@ -2,7 +2,7 @@ package entity;
 
 import java.time.LocalDateTime;
 
-public class EmployeeFactory implements UserFactory {
+public class EmployeeFactory {
     /**
      * Requires: password is valid.
      * @param name
@@ -10,6 +10,5 @@ public class EmployeeFactory implements UserFactory {
      * @return
      */
 
-    @Override
-    public User create(String name, String password, LocalDateTime ltd) {return new Employee(name, password, ltd);}
+    public Employee create(String name, String password, LocalDateTime ltd, Double salary, String position) {return new Employee(name, password, ltd, salary, position);}
 }
