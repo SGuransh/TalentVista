@@ -48,6 +48,19 @@ public class HrDashboardView extends JPanel implements ActionListener, PropertyC
                 }
         );
 
+        showEmployees.addActionListener(
+                // This creates an anonymous subclass of ActionListener and instantiates it.
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(showEmployees)) {
+//                            HrDashboardState currentState = HrDashboardViewModel.getState();
+
+                            showEmployeesController.execute();
+                        }
+                    }
+                }
+        );
+
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
