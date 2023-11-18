@@ -11,6 +11,7 @@ public class Applicant {
     private final ArrayList<String> personal_urls;
     private final HashMap<String, String> contactInfo;
 
+//    private final Double salary;
     private final String position;
 
     public Applicant(String id, String name, ArrayList<String> skills, String uploadDate, HashMap<String, String> contactInfo, ArrayList<String> personal_urls, String position) {
@@ -20,8 +21,13 @@ public class Applicant {
         this.personal_urls = personal_urls;
         this.uploadDate = uploadDate;
         this.contactInfo = contactInfo;
+//        this.salary = salary;
         this.position = position;
     }
+
+    public String getPosition(){return position;}
+
+//    public Double getSalary(){return salary;}
 
     public String getId() {
         return id;
@@ -46,4 +52,6 @@ public class Applicant {
     public HashMap<String, String> getContactInfo() {
         return contactInfo;
     }
+
+
 }

@@ -19,12 +19,13 @@ public class ResumeParsingInteractor implements ResumeParsingInputBoundary {
 
     @Override
     public void execute(ResumeParsingInputData inputData) {
+        String position = inputData.getPosition();
         String filepathString = inputData.getPath();
         ArrayList<Applicant> applicants = new ArrayList<>();
         try {
             if (isPDFFile(filepathString)) {
                 int last_number = inMemoryApplicantAccessObject.getId();
-                Applicant applicant = applicantFactory.makeApplicantFromString(filepathString, last_number);
+                Applicant applicant = applicantFactory.makeApplicantFromString(filepathString, last_number, position);
                 inMemoryApplicantAccessObject.addApplicant(applicant);
                 applicants.add(applicant);
             }
@@ -36,7 +37,7 @@ public class ResumeParsingInteractor implements ResumeParsingInputBoundary {
                         String filePath = file.getAbsolutePath();
                         if (isPDFFile(filePath)) {
                             int last_number = inMemoryApplicantAccessObject.getId();
-                            Applicant applicant = applicantFactory.makeApplicantFromString(filePath, last_number);
+                            Applicant applicant = applicantFactory.makeApplicantFromString(filePath, last_number, position);
                             inMemoryApplicantAccessObject.addApplicant(applicant);
                             applicants.add(applicant);
                         }
