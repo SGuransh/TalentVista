@@ -29,8 +29,11 @@ public class HrDashboardUseCaseFactory {
         return null;
     }
 
-    private static ShowApplicantsController createShowApplicantsUseCase(ViewManagerModel viewManagerModel, HrDashboardViewModel showApplicantsViewModel, ShowApplicantsViewModel applicantsDataAccessObject){
+    private static ShowApplicantsController createShowApplicantsUseCase(ViewManagerModel viewManagerModel, ShowApplicantsViewModel showApplicantsViewModel, InMemoryApplicantAccessObject applicantsDataAccessObject){
 
+
+    }
+    private static ShowEmployeesController createShowEmployeesUseCase(ViewManagerModel viewManagerModel, ShowEmployeesViewModel showEmployeesViewModel, InMemoryEmployeeAccessObject employeeDataAccessObject){
 
     }
 }
