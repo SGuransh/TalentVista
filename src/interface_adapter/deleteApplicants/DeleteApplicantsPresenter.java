@@ -4,10 +4,10 @@ import interface_adapter.HrDashboard.HrDashboardViewModel;
 import use_case.deleteApplicants.deleteApplicantsOutputBoundary;
 import use_case.deleteApplicants.deleteApplicantsOutputData;
 
-public class deleteApplicantsPresenter implements deleteApplicantsOutputBoundary {
+public class DeleteApplicantsPresenter implements deleteApplicantsOutputBoundary {
     private final HrDashboardViewModel applicantPageViewModel;
 
-    public deleteApplicantsPresenter(HrDashboardViewModel applicantPageView) {
+    public DeleteApplicantsPresenter(HrDashboardViewModel applicantPageView) {
         this.applicantPageViewModel = applicantPageView;
     }
 

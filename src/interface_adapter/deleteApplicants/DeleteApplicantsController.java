@@ -1,4 +1,4 @@
 package interface_adapter.deleteApplicants;
 
-public class deleteApplicantsController {
+public class DeleteApplicantsController {
 }
