@@ -24,7 +24,7 @@ import java.io.IOException;
 public class HrDashboardUseCaseFactory {
     private HrDashboardUseCaseFactory() {};
 
-    public static HrDashboardView create(ViewManagerModel viewManagerModel, HrDashboardViewModel hrDashboardViewModel, ShowEmployeesViewModel showEmployeesViewModel, ShowApplicantsViewModel showApplicantsViewModel, ShowApplicantsDataAccessInterface applicantsDataAccessObject, InMemoryEmployeeAccessObject employeeDataAccessObject){
+    public static HrDashboardView create(ViewManagerModel viewManagerModel, HrDashboardViewModel hrDashboardViewModel, ShowEmployeesViewModel showEmployeesViewModel, ShowApplicantsViewModel showApplicantsViewModel, ShowApplicantsDataAccessInterface applicantsDataAccessObject, ShowEmployeesDataAccessInterface employeeDataAccessObject){
         try {
             ShowApplicantsController showApplicantsController = createShowApplicantsUseCase(viewManagerModel, showApplicantsViewModel, applicantsDataAccessObject);
             ShowEmployeesController showEmployeesController = createShowEmployeesUseCase(viewManagerModel, showEmployeesViewModel, employeeDataAccessObject);
