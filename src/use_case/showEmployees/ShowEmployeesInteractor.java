@@ -1,10 +1,10 @@
 package use_case.showEmployees;
 
 public class ShowEmployeesInteractor implements ShowEmployeesInputBoundary{
-    final ShowEmployeesUserDataAccessInterface userDataAccessObject;
+    final ShowEmployeesDataAccessInterface userDataAccessObject;
     final ShowEmployeesOutputBoundary showEmployeesPresenter;
 
-    public ShowEmployeesInteractor(ShowEmployeesUserDataAccessInterface userDataAccessObject, ShowEmployeesOutputBoundary showEmployeesPresenter) {
+    public ShowEmployeesInteractor(ShowEmployeesDataAccessInterface userDataAccessObject, ShowEmployeesOutputBoundary showEmployeesPresenter) {
         this.userDataAccessObject = userDataAccessObject;
         this.showEmployeesPresenter = showEmployeesPresenter;
     }

@@ -1,5 +1,5 @@
 package use_case.showEmployees;
 
-public interface ShowEmployeesUserDataAccessInterface {
+public interface ShowEmployeesDataAccessInterface {
     String getPresentableEmployees();
 }
