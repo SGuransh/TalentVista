@@ -1,5 +1,4 @@
 package app;
-
 import entity.ApplicantFactory;
 import interface_adapter.ResumeParsing.ResumeParsingController;
 import interface_adapter.ResumeParsing.ResumeParsingPresenter;
