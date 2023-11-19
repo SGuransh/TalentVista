@@ -12,6 +12,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -76,6 +78,8 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
         applyFilters = new JButton(ShowApplicantsViewModel.APPLY_FILTERS_ON_APPLICANTS_BUTTON_LABEL);
         buttons.add(applyFilters);
 
+
+
         hireApplicant.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
@@ -124,21 +128,140 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
                 }
         );
 
-        deleteApplicants.addActionListener(
+        applyFilters.addActionListener(
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent evt) {
-                        if (evt.getSource().equals(deleteApplicants)){
+                        if (evt.getSource().equals(applyFilters)){
                             ShowApplicantsState currentState = showApplicantsViewModel.getState();
 
-                            showHireApplicantPageController.execute(
+                            filterController.execute(
                                     // Would get this from State
-                                    currentState.applicantsToDelete()
+                                    currentState.getDateToFilter(),
+                                    currentState.getSkillToFilter()
                             );
                         }
                     }
                 }
         );
+
+        // Making the actionListener for the TextBoxes
+        // hireApplicant_in, deleteApplicants_in, uploadFiles_in, applyFilters_in_skills, applyFilters_in_date, uploadPosition_in
+
+        hireApplicant_in.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        ShowApplicantsState currentState = showApplicantsViewModel.getState();
+                        String text = hireApplicant_in.getText() + e.getKeyChar();
+                        currentState.setApplicantToHire(text);
+                        showApplicantsViewModel.setState(currentState);
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                    }
+                });
+
+        deleteApplicants_in.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        ShowApplicantsState currentState = showApplicantsViewModel.getState();
+                        String text = deleteApplicants_in.getText() + e.getKeyChar();
+                        currentState.setApplicantsToDelete(text);
+                        showApplicantsViewModel.setState(currentState);
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                    }
+                });
+
+        uploadFiles_in.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        ShowApplicantsState currentState = showApplicantsViewModel.getState();
+                        String text = uploadFiles_in.getText() + e.getKeyChar();
+                        currentState.setFilesToUpload(text);
+                        showApplicantsViewModel.setState(currentState);
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                    }
+                });
+
+        applyFilters_in_skills.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        ShowApplicantsState currentState = showApplicantsViewModel.getState();
+                        String text = applyFilters_in_skills.getText() + e.getKeyChar();
+                        currentState.setSkillToFilter(text);
+                        showApplicantsViewModel.setState(currentState);
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                    }
+                });
+
+        applyFilters_in_date.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        ShowApplicantsState currentState = showApplicantsViewModel.getState();
+                        String text = applyFilters_in_date.getText() + e.getKeyChar();
+                        currentState.setDateToFilter(text);
+                        showApplicantsViewModel.setState(currentState);
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                    }
+                });
+
+        uploadPosition_in.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        ShowApplicantsState currentState = showApplicantsViewModel.getState();
+                        String text = uploadPosition_in.getText() + e.getKeyChar();
+                        currentState.setPositionToUpload(text);
+                        showApplicantsViewModel.setState(currentState);
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                    }
+                });
+
 
     }
 
