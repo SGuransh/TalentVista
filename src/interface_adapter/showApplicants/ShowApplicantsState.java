@@ -6,6 +6,8 @@ public class ShowApplicantsState {
     private String dateToFilter = "";
     private String skillToFilter = null;
     private String filesToUpload = "";
+
+    private String positionToUpload = "";
     private String applicantsToDisplay = "";
 
 
@@ -25,6 +27,8 @@ public class ShowApplicantsState {
     public String getApplicantsToDelete() {
         return applicantsToDelete;
     }
+
+    public String getPositionToUpload(){return positionToUpload;}
 
     public String getApplicantToHire() {
         return applicantToHire;
@@ -47,9 +51,9 @@ public class ShowApplicantsState {
     }
 
 
-    public void setApplicantsToDelete(String applicantsToDelete) {
-        this.applicantsToDelete = applicantsToDelete;
-    }
+    public void setApplicantsToDelete(String applicantsToDelete) {this.applicantsToDelete = applicantsToDelete;}
+
+    public void setPositionToUpload(String positionToUpload){this.positionToUpload = positionToUpload;}
 
     public void setApplicantToHire(String applicantToHire) {
         this.applicantToHire = applicantToHire;
@@ -63,19 +67,12 @@ public class ShowApplicantsState {
         this.skillToFilter = skillToFilter;
     }
 
-    public void setRepeatPassword(String repeatPassword) {
-        this.repeatPassword = repeatPassword;
+    public void setFilesToUpload(String filesToUpload) {
+        this.filesToUpload = filesToUpload;
     }
 
-    public void setRepeatPasswordError(String repeatPasswordError) {
-        this.repeatPasswordError = repeatPasswordError;
+    public void setApplicantsToDisplay(String applicantsToDisplay) {
+        this.applicantsToDisplay = applicantsToDisplay;
     }
 
-    public void setDeletedUsers(String deletedUsers){
-        this.deletedUsers = deletedUsers;
-    }
-
-    public String getDeletedUsers(){
-        return this.deletedUsers;
-    }
 }
