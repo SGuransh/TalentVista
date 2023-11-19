@@ -58,11 +58,12 @@ public class Main {
         views.add(employeeView, employeeView.viewName);
 
         ShowApplicantsView showApplicantsView = ShowApplicantUseCaseFactory.create(showApplicantsViewModel, showHireApplicantPageViewModel, viewManagerModel, applicantsDataAccessObject);
+        views.add(showApplicantsView, showApplicantsView.viewName);
 //        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject);
 //        views.add(loginView, loginView.viewName);
 
 
-        viewManagerModel.setActiveView(showApplicantsView.viewName);
+        viewManagerModel.setActiveView(hrDashboardView.viewName);
         viewManagerModel.firePropertyChanged();
 
         application.pack();
