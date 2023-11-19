@@ -17,7 +17,7 @@ class LeaveRequestInteractorTest {
                 "02/01/2023", "medical emergency", "Alpha");
         LeaveRequestUserDataAccessInterface userRepository = new InMemoryLeaveRequestAccessObject();
         EmployeeFactory employeeFactory = new EmployeeFactory();
-        Employee employee = employeeFactory.create("Paul", "password", LocalDateTime.now(), 500.00, "Dev");
+        Employee employee = employeeFactory.create("Paul", "password", LocalDateTime.now(), 500.00, "Dev", "");
         Project project = new Project( "Alpha", new ArrayList<>());
         project.addMember(employee);
         userRepository.addUser(employee);
