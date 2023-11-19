@@ -48,7 +48,7 @@ public class Main {
         ShowApplicantsViewModel showApplicantsViewModel = new ShowApplicantsViewModel();
         ShowHireApplicantPageViewModel showHireApplicantPageViewModel = new ShowHireApplicantPageViewModel();
 
-        ShowApplicantsDataAccessInterface applicantsDataAccessObject = new InMemoryApplicantAccessObject();
+        InMemoryApplicantAccessObject applicantsDataAccessObject = new InMemoryApplicantAccessObject();
         ShowEmployeesDataAccessInterface employeeDataAccessObject = new InMemoryEmployeeAccessObject();
 
         HrDashboardView hrDashboardView = HrDashboardUseCaseFactory.create(viewManagerModel, hrDashboardViewModel, showEmployeesViewModel, showApplicantsViewModel, applicantsDataAccessObject, employeeDataAccessObject);
