@@ -15,6 +15,8 @@ public class ShowApplicantsPresenter implements ShowApplicantsOutputBoundary {
 
     @Override
     public void prepareSuccessView(ShowApplicantsOutputData outputData) {
+        String applicantsToPresent = outputData.getPresentableApplicants();
+        ShowApplicantsState showApplicantsState = showApplicantsViewModel.getState();
 
     }
 }
