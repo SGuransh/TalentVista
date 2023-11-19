@@ -6,59 +6,61 @@ public class ShowApplicantsState {
     private String dateToFilter = "";
     private String skillToFilter = null;
     private String filesToUpload = "";
+    private String applicantsToDisplay = "";
 
 
-    public SignupState(SignupState copy) {
-        username = copy.username;
-        usernameError = copy.usernameError;
-        password = copy.password;
-        passwordError = copy.passwordError;
-        repeatPassword = copy.repeatPassword;
-        repeatPasswordError = copy.repeatPasswordError;
+    public ShowApplicantsState(ShowApplicantsState copy) {
+        applicantsToDelete = copy.applicantsToDelete;
+        applicantToHire = copy.applicantToHire;
+        dateToFilter = copy.dateToFilter;
+        skillToFilter = copy.skillToFilter;
+        filesToUpload = copy.filesToUpload;
+        applicantsToDisplay = copy.applicantsToDisplay;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
-    public SignupState() {
+    public ShowApplicantsState() {
     }
 
-    public String getUsername() {
-        return username;
+    public String getApplicantsToDelete() {
+        return applicantsToDelete;
     }
 
-    public String getUsernameError() {
-        return usernameError;
+    public String getApplicantToHire() {
+        return applicantToHire;
     }
 
-    public String getPassword() {
-        return password;
+    public String getDateToFilter() {
+        return dateToFilter;
     }
 
-    public String getPasswordError() {
-        return passwordError;
+    public String getSkillToFilter() {
+        return skillToFilter;
     }
 
-    public String getRepeatPassword() {
-        return repeatPassword;
+    public String getApplicantsToDisplay() {
+        return applicantsToDisplay;
     }
 
-    public String getRepeatPasswordError() {
-        return repeatPasswordError;
+    public String getFilesToUpload() {
+        return filesToUpload;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+
+    public void setApplicantsToDelete(String applicantsToDelete) {
+        this.applicantsToDelete = applicantsToDelete;
     }
 
-    public void setUsernameError(String usernameError) {
-        this.usernameError = usernameError;
+    public void setApplicantToHire(String applicantToHire) {
+        this.applicantToHire = applicantToHire;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setDateToFilter(String dateToFilter) {
+        this.dateToFilter = dateToFilter;
     }
 
-    public void setPasswordError(String passwordError) {
-        this.passwordError = passwordError;
+    public void setSkillToFilter(String skillToFilter) {
+        this.skillToFilter = skillToFilter;
     }
 
     public void setRepeatPassword(String repeatPassword) {
