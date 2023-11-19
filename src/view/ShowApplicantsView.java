@@ -6,6 +6,7 @@ import interface_adapter.deleteApplicants.DeleteApplicantsController;
 import interface_adapter.filter.FilterController;
 import interface_adapter.showApplicants.ShowApplicantsState;
 import interface_adapter.showApplicants.ShowApplicantsViewModel;
+import interface_adapter.showEmployees.ShowEmployeesState;
 import interface_adapter.show_hire_applicant_page.ShowHireApplicantPageController;
 
 import javax.swing.*;
@@ -27,6 +28,7 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
     private final ShowHireApplicantPageController showHireApplicantPageController;
     private final ResumeParsingController resumeParsingController;
 
+    JLabel applicants;
     private final JButton hireApplicant;
     private final JButton deleteApplicants;
     private final JButton uploadFiles;
@@ -262,6 +264,10 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
                     }
                 });
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        JLabel head = new JLabel("List of Applicants: ");
+
+        applicants = new JLabel();
+
         // adding things to the view
         // hireApplicant_in, deleteApplicants_in, uploadFiles_in, applyFilters_in_skills, applyFilters_in_date, uploadPosition_in
         this.add(title);
@@ -272,6 +278,8 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
         this.add(applyFilters_info_date);
         this.add(uploadPosition_info);
         this.add(buttons);
+        this.add(head);
+        this.add(applicants);
 
     }
 
@@ -283,5 +291,8 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
 
+        ShowApplicantsState state = showApplicantsViewModel.getState();
+        String applicantsToDisplay = state.getApplicantsToDisplay();
+        applicants.setText(applicantsToDisplay);
     }
 }

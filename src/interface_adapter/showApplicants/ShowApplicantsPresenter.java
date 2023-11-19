@@ -23,7 +23,8 @@ public class ShowApplicantsPresenter implements ShowApplicantsOutputBoundary {
         this.showApplicantsViewModel.setState(showApplicantsState);
         viewManagerModel.setActiveView(showApplicantsViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
-//        showApplicantsViewModel.firePropertyChanged();
+        showApplicantsViewModel.firePropertyChanged();
+
 
     }
 }
