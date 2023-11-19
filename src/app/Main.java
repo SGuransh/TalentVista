@@ -5,10 +5,13 @@ import data_access.InMemoryEmployeeAccessObject;
 import interface_adapter.HrDashboard.HrDashboardViewModel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.login.LoginViewModel;
+import interface_adapter.show_hire_applicant_page.ShowHireApplicantPageViewModel;
+import use_case.filter.FilterUserDataAccessInterface;
 import use_case.showApplicants.ShowApplicantsDataAccessInterface;
 import use_case.showEmployees.ShowEmployeesDataAccessInterface;
 import view.DashboardEmployeeView;
 import view.HrDashboardView;
+import view.ShowApplicantsView;
 import view.ViewManager;
 import app.HrDashboardUseCaseFactory;
 import interface_adapter.showEmployees.ShowEmployeesViewModel;
@@ -43,7 +46,7 @@ public class Main {
         HrDashboardViewModel hrDashboardViewModel = new HrDashboardViewModel();
         ShowEmployeesViewModel showEmployeesViewModel = new ShowEmployeesViewModel();
         ShowApplicantsViewModel showApplicantsViewModel = new ShowApplicantsViewModel();
-
+        ShowHireApplicantPageViewModel showHireApplicantPageViewModel = new ShowHireApplicantPageViewModel();
 
         ShowApplicantsDataAccessInterface applicantsDataAccessObject = new InMemoryApplicantAccessObject();
         ShowEmployeesDataAccessInterface employeeDataAccessObject = new InMemoryEmployeeAccessObject();
@@ -54,12 +57,12 @@ public class Main {
         DashboardEmployeeView employeeView = new DashboardEmployeeView(showEmployeesViewModel);
         views.add(employeeView, employeeView.viewName);
 
-
+        ShowApplicantsView showApplicantsView = ShowApplicantUseCaseFactory.create(showApplicantsViewModel, showHireApplicantPageViewModel, viewManagerModel, applicantsDataAccessObject);
 //        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject);
 //        views.add(loginView, loginView.viewName);
 
 
-        viewManagerModel.setActiveView(hrDashboardView.viewName);
+        viewManagerModel.setActiveView(showApplicantsView.viewName);
         viewManagerModel.firePropertyChanged();
 
         application.pack();

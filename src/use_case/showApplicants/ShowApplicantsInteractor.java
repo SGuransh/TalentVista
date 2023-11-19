@@ -1,5 +1,6 @@
 package use_case.showApplicants;
 
+import interface_adapter.showApplicants.ShowApplicantsState;
 import use_case.showEmployees.ShowEmployeesDataAccessInterface;
 import use_case.showEmployees.ShowEmployeesInputBoundary;
 import use_case.showEmployees.ShowEmployeesOutputBoundary;
@@ -17,9 +18,8 @@ public class ShowApplicantsInteractor implements ShowApplicantsInputBoundary {
     @Override
     public void execute() {
         System.out.println("APPLICANTS");
-        String applicants = applicantsDataAccessObject.getPresentableApplicants();
-        ShowApplicantsOutputData outputData = new ShowApplicantsOutputData(applicants);
-        outputData = new ShowApplicantsOutputData("TEST");
+//        String applicants = applicantsDataAccessObject.getPresentableApplicants();
+        ShowApplicantsOutputData outputData = new ShowApplicantsOutputData("TEST");
         showApplicantsPresenter.prepareSuccessView(outputData);
     }
 }
