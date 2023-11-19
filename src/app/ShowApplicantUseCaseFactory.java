@@ -1,4 +1,5 @@
 package app;
+import data_access.InMemoryApplicantAccessObject;
 import entity.ApplicantFactory;
 import interface_adapter.ResumeParsing.ResumeParsingController;
 import interface_adapter.ResumeParsing.ResumeParsingPresenter;
@@ -39,9 +40,9 @@ public class ShowApplicantUseCaseFactory {
     public static ShowApplicantsView create(ShowApplicantsViewModel showApplicantsViewModel,
                                             ShowHireApplicantPageViewModel showHireApplicantPageViewModel,
                                             ViewManagerModel viewManagerModel,
-                                            FilterUserDataAccessInterface applicantDAO)
+                                            InMemoryApplicantAccessObject applicantDAO)
     {
-        FilterController filterController = createFilterUseCase(viewManagerModel, showApplicantsViewModel, applicantDAO);
+        FilterController filterController = createFilterUseCase(viewManagerModel, showApplicantsViewModel, (FilterUserDataAccessInterface) applicantDAO);
 
         DeleteApplicantsController deleteApplicantsController = createDeleteApplicantsUseCase(viewManagerModel,
                 showApplicantsViewModel, (DeleteApplicantsDataAccessInterface) applicantDAO);
