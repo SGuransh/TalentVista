@@ -1,5 +1,7 @@
 package use_case.HireApplicantButton;
 
+import entity.Employee;
+
 public class HireApplicantInteractor implements HireApplicantInputBoundary{
     final HireApplicantDataAccessInterface EmployeeDataAccessObject;
     final AutoMailSend mailSender;
