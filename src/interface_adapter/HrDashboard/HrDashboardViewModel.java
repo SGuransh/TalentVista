@@ -14,7 +14,7 @@ public class HrDashboardViewModel extends ViewModel {
     private HrDashboardState state = new HrDashboardState();
 
     public HrDashboardViewModel() {
-        super("sign up");
+        super("Hr Dashboard");
     }
 
     public void setState(HrDashboardState state) {
