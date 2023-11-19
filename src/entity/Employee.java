@@ -53,4 +53,6 @@ public class Employee implements User {
     }
 
     public Integer getLevel() {return level;}
+    public Double getSalary(){return salary;}
+    public String getPosition(){return position;}
 }

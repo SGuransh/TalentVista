@@ -11,7 +11,6 @@ public class ShowEmployeesInteractor implements ShowEmployeesInputBoundary{
 
     @Override
     public void execute() {
-        System.out.println("Employees");
         String employees = userDataAccessObject.getPresentableEmployees();
         ShowEmployeesOutputData outputData = new ShowEmployeesOutputData(employees);
         showEmployeesPresenter.prepareSuccessView(outputData);

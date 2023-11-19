@@ -15,7 +15,6 @@ public class BackPresenter implements BackOutputBoundary {
 
     @Override
     public void prepareSuccessView() {
-        System.out.println("t");
         this.viewManagerModel.setActiveView(hrDashboardViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
