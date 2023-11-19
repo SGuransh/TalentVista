@@ -261,7 +261,17 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
                     public void keyReleased(KeyEvent e) {
                     }
                 });
-
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        // adding things to the view
+        // hireApplicant_in, deleteApplicants_in, uploadFiles_in, applyFilters_in_skills, applyFilters_in_date, uploadPosition_in
+        this.add(title);
+        this.add(hireApplicant_in);
+        this.add(deleteApplicants_in);
+        this.add(uploadFiles_in);
+        this.add(applyFilters_in_skills);
+        this.add(applyFilters_in_date);
+        this.add(uploadPosition_in);
+        this.add(buttons);
 
     }
 
