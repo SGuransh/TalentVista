@@ -2,6 +2,7 @@ package app;
 
 import data_access.InMemoryApplicantAccessObject;
 import data_access.InMemoryEmployeeAccessObject;
+import entity.Applicant;
 import interface_adapter.HrDashboard.HrDashboardViewModel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.login.LoginViewModel;
@@ -18,6 +19,9 @@ import interface_adapter.showEmployees.ShowEmployeesViewModel;
 import interface_adapter.showApplicants.ShowApplicantsViewModel;
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
@@ -48,7 +52,16 @@ public class Main {
         ShowApplicantsViewModel showApplicantsViewModel = new ShowApplicantsViewModel();
         ShowHireApplicantPageViewModel showHireApplicantPageViewModel = new ShowHireApplicantPageViewModel();
 
+        ArrayList<String> skills = new ArrayList<>();
+        skills.add("python");
+        HashMap<String, String> contact = new HashMap<>();
+        contact.put("phone", "416");
+        ArrayList<String> urls = skills;
+        Applicant SHAHBAZ = new Applicant("100", "Shahbaz", skills, "May", contact,urls, "Dev");
+        Map<String, Applicant> TEST = new HashMap<>();
+        TEST.put(SHAHBAZ.getId(), SHAHBAZ);
         InMemoryApplicantAccessObject applicantsDataAccessObject = new InMemoryApplicantAccessObject();
+        applicantsDataAccessObject.addApplicant(SHAHBAZ);
         ShowEmployeesDataAccessInterface employeeDataAccessObject = new InMemoryEmployeeAccessObject();
 
         HrDashboardView hrDashboardView = HrDashboardUseCaseFactory.create(viewManagerModel, hrDashboardViewModel, showEmployeesViewModel, showApplicantsViewModel, applicantsDataAccessObject, employeeDataAccessObject);
