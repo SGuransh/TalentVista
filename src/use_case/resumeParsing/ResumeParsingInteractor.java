@@ -65,7 +65,10 @@ public class ResumeParsingInteractor implements ResumeParsingInputBoundary {
 
     private static boolean isPDFFile(String filePath) {
         String lowerCaseFilePath = filePath.toLowerCase();
-
+        System.out.println(filePath.endsWith(".pdf"));
+        System.out.println(filePath);
+        System.out.println(filePath.charAt(filePath.length() - 1));
+        System.out.println((int) filePath.charAt(filePath.length() - 1));
         return lowerCaseFilePath.endsWith(".pdf");
     }
 
