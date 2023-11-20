@@ -46,7 +46,7 @@ public class Main {
         // This information will be changed by a presenter object that is reporting the
         // results from the use case. The ViewModels are observable, and will
         // be observed by the Views.
-//        LoginViewModel loginViewModel = new LoginViewModel();
+        //LoginViewModel loginViewModel = new LoginViewModel();
         HrDashboardViewModel hrDashboardViewModel = new HrDashboardViewModel();
         ShowEmployeesViewModel showEmployeesViewModel = new ShowEmployeesViewModel();
         ShowApplicantsViewModel showApplicantsViewModel = new ShowApplicantsViewModel();
