@@ -35,7 +35,7 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
     private final JButton applyFilters;
     private final JTextField hireApplicant_in = new JTextField(10);
     private final JTextField deleteApplicants_in = new JTextField(10);
-    private final JTextField uploadFiles_in = new JTextField(10);
+    private final JTextField uploadFiles_in = new JTextField(50);
     private final JTextField applyFilters_in_skills = new JTextField(10);
     private final JTextField applyFilters_in_date = new JTextField(10);
     private final JTextField uploadPosition_in = new JTextField(10);

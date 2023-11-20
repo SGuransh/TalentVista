@@ -1,9 +1,12 @@
 package interface_adapter.ResumeParsing;
 
+import entity.Applicant;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.showApplicants.ShowApplicantsViewModel;
 import use_case.resumeParsing.ResumeParsingOutputBoundary;
 import use_case.resumeParsing.ResumeParsingOutputData;
+
+import java.util.ArrayList;
 
 public class ResumeParsingPresenter implements ResumeParsingOutputBoundary {
     public final ViewManagerModel viewManagerModel;
@@ -17,7 +20,11 @@ public class ResumeParsingPresenter implements ResumeParsingOutputBoundary {
 
     @Override
     public void prepareSuccessView(ResumeParsingOutputData applicantData) {
-
+//        ArrayList<Applicant> applicantsArray = applicantData.getApplicantData();
+//        for (int i=0; i<=applicantsArray.size(); i++){
+//
+//        }
+//
     }
 
     @Override

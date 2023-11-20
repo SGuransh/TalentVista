@@ -5,9 +5,13 @@ import entity.Applicant;
 import java.util.ArrayList;
 
 public class ResumeParsingOutputData {
-    final ArrayList<Applicant> applicantData;
+    final String presentableApplicants;
 
-    public ResumeParsingOutputData(ArrayList<Applicant> applicantData) {
-        this.applicantData = applicantData;
+    public ResumeParsingOutputData(String presentableApplicants) {
+        this.presentableApplicants = presentableApplicants;
+    }
+
+    public String getPresentableApplicants(){
+        return this.presentableApplicants;
     }
 }

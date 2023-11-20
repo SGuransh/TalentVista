@@ -6,4 +6,6 @@ public interface ResumeParsingDataAccessInterface {
     Applicant getApplicant(String id);
     void addApplicant(Applicant applicant);
     Integer getId();
+
+    public String getPresentableApplicants();
 }
