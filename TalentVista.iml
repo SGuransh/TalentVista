@@ -85,7 +85,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/javax.mail.jar!/" />
+          <root url="jar://$MODULE_DIR$/javax.mail.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -94,7 +94,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/activation.jar!/" />
+          <root url="jar://$MODULE_DIR$/activation.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

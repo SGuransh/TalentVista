@@ -1,13 +1,9 @@
 package use_case.showApplicants;
 
 public class ShowApplicantsOutputData {
-    private final String employees;
+    private final String presentableApplicants;
 
-    public ShowApplicantsOutputData(String employees) {
-        this.employees = employees;
-    }
+    public ShowApplicantsOutputData(String presentableApplicants) {this.presentableApplicants = presentableApplicants;}
 
-    public String getEmployees(){
-        return employees;
-    }
+    public String getPresentableApplicants(){return presentableApplicants;}
 }

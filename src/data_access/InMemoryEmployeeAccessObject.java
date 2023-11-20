@@ -2,7 +2,7 @@ package data_access;
 
 import entity.Applicant;
 import entity.Employee;
-import use_case.HireApplicant.HireApplicantDataAccessInterface;
+import use_case.HireApplicantButton.HireApplicantDataAccessInterface;
 import use_case.showEmployees.ShowEmployeesDataAccessInterface;
 
 import java.util.ArrayList;
@@ -28,6 +28,8 @@ public class InMemoryEmployeeAccessObject implements HireApplicantDataAccessInte
     public HashMap<String, ArrayList<String>> getEmployees() {
         return null;
     }
+
+
 
     @Override
     public String getPresentableEmployees() {

@@ -1,4 +1,4 @@
-package use_case.HireApplicant;
+package use_case.HireApplicantButton;
 
 import entity.Employee;
 

@@ -1,5 +1,6 @@
 package use_case.showApplicants;
 
+import interface_adapter.showApplicants.ShowApplicantsState;
 import use_case.showEmployees.ShowEmployeesDataAccessInterface;
 import use_case.showEmployees.ShowEmployeesInputBoundary;
 import use_case.showEmployees.ShowEmployeesOutputBoundary;
