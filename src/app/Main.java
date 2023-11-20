@@ -54,7 +54,7 @@ public class Main {
         HrDashboardView hrDashboardView = HrDashboardUseCaseFactory.create(viewManagerModel, hrDashboardViewModel, showEmployeesViewModel, showApplicantsViewModel, applicantsDataAccessObject, employeeDataAccessObject);
         views.add(hrDashboardView, hrDashboardView.viewName);
 
-        DashboardEmployeeView employeeView = new DashboardEmployeeView(showEmployeesViewModel);
+        DashboardEmployeeView employeeView = EmployeeDashboardUseCaseFactory.create(viewManagerModel,hrDashboardViewModel,showEmployeesViewModel);
         views.add(employeeView, employeeView.viewName);
 
         ShowApplicantsView showApplicantsView = ShowApplicantUseCaseFactory.create(showApplicantsViewModel, showHireApplicantPageViewModel, viewManagerModel, applicantsDataAccessObject);
@@ -68,5 +68,7 @@ public class Main {
 
         application.pack();
         application.setVisible(true);
+
+
     }
 }

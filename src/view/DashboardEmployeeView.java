@@ -1,5 +1,6 @@
 package view;
 
+import interface_adapter.back.BackController;
 import interface_adapter.showEmployees.ShowEmployeesState;
 import interface_adapter.showEmployees.ShowEmployeesViewModel;
 
@@ -13,6 +14,8 @@ import java.beans.PropertyChangeListener;
 public class DashboardEmployeeView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "Employee Dashboard";
     private final ShowEmployeesViewModel showEmployeesViewModel;
+    private final BackController backController;
+
 
     JLabel employees;
 
@@ -21,26 +24,36 @@ public class DashboardEmployeeView extends JPanel implements ActionListener, Pro
     /**
      * A window with a title and a JButton.
      */
-    public DashboardEmployeeView(ShowEmployeesViewModel showEmployeesViewModel) {
+    public DashboardEmployeeView(ShowEmployeesViewModel showEmployeesViewModel, BackController controller) {
         this.showEmployeesViewModel = showEmployeesViewModel;
         this.showEmployeesViewModel.addPropertyChangeListener(this);
+        this.backController = controller;
 
         JLabel title = new JLabel("Employees");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JLabel usernameInfo = new JLabel("List of Employees: ");
+        JLabel employeesInfo = new JLabel("List of Employees: ");
         employees = new JLabel();
 
         JPanel buttons = new JPanel();
         back = new JButton(showEmployeesViewModel.BACK_BUTTON_LABEL);
         buttons.add(back);
 
-        back.addActionListener(this);
+        back.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(back)) {
+                            backController.execute();
+                        }
+                    }
+                }
+        );
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
-        this.add(usernameInfo);
+        this.add(employeesInfo);
         this.add(employees);
         this.add(buttons);
     }

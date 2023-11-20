@@ -1,5 +1,6 @@
 package data_access;
 
+import entity.Applicant;
 import entity.Employee;
 import use_case.HireApplicantButton.HireApplicantDataAccessInterface;
 import use_case.showEmployees.ShowEmployeesDataAccessInterface;
@@ -32,6 +33,17 @@ public class InMemoryEmployeeAccessObject implements HireApplicantDataAccessInte
 
     @Override
     public String getPresentableEmployees() {
-        return "hello";
+        StringBuilder presentableEmployees = new StringBuilder();
+        for (String employeeName: employees.keySet()){
+            Employee employee = employees.get(employeeName);
+            String name = employee.getName();
+            Double salary = employee.getSalary();
+            String position = employee.getPosition();
+            String email = employee.getEmail();
+            presentableEmployees.append(" NAME: " + name + ", SALARY: " + salary + ", EMAIL: " + email + ", POSITION: " + position);
+            presentableEmployees.append("\n\n");
+        }
+        return presentableEmployees.toString();
     }
+
 }
