@@ -16,7 +16,7 @@ body:
   validations:
     required: true
 - type: dropdown
-  id: Engine region
+  id: Engine_region
   attributes:
     label: What part of the codebase has the issue?
     multiple: true
