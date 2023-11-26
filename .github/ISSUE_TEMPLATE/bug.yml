@@ -8,13 +8,13 @@ body:
     label: Current situation
     description: A description of what you are experiencing
   validations:
-  required: false
+    required: false
 - type: textarea
   attributes:
     label: Plan to fix it
     description: A description of how to fix the bug
   validations:
-  required: true
+    required: true
 - type: dropdown
   id: Engine region
   attributes:
