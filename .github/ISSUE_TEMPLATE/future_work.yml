@@ -24,4 +24,3 @@ body:
       - label: Was in the plan
       - label: Will be good
       - label: Not as important
-        required: true
