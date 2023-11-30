@@ -3,18 +3,22 @@ package use_case.HireApplicantButton;
 import entity.Employee;
 
 public class HireApplicantInteractor implements HireApplicantInputBoundary{
-    final HireApplicantDataAccessInterface EmployeeDataAccessObject;
+    final HireApplicantDataAccessInterface employeeDataAccessObject;
     final AutoMailSend mailSender;
+    final HireApplicantOutputBoundary hireApplicantPresenter;
 
-    public HireApplicantInteractor(HireApplicantDataAccessInterface employeeDataAccessObject, AutoMailSend mailSender) {
-        EmployeeDataAccessObject = employeeDataAccessObject;
+    public HireApplicantInteractor(HireApplicantDataAccessInterface employeeDataAccessObject, AutoMailSend mailSender, HireApplicantOutputBoundary hireApplicantPresenter) {
+        this.employeeDataAccessObject = employeeDataAccessObject;
         this.mailSender = mailSender;
+        this.hireApplicantPresenter = hireApplicantPresenter;
     }
 
     @Override
     public void execute(HireApplicantInputData inputData) {
-        EmployeeDataAccessObject.addEmployee(inputData.getEmployee());
+        employeeDataAccessObject.addEmployee(inputData.getEmployee());
         sendEmail(inputData.getEmployee());
+        HireApplicantOutputData outputData = new HireApplicantOutputData(employeeDataAccessObject.getEmployeeData(inputData.getEmployee()));
+        hireApplicantPresenter.prepareSuccessView(outputData);
     }
     private void sendEmail(Employee employee) {
         // Customize email content based on employee details
