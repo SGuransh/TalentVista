@@ -1,6 +1,9 @@
 package use_case.HireApplicantButton;
 
 import entity.Employee;
+import entity.EmployeeFactory;
+
+import java.time.LocalDateTime;
 
 public class HireApplicantInteractor implements HireApplicantInputBoundary{
     final HireApplicantDataAccessInterface employeeDataAccessObject;
@@ -15,9 +18,11 @@ public class HireApplicantInteractor implements HireApplicantInputBoundary{
 
     @Override
     public void execute(HireApplicantInputData inputData) {
-        employeeDataAccessObject.addEmployee(inputData.getEmployee());
-        sendEmail(inputData.getEmployee());
-        HireApplicantOutputData outputData = new HireApplicantOutputData(employeeDataAccessObject.getEmployeeData(inputData.getEmployee()));
+        EmployeeFactory employeeFactory = new EmployeeFactory();
+        Employee employee = employeeFactory.create(inputData.getName(), "password", LocalDateTime.now(), inputData.getSalary(), inputData.getPosition(), inputData.getEmail());
+        employeeDataAccessObject.addEmployee(employee);
+        sendEmail(employee);
+        HireApplicantOutputData outputData = new HireApplicantOutputData(employeeDataAccessObject.getEmployeeData(employee));
         hireApplicantPresenter.prepareSuccessView(outputData);
     }
     private void sendEmail(Employee employee) {

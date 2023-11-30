@@ -10,8 +10,8 @@ public class HireApplicantController {
     public HireApplicantController(HireApplicantInputBoundary hireApplicantInteractor) {
         this.hireApplicantInteractor = hireApplicantInteractor;
     }
-    public void execute(Employee employee){
-        HireApplicantInputData inputData = new HireApplicantInputData(employee);
+    public void execute(String name, String position, String email, Double salary){
+        HireApplicantInputData inputData = new HireApplicantInputData(name, position, email, salary);
         hireApplicantInteractor.execute(inputData);
     }
 }
