@@ -74,5 +74,4 @@ public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInt
         return presentableApplicants.toString();
     }
 
-
 }
