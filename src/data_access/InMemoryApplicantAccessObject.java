@@ -149,7 +149,4 @@ public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInt
         }
     }
 
-
-
-
 }
