@@ -120,7 +120,7 @@ public class ApplicantFactory {
             last_name = "Not Found";
             System.out.println("JSONError in reading last name");
         }
-        String uploadDate = LocalDateTime.now().toString();
+        String uploadDate = LocalDateTime.now().toLocalDate().toString();
         // Making the Hashmap
         try {
             contactInfo = new HashMap<>();
@@ -190,6 +190,7 @@ public class ApplicantFactory {
             System.out.println(a.getUploadDate());
             System.out.println(a.getContactInfo());
             System.out.println(a.personal_urls());
+            System.out.println(a.getUploadDate());
         } catch (Exception e) {
             System.out.println("caught in line 164");
             System.out.println(e);
