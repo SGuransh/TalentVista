@@ -35,7 +35,7 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
     private final JButton applyFilters;
     private final JTextField hireApplicant_in = new JTextField(10);
     private final JTextField deleteApplicants_in = new JTextField(10);
-    private final JTextField uploadFiles_in = new JTextField(150);
+    private final JTextField uploadFiles_in = new JTextField(50);
     private final JTextField applyFilters_in_skills = new JTextField(10);
     private final JTextField applyFilters_in_date = new JTextField(10);
     private final JTextField uploadPosition_in = new JTextField(10);
@@ -264,10 +264,10 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
                     }
                 });
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        JLabel head = new JLabel("List of Applicants: ");
-
+        JLabel head = new JLabel("<html><h2>APPLICANTS</h2>");
         applicants = new JLabel();
 
+//        applicants.setHorizontalAlignment(SwingConstants.LEFT);
         // adding things to the view
         // hireApplicant_in, deleteApplicants_in, uploadFiles_in, applyFilters_in_skills, applyFilters_in_date, uploadPosition_in
         this.add(title);
@@ -278,8 +278,19 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
         this.add(applyFilters_info_date);
         this.add(uploadPosition_info);
         this.add(buttons);
-        this.add(head);
-        this.add(applicants);
+//        this.add(Box.createRigidArea(new Dimension(0, 10))); // Adjust the height as needed
+//        this.add(head);
+        JPanel containerPanel = new JPanel((new FlowLayout(FlowLayout.LEFT)));
+        JPanel containerPanel2 = new JPanel((new FlowLayout(FlowLayout.LEFT)));
+        containerPanel2.add(applicants);
+
+        containerPanel.add(head);
+        this.add(containerPanel);
+        JFrame frame = new JFrame("Scrollable JPanel Example");
+        JScrollPane scrollPane = new JScrollPane(containerPanel2);
+        scrollPane.setPreferredSize(new Dimension(280, 180));
+       this.add(scrollPane);
+
 
     }
 

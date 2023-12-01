@@ -24,13 +24,16 @@ public class InMemoryEmployeeAccessObject implements HireApplicantDataAccessInte
         }
         employees.put(employee.getName(), employee);
     }
-
     @Override
-    public HashMap<String, ArrayList<String>> getEmployees() {
-        return null;
+    public String getEmployeeData(Employee employee){
+        StringBuilder employeeData = new StringBuilder();
+        String name = employee.getName();
+        Double salary = employee.getSalary();
+        String position = employee.getPosition();
+        String email = employee.getEmail();
+        employeeData.append(" NAME: " + name + ", SALARY: " + salary + ", EMAIL: " + email + ", POSITION: " + position);
+        return employeeData.toString();
     }
-
-
 
     @Override
     public String getPresentableEmployees() {

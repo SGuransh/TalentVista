@@ -1,20 +1,29 @@
 package use_case.HireApplicantButton;
 
 import entity.Employee;
+import entity.EmployeeFactory;
+
+import java.time.LocalDateTime;
 
 public class HireApplicantInteractor implements HireApplicantInputBoundary{
-    final HireApplicantDataAccessInterface EmployeeDataAccessObject;
+    final HireApplicantDataAccessInterface employeeDataAccessObject;
     final AutoMailSend mailSender;
+    final HireApplicantOutputBoundary hireApplicantPresenter;
 
-    public HireApplicantInteractor(HireApplicantDataAccessInterface employeeDataAccessObject, AutoMailSend mailSender) {
-        EmployeeDataAccessObject = employeeDataAccessObject;
+    public HireApplicantInteractor(HireApplicantDataAccessInterface employeeDataAccessObject, AutoMailSend mailSender, HireApplicantOutputBoundary hireApplicantPresenter) {
+        this.employeeDataAccessObject = employeeDataAccessObject;
         this.mailSender = mailSender;
+        this.hireApplicantPresenter = hireApplicantPresenter;
     }
 
     @Override
     public void execute(HireApplicantInputData inputData) {
-        EmployeeDataAccessObject.addEmployee(inputData.getEmployee());
-        sendEmail(inputData.getEmployee());
+        EmployeeFactory employeeFactory = new EmployeeFactory();
+        Employee employee = employeeFactory.create(inputData.getName(), "password", LocalDateTime.now(), inputData.getSalary(), inputData.getPosition(), inputData.getEmail());
+        employeeDataAccessObject.addEmployee(employee);
+        sendEmail(employee);
+        HireApplicantOutputData outputData = new HireApplicantOutputData(employeeDataAccessObject.getEmployeeData(employee));
+        hireApplicantPresenter.prepareSuccessView(outputData);
     }
     private void sendEmail(Employee employee) {
         // Customize email content based on employee details

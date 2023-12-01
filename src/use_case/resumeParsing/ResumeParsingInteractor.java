@@ -26,6 +26,7 @@ public class ResumeParsingInteractor implements ResumeParsingInputBoundary {
         String filepathString = inputData.getPath();
         System.out.println(filepathString);
 //        String filepathString = "C:\\Users\\sgura\\OneDrive\\Pictures\\Documents\\Downloads\\Resume.pdf";
+//        String resumepath = "C:\\Users\\sgura\\OneDrive\\Pictures\\Documents\\Downloads\\resumes\\Resume.pdf";
         filepathString = filepathString.replaceAll("[\\x00-\\x1F]", "");
         ArrayList<Applicant> applicants = new ArrayList<>();
         try {
@@ -64,6 +65,9 @@ public class ResumeParsingInteractor implements ResumeParsingInputBoundary {
         }catch (Exception e){
             System.out.println("here");
             System.out.println("Error: " + e.getMessage());
+            System.out.println(e.getCause());
+            System.out.println("---------------------------------------------------------");
+            System.out.println(e.toString());
             // TODO: handle exception in the presenter
         }
         String presenterString = inMemoryApplicantAccessObject.getPresentableApplicants();
