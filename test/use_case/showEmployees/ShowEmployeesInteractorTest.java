@@ -1,16 +1,11 @@
 package use_case.showEmployees;
 
 import data_access.InMemoryEmployeeAccessObject;
-import data_access.InMemoryLeaveRequestAccessObject;
 import entity.Employee;
 import entity.EmployeeFactory;
-import entity.Leave;
-import entity.Project;
 import org.junit.jupiter.api.Test;
-import use_case.leave_request.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
