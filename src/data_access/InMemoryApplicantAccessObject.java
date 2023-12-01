@@ -74,24 +74,36 @@ public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInt
         return applicantData.toString();
     }
 
-    public String getPresentableApplicants(){
+    public String getPresentableApplicants() {
         StringBuilder presentableApplicants = new StringBuilder();
-        for (String applicantID: applicants.keySet()){
+        for (String applicantID : applicants.keySet()) {
             Map<String, Applicant> applicantMap = applicants;
             Applicant applicant = applicantMap.get(applicantID);
             String name = applicant.getName();
             String ID = applicant.getId();
             ArrayList<String> skillsArray = applicant.getSkills();
-            StringBuilder skillsString = new StringBuilder();
-            for (String skill: skillsArray){
-                skillsString.append(skill).append(", ");
+            String skillsString = "";
+            for (String skill : skillsArray) {
+                skillsString += skill + ", ";
             }
+            skillsString = skillsString.substring(0, skillsString.length() - 2);
             HashMap<String, String> contactInfo = applicant.getContactInfo();
             String email = contactInfo.get("email");
             String phoneNum = contactInfo.get("phone");
-            presentableApplicants.append("ID: " + ID+ " NAME: " + name + " SKILLS: " + skillsString + " EMAIL: " + email + " PHONE: " + phoneNum);
-            presentableApplicants.append("\n\n");
-    }
+            String position = applicant.getPosition();
+            String HTMLContent = "<html>";
+            HTMLContent += "<h3>"+"<i>"+ ID + "</i>" + "&nbsp;&nbsp"+ "<span style=\"font-weight: normal;\">"+ name +"</span> " + "</h3>";
+            HTMLContent += "<p>" + "<b>" +  "Email: "+"</b>" +email +"</p>";
+            HTMLContent += "<p>" + "<b>" +  "Phone: "+"</b>" +phoneNum +"</p>";
+            HTMLContent += "<p>" + "<b>" +  "Skills: "+"</b>" +skillsString +"</p>";
+            HTMLContent += "<p>" + "<b>" +  "Position: "+"</b>" +position +"</p>";
+            HTMLContent +="<p>" + "_________________________" + "</p>";
+
+
+
+            presentableApplicants.append(HTMLContent);
+
+        }
         return presentableApplicants.toString();
     }
 
