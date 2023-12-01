@@ -61,7 +61,7 @@ public class Main {
         contact.put("email", "shahbaz@nanda.ca");
         ArrayList<String> urls = skills;
         Applicant SHAHBAZ = new Applicant("100", "Shahbaz", skills, "2020-10-01", contact,urls, "Dev");
-        Applicant SHAHBAZ = new Applicant("100", "Shahbaz", skills, "May", contact,urls, "Dev");
+
 
         ArrayList<String> skills2 = new ArrayList<>();
         skills.add("C++");
