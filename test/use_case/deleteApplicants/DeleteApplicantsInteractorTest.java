@@ -1,4 +1,4 @@
-package entity.use_case.deleteApplicants;
+package use_case.deleteApplicants;
 
 import data_access.InMemoryApplicantAccessObject;
 import entity.Applicant;
