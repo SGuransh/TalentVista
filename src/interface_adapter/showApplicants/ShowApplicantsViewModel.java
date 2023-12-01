@@ -7,7 +7,7 @@ import java.beans.PropertyChangeSupport;
 
 public class ShowApplicantsViewModel extends ViewModel {
     public static final String TITLE = "Show Applicants Page";
-    public static final String SHOW_HIRE_PAGE_BUTTON_LABEL = "Hire";
+    public static final String SHOW_HIRE_PAGE_BUTTON_LABEL = "Show Hire Page";
     public static final String APPLY_FILTERS_ON_APPLICANTS_BUTTON_LABEL = "Apply Filter";
     public static final String RESUME_PARSER_BUTTON_LABEL = "Resume Parser";
     public static final String DELETE_BUTTON_LABEL = "Delete";
