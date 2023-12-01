@@ -20,13 +20,13 @@ public class ResumeParsingInteractor implements ResumeParsingInputBoundary {
     @Override
     public void execute(ResumeParsingInputData inputData) {
         System.out.println("Called");
-//        String position = inputData.getPosition();
-//        System.out.println(position);
-        String position = "dev";
-//        String filepathString = inputData.getPath();
-//        System.out.println(filepathString);
+        String position = inputData.getPosition();
+        System.out.println(position);
+//        String position = "dev";
+        String filepathString = inputData.getPath();
+        System.out.println(filepathString);
 //        String filepathString = "C:\\Users\\sgura\\OneDrive\\Pictures\\Documents\\Downloads\\resumes";
-        String filepathString = "/Users/shahbazsingh/Downloads/Resume.pdf";
+//        String filepathString = "/Users/shahbazsingh/Downloads/Resume.pdf";
 //        String resumepath = "C:\\Users\\sgura\\OneDrive\\Pictures\\Documents\\Downloads\\resumes\\Resume.pdf";
         filepathString = filepathString.replaceAll("[\\x00-\\x1F]", "");
         ArrayList<Applicant> applicants = new ArrayList<>();

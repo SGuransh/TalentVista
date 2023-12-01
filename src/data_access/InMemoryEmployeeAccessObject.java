@@ -52,7 +52,6 @@ public class InMemoryEmployeeAccessObject implements HireApplicantDataAccessInte
             HTMLContent += "<p>" + "<b>" +  "Position: "+"</b>" +position +"</p>";
             HTMLContent += "<p>" + "<b>" +  "Salary: "+"</b>" +salary +"</p>";
             HTMLContent +="<p>" + "____________________________________________" + "</p>";
-
             presentableEmployees.append(HTMLContent);
         }
         return presentableEmployees.toString();
