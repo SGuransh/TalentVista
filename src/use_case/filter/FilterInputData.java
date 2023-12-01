@@ -4,7 +4,7 @@ public class FilterInputData {
     private final String skill;
     private final String uploadDate;
 
-    public FilterInputData(String skill, String uploadDate) {
+    public FilterInputData(String uploadDate, String skill) {
         this.skill = skill;
         this.uploadDate = uploadDate;
     }
