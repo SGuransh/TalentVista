@@ -26,6 +26,7 @@ public class ResumeParsingInteractor implements ResumeParsingInputBoundary {
         String filepathString = inputData.getPath();
         System.out.println(filepathString);
 //        String filepathString = "C:\\Users\\sgura\\OneDrive\\Pictures\\Documents\\Downloads\\Resume.pdf";
+        "C:\\Users\\sgura\\OneDrive\\Pictures\\Documents\\Downloads\\resumes\\Resume.pdf";
         filepathString = filepathString.replaceAll("[\\x00-\\x1F]", "");
         ArrayList<Applicant> applicants = new ArrayList<>();
         try {
