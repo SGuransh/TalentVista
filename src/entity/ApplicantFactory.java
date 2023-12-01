@@ -126,19 +126,15 @@ public class ApplicantFactory{
         contactInfo.put("email", email);
         contactInfo.put("phone", phone);
         contactInfo.put("address", new JSONObject(data.get("address").toString()).getString("city") + ", " + new JSONObject(data.get("address").toString()).getString("country_code"));
-        String personal_urls = data.getString("personal_urls");
-        ArrayList<String> urls = new ArrayList<String>();
-        personal_urls = personal_urls.replace("]", "");
-        personal_urls = personal_urls.replace("[", "");
-        personal_urls = personal_urls.replace("\"", "");
-        String[] elements = personal_urls.split(",");
-        for (String element : elements) {
-            element.replace(" ", "");
-            urls.add(element);
+        JSONArray personal_urls = data.getJSONArray("personal_urls");
+        ArrayList<String> urls = new ArrayList<>();
+        for(int i=0; i<personal_urls.length();i++){
+            urls.add(personal_urls.get(i).toString());
         }
+
         ArrayList<String> skills = new ArrayList<String>();
         JSONArray overallSkills = new JSONObject(data.get("skills").toString()).getJSONArray("overall_skills");
-        for (int i = 0; i < overallSkills.length(); i++) {
+        for (int i = 0; i < 3; i++) {
             skills.add(overallSkills.getString(i));
         }
         String idString = last_name + "00" + (id + 1);
