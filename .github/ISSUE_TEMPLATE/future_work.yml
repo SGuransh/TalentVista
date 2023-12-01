@@ -1,0 +1,26 @@
+name: 🦾 Future Work
+description: Future Work
+title: "[Add] <title>"
+labels: [Add, Feature needs to be added]
+body:
+- type: textarea
+  attributes:
+    label: What to functionality to add
+    description: A description of what needs to be added
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Plan to add funtionality
+    description: A description of how to add
+  validations:
+    required: false
+- type: checkboxes
+  attributes: 
+    label: Importance
+    description: Is it an important feature to be added?
+    options:
+      - label: Super Important
+      - label: Was in the plan
+      - label: Will be good
+      - label: Not as important
