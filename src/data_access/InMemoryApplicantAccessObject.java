@@ -8,10 +8,7 @@ import use_case.showApplicants.ShowApplicantsDataAccessInterface;
 import use_case.showHireApplicantPage.ShowHireApplicantPageDataAccessInterface;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInterface, DeleteApplicantsDataAccessInterface, ShowHireApplicantPageDataAccessInterface, ShowApplicantsDataAccessInterface, FilterUserDataAccessInterface {
     private final Map<String, Applicant> applicants = new HashMap<String, Applicant>();
@@ -29,6 +26,7 @@ public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInt
         }
         id += 1;
         applicants.put(applicant.getId(), applicant);
+        saveToCsv();
     }
 
     @Override
@@ -44,6 +42,7 @@ public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInt
         for (String applicantID: applicantIDs){
             applicants.remove(applicantID);
         }
+        saveToCsv();
     }
 
     public Map<String, Applicant> getApplicants(){
@@ -114,22 +113,27 @@ public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInt
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
 
             while ((line = br.readLine()) != null) {
+
+                line = line.trim();
                 String[] data = line.split(csvSplitBy);
-
+                if(data.length < 6){
+                    break;
+                }
                 String id = data[0];
-
                 String name = data[1];
                 String skillsString = data[2];
                 String uploadDate = data[3];
                 String personal_urls_String = data[4];
                 String contactInfo_String = data[5];
-                String position = data[6];
+                String position = data[6].trim();
 
                 skillsString = skillsString.replace("\u0016", ",").trim();
                 String[] skillsArray = skillsString.substring(1, skillsString.length()-1).split(", ");
 
                 personal_urls_String = personal_urls_String.replace("\u0016", ",").trim();
                 String[] urls_array = personal_urls_String.substring(1, personal_urls_String.length()-1).split(",");
+
+                contactInfo_String = contactInfo_String.replace("\u0016", ",");
                 // Convert the array to an ArrayList
                 ArrayList<String> skillsArrayList = new ArrayList<>(Arrays.asList(skillsArray));
                 //Converting URLS to HashMap
@@ -164,11 +168,19 @@ public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInt
             // Open the CSV file in append mode (this will not truncate the file)
             PrintWriter writer = new PrintWriter(new FileWriter(csvFilePath));
 
+            int i = 0;
             for (String key : this.applicants.keySet()) {
+                i++;
                 String lineToWrite = "";
                 Applicant applicant = this.applicants.get(key);
-                lineToWrite += applicant.getId() + "," + applicant.getName() + "," + applicant.getSkills().toString().replace(",", "\u0016") + "," + applicant.getUploadDate() + "," + applicant.personal_urls().toString().replace(",", "\u0016") + "," + applicant.getContactInfo().toString() + "," + applicant.getPosition();
-                writer.println(lineToWrite);
+                lineToWrite += applicant.getId() + "," + applicant.getName() + "," + applicant.getSkills().toString().replace(",", "\u0016") + "," + applicant.getUploadDate() + "," + applicant.personal_urls().toString().replace(",", "\u0016") + "," + applicant.getContactInfo().toString().replace(",", "\u0016") + "," + applicant.getPosition();
+
+                if(i == this.applicants.keySet().size()){
+                    writer.print(lineToWrite);
+                }else{
+                    writer.println(lineToWrite);
+                }
+
             }
 
             // Close the writer to ensure changes are flushed and the file is released

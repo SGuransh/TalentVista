@@ -60,7 +60,7 @@ public class Main {
         contact.put("phone", "416");
         contact.put("email", "shahbaz@nanda.ca");
         ArrayList<String> urls = skills;
-        Applicant SHAHBAZ = new Applicant("100", "Shahbaz", skills, "2020-10-01", contact,urls, "Dev");
+//        Applicant SHAHBAZ = new Applicant("100", "Shahbaz", skills, "2020-10-01", contact,urls, "Dev");
 
 
         ArrayList<String> skills2 = new ArrayList<>();
@@ -70,15 +70,17 @@ public class Main {
         contact2.put("phone", "911");
         contact2.put("email", "guransh@gmail.ca");
         ArrayList<String> urls2 = skills;
-        Applicant GURANSH = new Applicant("200", "Guransh", skills, "May", contact,urls, "Dev");
+//        Applicant GURANSH = new Applicant("200", "Guransh", skills, "May", contact,urls, "Dev");
 
 
         Map<String, Applicant> TEST = new HashMap<>();
-        TEST.put(SHAHBAZ.getId(), SHAHBAZ);
+//        TEST.put(SHAHBAZ.getId(), SHAHBAZ);
         InMemoryApplicantAccessObject applicantsDataAccessObject = new InMemoryApplicantAccessObject();
-        applicantsDataAccessObject.addApplicant(SHAHBAZ);
-        applicantsDataAccessObject.addApplicant(GURANSH);
+        applicantsDataAccessObject.ReadCsvToInMemory();
+//        applicantsDataAccessObject.addApplicant(SHAHBAZ);
+//        applicantsDataAccessObject.addApplicant(GURANSH);
         InMemoryEmployeeAccessObject employeeDataAccessObject = new InMemoryEmployeeAccessObject();
+        employeeDataAccessObject.ReadCsvToInMemory();
 
         HrDashboardView hrDashboardView = HrDashboardUseCaseFactory.create(viewManagerModel, hrDashboardViewModel, showEmployeesViewModel, showApplicantsViewModel, applicantsDataAccessObject, employeeDataAccessObject);
         views.add(hrDashboardView, hrDashboardView.viewName);

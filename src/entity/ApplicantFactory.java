@@ -16,7 +16,8 @@ public class ApplicantFactory {
 
     public String stringFromFile(String fileLocation, Integer id) throws MalformedURLException, IOException {
         try {
-            String apiKey = "JrtEnkroQW3FIvGTkp1JU139SDLuuITr0hYGIAi8";
+//            String apiKey = "JrtEnkroQW3FIvGTkp1JU139SDLuuITr0hYGIAi8";
+            String apiKey = "Pyo690Facd5t2QZfxKz3N2e6HYpYbxDLaNX8213x";
             File fileToUpload;
 
             // Define the file to be uploaded
@@ -140,7 +141,7 @@ public class ApplicantFactory {
             phone = phone.replace("phone:", "");
             contactInfo.put("email", email);
             contactInfo.put("phone", phone);
-            contactInfo.put("address", new JSONObject(data.get("address").toString()).getString("city") + ", " + new JSONObject(data.get("address").toString()).getString("country_code"));
+//            contactInfo.put("address", new JSONObject(data.get("address").toString()).getString("city") + "-" + new JSONObject(data.get("address").toString()).getString("country_code"));
         } catch (JSONException contact_info_e) {
             contactInfo = new HashMap<>();
             System.out.println("JSONError in reading contact info");

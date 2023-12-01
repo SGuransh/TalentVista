@@ -23,6 +23,7 @@ public class InMemoryEmployeeAccessObject implements HireApplicantDataAccessInte
             return;
         }
         employees.put(employee.getName(), employee);
+        saveToCsv();
     }
     @Override
     public String getEmployeeData(Employee employee){
@@ -44,8 +45,14 @@ public class InMemoryEmployeeAccessObject implements HireApplicantDataAccessInte
             Double salary = employee.getSalary();
             String position = employee.getPosition();
             String email = employee.getEmail();
-            presentableEmployees.append(" NAME: " + name + ", SALARY: " + salary + ", EMAIL: " + email + ", POSITION: " + position);
-            presentableEmployees.append("\n\n");
+//            presentableEmployees.append(" NAME: " + name + ", SALARY: " + salary + ", EMAIL: " + email + ", POSITION: " + position);
+            String HTMLContent = "<html>";
+            HTMLContent += "<h3>"+"<i>"+ name + "</i>" + "&nbsp;&nbsp";
+            HTMLContent += "<p>" + "<b>" +  "Email: "+"</b>" +email +"</p>";
+            HTMLContent += "<p>" + "<b>" +  "Position: "+"</b>" +position +"</p>";
+            HTMLContent += "<p>" + "<b>" +  "Salary: "+"</b>" +salary +"</p>";
+            HTMLContent +="<p>" + "____________________________________________" + "</p>";
+            presentableEmployees.append(HTMLContent);
         }
         return presentableEmployees.toString();
     }
