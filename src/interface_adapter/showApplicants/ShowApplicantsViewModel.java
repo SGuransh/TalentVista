@@ -12,7 +12,7 @@ public class ShowApplicantsViewModel extends ViewModel {
     public static final String RESUME_PARSER_BUTTON_LABEL = "Resume Parser";
     public static final String DELETE_BUTTON_LABEL = "Delete";
     public static final String FILTER_BY_UPLOAD_DATE_LABEL = "Enter Date";
-    public static final String FILTER_BY_SKILL = "Enter the skill";
+    public static final String FILTER_BY_SKILL_LABEL = "Enter the skill";
     public static final String DELETE_TEXT_LABEL = "Delete the following ids";
     public static final String HIRING_TEXT_LABEL = "Hire the applicant";
     public static final String UPLOAD_TEXT_LABEL = "File or directory of the resumes";

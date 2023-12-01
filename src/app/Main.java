@@ -59,7 +59,7 @@ public class Main {
         contact.put("phone", "416");
         contact.put("email", "shahbaz@nanda.ca");
         ArrayList<String> urls = skills;
-        Applicant SHAHBAZ = new Applicant("100", "Shahbaz", skills, "May", contact,urls, "Dev");
+        Applicant SHAHBAZ = new Applicant("100", "Shahbaz", skills, "2020-10-01", contact,urls, "Dev");
         Map<String, Applicant> TEST = new HashMap<>();
         TEST.put(SHAHBAZ.getId(), SHAHBAZ);
         InMemoryApplicantAccessObject applicantsDataAccessObject = new InMemoryApplicantAccessObject();
