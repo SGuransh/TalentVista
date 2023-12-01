@@ -55,15 +55,28 @@ public class Main {
 
         ArrayList<String> skills = new ArrayList<>();
         skills.add("python");
+        skills.add("Java");
         HashMap<String, String> contact = new HashMap<>();
         contact.put("phone", "416");
         contact.put("email", "shahbaz@nanda.ca");
         ArrayList<String> urls = skills;
         Applicant SHAHBAZ = new Applicant("100", "Shahbaz", skills, "May", contact,urls, "Dev");
+
+        ArrayList<String> skills2 = new ArrayList<>();
+        skills.add("C++");
+        skills.add("Git");
+        HashMap<String, String> contact2 = new HashMap<>();
+        contact2.put("phone", "911");
+        contact2.put("email", "guransh@gmail.ca");
+        ArrayList<String> urls2 = skills;
+        Applicant GURANSH = new Applicant("200", "Guransh", skills, "May", contact,urls, "Dev");
+
+
         Map<String, Applicant> TEST = new HashMap<>();
         TEST.put(SHAHBAZ.getId(), SHAHBAZ);
         InMemoryApplicantAccessObject applicantsDataAccessObject = new InMemoryApplicantAccessObject();
         applicantsDataAccessObject.addApplicant(SHAHBAZ);
+        applicantsDataAccessObject.addApplicant(GURANSH);
         InMemoryEmployeeAccessObject employeeDataAccessObject = new InMemoryEmployeeAccessObject();
 
         HrDashboardView hrDashboardView = HrDashboardUseCaseFactory.create(viewManagerModel, hrDashboardViewModel, showEmployeesViewModel, showApplicantsViewModel, applicantsDataAccessObject, employeeDataAccessObject);
