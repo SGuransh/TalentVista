@@ -2,6 +2,7 @@ package view;
 
 import interface_adapter.ResumeParsing.ResumeParsingController;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.back.BackController;
 import interface_adapter.deleteApplicants.DeleteApplicantsController;
 import interface_adapter.filter.FilterController;
 import interface_adapter.showApplicants.ShowApplicantsState;
@@ -33,6 +34,7 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
     private final JButton deleteApplicants;
     private final JButton uploadFiles;
     private final JButton applyFilters;
+    private final JButton backButton;
     private final JTextField hireApplicant_in = new JTextField(10);
     private final JTextField deleteApplicants_in = new JTextField(10);
     private final JTextField uploadFiles_in = new JTextField(50);
@@ -43,7 +45,7 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
     public ShowApplicantsView(ViewManagerModel viewManagerModel, ShowApplicantsViewModel showApplicantsViewModel,
                               FilterController filterController, DeleteApplicantsController deleteApplicantsController,
                               ShowHireApplicantPageController showHireApplicantPageController,
-                              ResumeParsingController resumeParsingController) {
+                              ResumeParsingController resumeParsingController, BackController backController) {
         this.deleteApplicantsController = deleteApplicantsController;
         this.viewManagerModel = viewManagerModel;
         this.filterController = filterController;
@@ -79,6 +81,9 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
         buttons.add(uploadFiles);
         applyFilters = new JButton(ShowApplicantsViewModel.APPLY_FILTERS_ON_APPLICANTS_BUTTON_LABEL);
         buttons.add(applyFilters);
+        backButton = new JButton(ShowApplicantsViewModel.BACK_BUTTON_LABEL);
+        buttons.add(backButton);
+
 
 
 
@@ -263,6 +268,17 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
                     public void keyReleased(KeyEvent e) {
                     }
                 });
+
+        backButton.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(backButton)) {
+                            backController.execute();
+                        }
+                    }
+                }
+        );
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         JLabel head = new JLabel("<html><h2>APPLICANTS</h2>");
         applicants = new JLabel();

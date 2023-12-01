@@ -1,9 +1,11 @@
 package app;
 import data_access.InMemoryApplicantAccessObject;
 import entity.ApplicantFactory;
+import interface_adapter.HrDashboard.HrDashboardViewModel;
 import interface_adapter.ResumeParsing.ResumeParsingController;
 import interface_adapter.ResumeParsing.ResumeParsingPresenter;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.back.BackController;
 import interface_adapter.deleteApplicants.DeleteApplicantsController;
 import interface_adapter.deleteApplicants.DeleteApplicantsPresenter;
 import interface_adapter.filter.FilterController;
@@ -30,6 +32,8 @@ import use_case.showHireApplicantPage.ShowHireApplicantPageInteractor;
 import use_case.showHireApplicantPage.ShowHireApplicantPageOutputBoundary;
 import view.ShowApplicantsView;
 
+import static app.EmployeeDashboardUseCaseFactory.createBackUseCase;
+
 public class ShowApplicantUseCaseFactory {
 
     private ShowApplicantUseCaseFactory() {};
@@ -37,7 +41,7 @@ public class ShowApplicantUseCaseFactory {
     // The applicants page needs the filtering use case, the delete use case, the hiring use case, the upload applicants
     // use case
 
-    public static ShowApplicantsView create(ShowApplicantsViewModel showApplicantsViewModel,
+    public static ShowApplicantsView create(HrDashboardViewModel hrDashboardViewModel, ShowApplicantsViewModel showApplicantsViewModel,
                                             ShowHireApplicantPageViewModel showHireApplicantPageViewModel,
                                             ViewManagerModel viewManagerModel,
                                             InMemoryApplicantAccessObject applicantDAO)
@@ -52,9 +56,10 @@ public class ShowApplicantUseCaseFactory {
 
         ResumeParsingController resumeParsingController = createResumeParsingController(viewManagerModel,
                 showApplicantsViewModel, (ResumeParsingDataAccessInterface) applicantDAO);
+        BackController backController = createBackUseCase(viewManagerModel, hrDashboardViewModel);
 
         return new ShowApplicantsView(viewManagerModel, showApplicantsViewModel, filterController, deleteApplicantsController,
-                showHireApplicantPageController, resumeParsingController);
+                showHireApplicantPageController, resumeParsingController, backController);
 
     }
 
