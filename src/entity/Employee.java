@@ -24,7 +24,7 @@ public class Employee implements User {
      * @param position
      * @param email
      */
-    Employee(String name, String password, LocalDateTime creationTime, Double salary, String position, String email) {
+    public Employee(String name, String password, LocalDateTime creationTime, Double salary, String position, String email) {
         this.name = name;
         this.password = password;
         this.creationTime = creationTime;
