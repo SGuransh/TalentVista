@@ -14,7 +14,7 @@ public class ShowHireApplicantPageInteractor implements ShowHireApplicantPageInp
     @Override
     public void execute(ShowHireApplicantPageInputData applicantID) {
         Applicant applicant = applicantDataAccessObject.getApplicant(applicantID.getApplicantID());
-        ShowHireApplicantPageOutputData outputData = new ShowHireApplicantPageOutputData(applicant.getName(), applicant.getPosition());
+        ShowHireApplicantPageOutputData outputData = new ShowHireApplicantPageOutputData(applicant.getName(), applicant.getPosition(), applicant.getContactInfo().get("email"));
         presenter.prepareSuccessView(outputData);
     }
 }

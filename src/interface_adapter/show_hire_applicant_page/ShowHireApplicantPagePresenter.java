@@ -23,6 +23,7 @@ public class ShowHireApplicantPagePresenter implements ShowHireApplicantPageOutp
         ShowHireApplicantPageState state = showHireApplicantPageViewModel.getState();
         state.setName(outputData.getName());
         state.setPosition(outputData.getPosition());
+        state.setEmail(outputData.getEmail());
         state.setEmployeeData("");
         this.showHireApplicantPageViewModel.setState(state);
         this.showHireApplicantPageViewModel.firePropertyChanged();
