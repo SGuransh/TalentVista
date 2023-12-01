@@ -165,7 +165,7 @@ public class HireApplicantView extends JPanel implements ActionListener, Propert
         }
         nameInputField.setText(state.getName());
         positionInputField.setText(state.getPosition());
-        emailInputField.setText("");
+        emailInputField.setText(state.getEmail());
         salaryInputField.setText("");
     }
 

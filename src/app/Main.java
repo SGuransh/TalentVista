@@ -57,6 +57,7 @@ public class Main {
         skills.add("python");
         HashMap<String, String> contact = new HashMap<>();
         contact.put("phone", "416");
+        contact.put("email", "shahbaz@nanda.ca");
         ArrayList<String> urls = skills;
         Applicant SHAHBAZ = new Applicant("100", "Shahbaz", skills, "May", contact,urls, "Dev");
         Map<String, Applicant> TEST = new HashMap<>();
