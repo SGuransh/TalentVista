@@ -23,6 +23,7 @@ public class InMemoryEmployeeAccessObject implements HireApplicantDataAccessInte
             return;
         }
         employees.put(employee.getName(), employee);
+        saveToCsv();
     }
     @Override
     public String getEmployeeData(Employee employee){

@@ -29,6 +29,7 @@ public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInt
         }
         id += 1;
         applicants.put(applicant.getId(), applicant);
+        saveToCsv();
     }
 
     @Override
@@ -44,6 +45,7 @@ public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInt
         for (String applicantID: applicantIDs){
             applicants.remove(applicantID);
         }
+        saveToCsv();
     }
 
     public Map<String, Applicant> getApplicants(){
