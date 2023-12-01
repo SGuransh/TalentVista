@@ -179,22 +179,22 @@ public class ApplicantFactory {
         return new Applicant(id, name, skills, uploadDate, contactInfo, personal_urls, position);
     }
 
-    public static void main(String[] args) {
-        ApplicantFactory af = new ApplicantFactory();
-        try {
-//            Applicant a = af.makeApplicantFromString("C:\\Users\\sgura\\OneDrive\\Pictures\\Documents\\Downloads\\Resume.pdf", 1, "dev");
-//            Applicant a = af.makeApplicantFromString("C:\\Users\\sgura\\OneDrive\\Pictures\\Documents\\Downloads\\resumes\\Resume of Ayush Aran (Internship).pdf", 1, "dev");
-            Applicant a = af.makeApplicantFromString("C:\\Users\\sgura\\OneDrive\\Pictures\\Documents\\Downloads\\resumes\\_Shahbaz_Singh_Resume_2023.pdf", 1, "dev");
-            System.out.println(a.getId());
-            System.out.println(a.getName());
-            System.out.println(a.getSkills());
-            System.out.println(a.getUploadDate());
-            System.out.println(a.getContactInfo());
-            System.out.println(a.personal_urls());
-            System.out.println(a.getUploadDate());
-        } catch (Exception e) {
-            System.out.println("caught in line 164");
-            System.out.println(e);
-        }
-    }
+//    public static void main(String[] args) {
+//        ApplicantFactory af = new ApplicantFactory();
+//        try {
+////            Applicant a = af.makeApplicantFromString("C:\\Users\\sgura\\OneDrive\\Pictures\\Documents\\Downloads\\Resume.pdf", 1, "dev");
+////            Applicant a = af.makeApplicantFromString("C:\\Users\\sgura\\OneDrive\\Pictures\\Documents\\Downloads\\resumes\\Resume of Ayush Aran (Internship).pdf", 1, "dev");
+//            Applicant a = af.makeApplicantFromString("C:\\Users\\sgura\\OneDrive\\Pictures\\Documents\\Downloads\\resumes\\_Shahbaz_Singh_Resume_2023.pdf", 1, "dev");
+//            System.out.println(a.getId());
+//            System.out.println(a.getName());
+//            System.out.println(a.getSkills());
+//            System.out.println(a.getUploadDate());
+//            System.out.println(a.getContactInfo());
+//            System.out.println(a.personal_urls());
+//            System.out.println(a.getUploadDate());
+//        } catch (Exception e) {
+//            System.out.println("caught in line 164");
+//            System.out.println(e);
+//        }
+//    }
 }
