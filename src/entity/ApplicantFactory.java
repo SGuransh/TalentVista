@@ -141,7 +141,7 @@ public class ApplicantFactory {
             phone = phone.replace("phone:", "");
             contactInfo.put("email", email);
             contactInfo.put("phone", phone);
-            contactInfo.put("address", new JSONObject(data.get("address").toString()).getString("city") + ", " + new JSONObject(data.get("address").toString()).getString("country_code"));
+            contactInfo.put("address", new JSONObject(data.get("address").toString()).getString("city") + "-" + new JSONObject(data.get("address").toString()).getString("country_code"));
         } catch (JSONException contact_info_e) {
             contactInfo = new HashMap<>();
             System.out.println("JSONError in reading contact info");
