@@ -65,6 +65,9 @@ public class ResumeParsingInteractor implements ResumeParsingInputBoundary {
         }catch (Exception e){
             System.out.println("here");
             System.out.println("Error: " + e.getMessage());
+            System.out.println(e.getCause());
+            System.out.println("---------------------------------------------------------");
+            System.out.println(e.toString());
             // TODO: handle exception in the presenter
         }
         String presenterString = inMemoryApplicantAccessObject.getPresentableApplicants();
