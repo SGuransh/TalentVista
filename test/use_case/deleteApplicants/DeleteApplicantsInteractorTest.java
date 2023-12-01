@@ -23,6 +23,7 @@ public class DeleteApplicantsInteractorTest {
     void successTest(){
         Applicant applicant;
         InMemoryApplicantAccessObject applicantsDAO = new InMemoryApplicantAccessObject();
+        applicantsDAO.clearCSV();
         ArrayList<String> skills = new ArrayList<String>();
         skills.add("python");
         skills.add("java");
@@ -58,5 +59,6 @@ public class DeleteApplicantsInteractorTest {
         DeleteApplicantsInputBoundary interactor = new DeleteApplicantsInteractor(applicantsDAO_, presenter);
         interactor.execute(inputData);
         assert(applicantsDAO.existsApplicant("Singh025")==Boolean.FALSE);
+        applicantsDAO.clearCSV();
     }
 }
