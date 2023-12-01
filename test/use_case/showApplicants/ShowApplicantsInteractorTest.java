@@ -13,6 +13,7 @@ public class ShowApplicantsInteractorTest {
     void successTest(){
         Applicant applicant;
         InMemoryApplicantAccessObject applicantsDAO = new InMemoryApplicantAccessObject();
+        applicantsDAO.clearCSV();
         ArrayList<String> skills = new ArrayList<String>();
         skills.add("python");
         skills.add("java");
@@ -39,5 +40,6 @@ public class ShowApplicantsInteractorTest {
         };
         ShowApplicantsInputBoundary interactor = new ShowApplicantsInteractor(presenter, applicantsDAO);
         interactor.execute();
+        applicantsDAO.clearCSV();
     }
 }

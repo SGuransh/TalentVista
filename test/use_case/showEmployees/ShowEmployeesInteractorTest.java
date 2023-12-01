@@ -1,5 +1,6 @@
 package use_case.showEmployees;
 
+import data_access.InMemoryApplicantAccessObject;
 import data_access.InMemoryEmployeeAccessObject;
 import entity.Employee;
 import entity.EmployeeFactory;
@@ -36,5 +37,7 @@ class ShowEmployeesInteractorTest {
 
         ShowEmployeesInputBoundary interactor = new ShowEmployeesInteractor(userRepository, successPresenter);
         interactor.execute();
+        InMemoryEmployeeAccessObject dao = new InMemoryEmployeeAccessObject();
+        dao.clearCSV();
     }
 }
