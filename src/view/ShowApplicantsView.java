@@ -59,7 +59,7 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
         LabelTextPanel applyFilters_info_date = new LabelTextPanel(
                 new JLabel(ShowApplicantsViewModel.FILTER_BY_UPLOAD_DATE_LABEL), applyFilters_in_date);
         LabelTextPanel applyFilters_info_skills = new LabelTextPanel(
-                new JLabel(ShowApplicantsViewModel.FILTER_BY_SKILL), applyFilters_in_skills);
+                new JLabel(ShowApplicantsViewModel.FILTER_BY_SKILL_LABEL), applyFilters_in_skills);
         LabelTextPanel hireApplicant_info = new LabelTextPanel(
                 new JLabel(ShowApplicantsViewModel.HIRING_TEXT_LABEL), hireApplicant_in);
         LabelTextPanel deleteApplicants_info = new LabelTextPanel(
@@ -275,7 +275,7 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
         this.add(deleteApplicants_info);
         this.add(uploadFiles_info);
         this.add(applyFilters_info_date);
-        this.add(applyFilters_info_date);
+        this.add(applyFilters_info_skills);
         this.add(uploadPosition_info);
         this.add(buttons);
 //        this.add(Box.createRigidArea(new Dimension(0, 10))); // Adjust the height as needed
@@ -305,5 +305,15 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
         ShowApplicantsState state = showApplicantsViewModel.getState();
         String applicantsToDisplay = state.getApplicantsToDisplay();
         applicants.setText(applicantsToDisplay);
+        ShowApplicantsState state2 = (ShowApplicantsState) evt.getNewValue();
+        if (!state2.getFilteredApplicants().isEmpty()){
+            JOptionPane.showMessageDialog(this, state2.getFilteredApplicants());
+        }
+        hireApplicant_in.setText("");
+        deleteApplicants_in.setText("");
+        uploadFiles_in.setText("");
+        applyFilters_in_date.setText("");
+        applyFilters_in_skills.setText("");
+        uploadPosition_in.setText("");
     }
 }

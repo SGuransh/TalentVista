@@ -18,16 +18,17 @@ public class FilterInteractor implements FilterInputBoundary {
         String skill = inputData.getSkill();
         String uploadDate = inputData.getUploadDate();
         Map<String, Applicant> applicants = userDataAccessObject.getApplicants();
-        ArrayList<Applicant> filteredApplicants = new ArrayList<>();
+        StringBuilder filteredApplicants = new StringBuilder();
         for (String name: applicants.keySet()){
             Applicant applicant = applicants.get(name);
             ArrayList<String> skills = applicant.getSkills();
             String applicantUploadDate = applicant.getUploadDate();
             if (skills.contains(skill) && applicantUploadDate.compareTo(uploadDate) >= 0){
-                filteredApplicants.add(applicant);
+                String applicantData = userDataAccessObject.getApplicantData(applicant.getId());
+                filteredApplicants.append(applicantData);
             }
         }
-        FilterOutputData outputData = new FilterOutputData(filteredApplicants);
+        FilterOutputData outputData = new FilterOutputData(filteredApplicants.toString());
         filterPresenter.prepareSuccessView(outputData);
     }
 }

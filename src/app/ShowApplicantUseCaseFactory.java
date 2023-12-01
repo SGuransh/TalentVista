@@ -42,7 +42,7 @@ public class ShowApplicantUseCaseFactory {
                                             ViewManagerModel viewManagerModel,
                                             InMemoryApplicantAccessObject applicantDAO)
     {
-        FilterController filterController = createFilterUseCase(viewManagerModel, showApplicantsViewModel, (FilterUserDataAccessInterface) applicantDAO);
+        FilterController filterController = createFilterUseCase(viewManagerModel, showApplicantsViewModel, applicantDAO);
 
         DeleteApplicantsController deleteApplicantsController = createDeleteApplicantsUseCase(viewManagerModel,
                 showApplicantsViewModel, (DeleteApplicantsDataAccessInterface) applicantDAO);

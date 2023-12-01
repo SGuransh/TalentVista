@@ -55,6 +55,25 @@ public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInt
         return id;
     }
 
+    @Override
+    public String getApplicantData(String id){
+        StringBuilder applicantData = new StringBuilder();
+        Applicant applicant = getApplicant(id);
+        String name = applicant.getName();
+        String ID = applicant.getId();
+        ArrayList<String> skillsArray = applicant.getSkills();
+        StringBuilder skillsString = new StringBuilder();
+        for (String skill: skillsArray){
+            skillsString.append(skill).append(", ");
+        }
+        HashMap<String, String> contactInfo = applicant.getContactInfo();
+        String email = contactInfo.get("email");
+        String phoneNum = contactInfo.get("phone");
+        applicantData.append("ID: " + ID+ " NAME: " + name + " SKILLS: " + skillsString + " EMAIL: " + email + " PHONE: " + phoneNum);
+        applicantData.append("\n\n");
+        return applicantData.toString();
+    }
+
     public String getPresentableApplicants() {
         StringBuilder presentableApplicants = new StringBuilder();
         for (String applicantID : applicants.keySet()) {
