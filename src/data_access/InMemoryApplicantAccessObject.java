@@ -204,6 +204,61 @@ public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInt
             throw new RuntimeException(e);
         }
     }
+
+    public void ReadDefaultCSV() {
+        String csvFile = "src/data_access/Default_Applicants.csv";
+        String line;
+        String csvSplitBy = ","; // CSV files typically use commas as separators
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+
+            while ((line = br.readLine()) != null) {
+
+                line = line.trim();
+                String[] data = line.split(csvSplitBy);
+                if(data.length < 6){
+                    break;
+                }
+                String id = data[0];
+                String name = data[1];
+                String skillsString = data[2];
+                String uploadDate = data[3];
+                String personal_urls_String = data[4];
+                String contactInfo_String = data[5];
+                String position = data[6].trim();
+
+                skillsString = skillsString.replace("\u0016", ",").trim();
+                String[] skillsArray = skillsString.substring(1, skillsString.length()-1).split(", ");
+
+                personal_urls_String = personal_urls_String.replace("\u0016", ",").trim();
+                String[] urls_array = personal_urls_String.substring(1, personal_urls_String.length()-1).split(",");
+
+                contactInfo_String = contactInfo_String.replace("\u0016", ",");
+                // Convert the array to an ArrayList
+                ArrayList<String> skillsArrayList = new ArrayList<>(Arrays.asList(skillsArray));
+                //Converting URLS to HashMap
+                ArrayList<String> UrlsArrayList = new ArrayList<>(Arrays.asList(urls_array));
+                //Converting URLS to HashMap
+
+                //Converting Contacts to HashMap
+                String[] contacts_String_noBracket = contactInfo_String.substring(1, contactInfo_String.length() - 1).split(", ");
+
+                HashMap<String, String> contacts_map = new HashMap<>();
+
+                for (String pair : contacts_String_noBracket) {
+                    String[] entry = pair.split("=");
+                    contacts_map.put(entry[0], entry[1]);
+                }
+                //Converting Contacts to HashMap
+
+                Applicant applicant = new Applicant(id, name, skillsArrayList, uploadDate, contacts_map, UrlsArrayList, position);
+                this.addApplicant(applicant);
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 
