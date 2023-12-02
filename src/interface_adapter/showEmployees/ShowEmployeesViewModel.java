@@ -36,10 +36,5 @@ public class ShowEmployeesViewModel extends ViewModel {
     }
 
 
-    public String getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(String employees) {this.employees = employees;}
 
 }

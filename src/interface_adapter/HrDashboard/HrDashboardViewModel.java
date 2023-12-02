@@ -11,21 +11,16 @@ public class HrDashboardViewModel extends ViewModel {
 
     public static final String TITLE_LABEL = "HR DASHBOARD";
 
-    private HrDashboardState state = new HrDashboardState();
 
     public HrDashboardViewModel() {
         super("HR Dashboard");
     }
 
-    public void setState(HrDashboardState state) {
-        this.state = state;
-    }
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     @Override
     public void firePropertyChanged() {
-        support.firePropertyChange("state", null, this.state);
     }
 
     @Override
@@ -33,7 +28,4 @@ public class HrDashboardViewModel extends ViewModel {
         support.addPropertyChangeListener(listener);
     }
 
-    public HrDashboardState getState() {
-        return this.state;
-    }
 }

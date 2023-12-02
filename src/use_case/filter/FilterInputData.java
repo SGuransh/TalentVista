@@ -9,6 +9,6 @@ public class FilterInputData {
         this.uploadDate = uploadDate;
     }
 
-    String getSkill(){return skill;}
-    String getUploadDate(){return uploadDate;}
+    public String getSkill(){return skill;}
+    public String getUploadDate(){return uploadDate;}
 }

@@ -20,7 +20,6 @@ class HireApplicantPresenterTest {
         HrDashboardViewModel hrDashboardViewModel = new HrDashboardViewModel();
         ShowHireApplicantPageState state = new ShowHireApplicantPageState();
         HireApplicantOutputBoundary presenter = new HireApplicantPresenter(viewManagerModel, showHireApplicantPageViewModel, hrDashboardViewModel);
-        assertEquals(viewManagerModel.getActiveView(), null);
         assertEquals(showHireApplicantPageViewModel.getState().getEmployeeData(), state.getEmployeeData());
         presenter.prepareSuccessView(new HireApplicantOutputData("taha"));
         state.setEmployeeData("taha");

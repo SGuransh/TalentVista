@@ -49,13 +49,13 @@ public class ShowApplicantUseCaseFactory {
         FilterController filterController = createFilterUseCase(viewManagerModel, showApplicantsViewModel, applicantDAO);
 
         DeleteApplicantsController deleteApplicantsController = createDeleteApplicantsUseCase(viewManagerModel,
-                showApplicantsViewModel, (DeleteApplicantsDataAccessInterface) applicantDAO);
+                showApplicantsViewModel, applicantDAO);
 
         ShowHireApplicantPageController showHireApplicantPageController = createShowHiringUseCase(viewManagerModel,
-                showApplicantsViewModel, showHireApplicantPageViewModel, (ShowHireApplicantPageDataAccessInterface) applicantDAO);
+                showHireApplicantPageViewModel, applicantDAO);
 
         ResumeParsingController resumeParsingController = createResumeParsingController(viewManagerModel,
-                showApplicantsViewModel, (ResumeParsingDataAccessInterface) applicantDAO);
+                showApplicantsViewModel, applicantDAO);
         BackController backController = createBackUseCase(viewManagerModel, hrDashboardViewModel);
 
         return new ShowApplicantsView(viewManagerModel, showApplicantsViewModel, filterController, deleteApplicantsController,
@@ -77,13 +77,12 @@ public class ShowApplicantUseCaseFactory {
     }
 
     private static ShowHireApplicantPageController createShowHiringUseCase(ViewManagerModel viewManagerModel,
-                                                                            ShowApplicantsViewModel showApplicantsViewModel,
                                                                             ShowHireApplicantPageViewModel showHireApplicantPageViewModel,
                                                                             ShowHireApplicantPageDataAccessInterface applicantDAO)
     {
         // Make the Presenter
         ShowHireApplicantPageOutputBoundary showHireApplicantPagePresenter = new ShowHireApplicantPagePresenter(
-                viewManagerModel, showApplicantsViewModel, showHireApplicantPageViewModel);
+                viewManagerModel, showHireApplicantPageViewModel);
         // Make the Interactor
         ShowHireApplicantPageInputBoundary showHireApplicantPageInteractor = new ShowHireApplicantPageInteractor(
                 showHireApplicantPagePresenter, applicantDAO);
