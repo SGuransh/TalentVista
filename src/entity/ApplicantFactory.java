@@ -16,7 +16,9 @@ public class ApplicantFactory {
 
     public String stringFromFile(String fileLocation, Integer id) throws MalformedURLException, IOException {
         try {
-            String apiKey = "JrtEnkroQW3FIvGTkp1JU139SDLuuITr0hYGIAi8";
+//            String apiKey = "JrtEnkroQW3FIvGTkp1JU139SDLuuITr0hYGIAi8";
+//            String apiKey = "Pyo690Facd5t2QZfxKz3N2e6HYpYbxDLaNX8213x";
+            String apiKey = "OgC9YbOTCj5CY9S9JEOwNmJDH4ixvUD2zhXcQiEj";
             File fileToUpload;
 
             // Define the file to be uploaded
@@ -140,7 +142,7 @@ public class ApplicantFactory {
             phone = phone.replace("phone:", "");
             contactInfo.put("email", email);
             contactInfo.put("phone", phone);
-            contactInfo.put("address", new JSONObject(data.get("address").toString()).getString("city") + ", " + new JSONObject(data.get("address").toString()).getString("country_code"));
+//            contactInfo.put("address", new JSONObject(data.get("address").toString()).getString("city") + "-" + new JSONObject(data.get("address").toString()).getString("country_code"));
         } catch (JSONException contact_info_e) {
             contactInfo = new HashMap<>();
             System.out.println("JSONError in reading contact info");
@@ -178,22 +180,22 @@ public class ApplicantFactory {
         return new Applicant(id, name, skills, uploadDate, contactInfo, personal_urls, position);
     }
 
-    public static void main(String[] args) {
-        ApplicantFactory af = new ApplicantFactory();
-        try {
-//            Applicant a = af.makeApplicantFromString("C:\\Users\\sgura\\OneDrive\\Pictures\\Documents\\Downloads\\Resume.pdf", 1, "dev");
-//            Applicant a = af.makeApplicantFromString("C:\\Users\\sgura\\OneDrive\\Pictures\\Documents\\Downloads\\resumes\\Resume of Ayush Aran (Internship).pdf", 1, "dev");
-            Applicant a = af.makeApplicantFromString("C:\\Users\\sgura\\OneDrive\\Pictures\\Documents\\Downloads\\resumes\\_Shahbaz_Singh_Resume_2023.pdf", 1, "dev");
-            System.out.println(a.getId());
-            System.out.println(a.getName());
-            System.out.println(a.getSkills());
-            System.out.println(a.getUploadDate());
-            System.out.println(a.getContactInfo());
-            System.out.println(a.personal_urls());
-            System.out.println(a.getUploadDate());
-        } catch (Exception e) {
-            System.out.println("caught in line 164");
-            System.out.println(e);
-        }
-    }
+//    public static void main(String[] args) {
+//        ApplicantFactory af = new ApplicantFactory();
+//        try {
+////            Applicant a = af.makeApplicantFromString("C:\\Users\\sgura\\OneDrive\\Pictures\\Documents\\Downloads\\Resume.pdf", 1, "dev");
+////            Applicant a = af.makeApplicantFromString("C:\\Users\\sgura\\OneDrive\\Pictures\\Documents\\Downloads\\resumes\\Resume of Ayush Aran (Internship).pdf", 1, "dev");
+//            Applicant a = af.makeApplicantFromString("C:\\Users\\sgura\\OneDrive\\Pictures\\Documents\\Downloads\\resumes\\_Shahbaz_Singh_Resume_2023.pdf", 1, "dev");
+//            System.out.println(a.getId());
+//            System.out.println(a.getName());
+//            System.out.println(a.getSkills());
+//            System.out.println(a.getUploadDate());
+//            System.out.println(a.getContactInfo());
+//            System.out.println(a.personal_urls());
+//            System.out.println(a.getUploadDate());
+//        } catch (Exception e) {
+//            System.out.println("caught in line 164");
+//            System.out.println(e);
+//        }
+//    }
 }

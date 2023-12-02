@@ -74,11 +74,13 @@ public class Main {
 
 
         Map<String, Applicant> TEST = new HashMap<>();
-        TEST.put(SHAHBAZ.getId(), SHAHBAZ);
+//        TEST.put(SHAHBAZ.getId(), SHAHBAZ);
         InMemoryApplicantAccessObject applicantsDataAccessObject = new InMemoryApplicantAccessObject();
+        applicantsDataAccessObject.ReadCsvToInMemory();
         applicantsDataAccessObject.addApplicant(SHAHBAZ);
         applicantsDataAccessObject.addApplicant(GURANSH);
         InMemoryEmployeeAccessObject employeeDataAccessObject = new InMemoryEmployeeAccessObject();
+        employeeDataAccessObject.ReadCsvToInMemory();
 
         HrDashboardView hrDashboardView = HrDashboardUseCaseFactory.create(viewManagerModel, hrDashboardViewModel, showEmployeesViewModel, showApplicantsViewModel, applicantsDataAccessObject, employeeDataAccessObject);
         views.add(hrDashboardView, hrDashboardView.viewName);
@@ -86,7 +88,7 @@ public class Main {
         DashboardEmployeeView employeeView = EmployeeDashboardUseCaseFactory.create(viewManagerModel,hrDashboardViewModel,showEmployeesViewModel);
         views.add(employeeView, employeeView.viewName);
 
-        ShowApplicantsView showApplicantsView = ShowApplicantUseCaseFactory.create(showApplicantsViewModel, showHireApplicantPageViewModel, viewManagerModel, applicantsDataAccessObject);
+        ShowApplicantsView showApplicantsView = ShowApplicantUseCaseFactory.create(hrDashboardViewModel, showApplicantsViewModel, showHireApplicantPageViewModel, viewManagerModel, applicantsDataAccessObject);
         views.add(showApplicantsView, showApplicantsView.viewName);
 
         HireApplicantView hireApplicantView = HireApplicantUseCaseFactory.create(viewManagerModel, showHireApplicantPageViewModel, hrDashboardViewModel, employeeDataAccessObject);
