@@ -127,8 +127,7 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
 
                             resumeParsingController.execute(
                                     // Would get this from State
-//                                    currentState.getFilesToUpload(),
-                                    hireApplicant_in.getText(),
+                                    currentState.getFilesToUpload(),
                                     currentState.getPositionToUpload()
                             );
                         }
