@@ -3,7 +3,6 @@ package interface_adapter.login;
 import interface_adapter.HrDashboard.HrDashboardState;
 import interface_adapter.HrDashboard.HrDashboardViewModel;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.showApplicants.ShowApplicantsState;
 import use_case.login.LoginOutputBoundary;
 import use_case.login.LoginOutputData;
 
@@ -28,14 +27,10 @@ public class LoginPresenter implements LoginOutputBoundary {
         // On success, switch to the logged in view.
 
         HrDashboardState state = hrDashboardViewModel.getState();
-        //state.setApplicantsToDisplay(response.getApplicants());
+
         this.hrDashboardViewModel.setState(state);
         this.hrDashboardViewModel.firePropertyChanged();
 
-        //LoggedInState loggedInState = loggedInViewModel.getState();
-        //loggedInState.setUsername(response.getUsername());
-        //this.loggedInViewModel.setState(loggedInState);
-        //this.loggedInViewModel.firePropertyChanged();
 
         this.viewManagerModel.setActiveView(hrDashboardViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
