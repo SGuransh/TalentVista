@@ -9,9 +9,6 @@ public class AutoMailSend{
     String d_email = "ayush22ar@gmail.com", d_password = "qwpq myrl axrm woeh", d_host = "smtp.gmail.com", d_port = "465", m_to = "sguransh24@gmail.com", m_subject = "Testing", m_text = "Hey, this is the testing email.";
 
     public AutoMailSend () {}
-    public AutoMailSend(String mailto) {
-        this.m_to = mailto;
-    }
 
     public void setRecipient(String mailTo){
         this.m_to = mailTo;
@@ -47,11 +44,6 @@ public class AutoMailSend{
         } catch (Exception mex) {
             mex.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        AutoMailSend email = new AutoMailSend();
-        email.send();
     }
 
     public class SMTPAuthenticator extends javax.mail.Authenticator {
