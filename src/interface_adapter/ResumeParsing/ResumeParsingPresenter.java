@@ -26,4 +26,7 @@ public class ResumeParsingPresenter implements ResumeParsingOutputBoundary {
         showApplicantsViewModel.setState(state);
         showApplicantsViewModel.firePropertyChanged();
     }
+
+    @Override
+    public void prepareFailView(ResumeParsingOutputData applicantData){}
 }
