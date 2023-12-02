@@ -26,11 +26,6 @@ public class LoginPresenter implements LoginOutputBoundary {
     public void prepareSuccessView(LoginOutputData response) {
         // On success, switch to the logged in view.
 
-        HrDashboardState state = hrDashboardViewModel.getState();
-
-        this.hrDashboardViewModel.setState(state);
-        this.hrDashboardViewModel.firePropertyChanged();
-
 
         this.viewManagerModel.setActiveView(hrDashboardViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
