@@ -8,4 +8,5 @@ public interface ResumeParsingDataAccessInterface {
     Integer getId();
 
     public String getPresentableApplicants();
+    void clearCSV();
 }
