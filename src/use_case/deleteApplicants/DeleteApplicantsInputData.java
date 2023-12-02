@@ -8,7 +8,7 @@ public class DeleteApplicantsInputData {
         this.applicantIDs = applicantIDs;
     }
 
-    ArrayList<String> getApplicantIDs() {
+    public ArrayList<String> getApplicantIDs() {
         return this.applicantIDs;
     }
 }

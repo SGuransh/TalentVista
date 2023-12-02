@@ -7,7 +7,6 @@ public class Employee implements User {
     private final String name;
     private final String password;
     private final LocalDateTime creationTime;
-    private final Integer level = 3;
 
     private final Double salary;
 
@@ -15,16 +14,8 @@ public class Employee implements User {
 
     private final String email;
 
-    /**
-     * Requires: password is valid.
-     *
-     * @param name
-     * @param password
-     * @param salary
-     * @param position
-     * @param email
-     */
-    Employee(String name, String password, LocalDateTime creationTime, Double salary, String position, String email) {
+
+    public Employee(String name, String password, LocalDateTime creationTime, Double salary, String position, String email) {
         this.name = name;
         this.password = password;
         this.creationTime = creationTime;
@@ -52,7 +43,6 @@ public class Employee implements User {
         return creationTime;
     }
 
-    public Integer getLevel() {return level;}
     public Double getSalary(){return salary;}
     public String getPosition(){return position;}
 }

@@ -1,24 +1,31 @@
 package interface_adapter.show_hire_applicant_page;
 
-import entity.Applicant;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.showApplicants.ShowApplicantsViewModel;
 import use_case.showHireApplicantPage.ShowHireApplicantPageOutputBoundary;
+import use_case.showHireApplicantPage.ShowHireApplicantPageOutputData;
 
 public class ShowHireApplicantPagePresenter implements ShowHireApplicantPageOutputBoundary {
-    public final ViewManagerModel viewManagerModel;
-    public final ShowApplicantsViewModel showApplicantsViewModel;
-    public final ShowHireApplicantPageViewModel showHireApplicantPageViewModel;
+    private ViewManagerModel viewManagerModel;
+    private final ShowHireApplicantPageViewModel showHireApplicantPageViewModel;
+
     public ShowHireApplicantPagePresenter(ViewManagerModel viewManagerModel,
-                                          ShowApplicantsViewModel showApplicantsViewModel,
                                           ShowHireApplicantPageViewModel showHireApplicantPageViewModel) {
-        this.showApplicantsViewModel = showApplicantsViewModel;
         this.viewManagerModel = viewManagerModel;
         this.showHireApplicantPageViewModel = showHireApplicantPageViewModel;
     }
 
     @Override
-    public void prepareSuccessView(Applicant applicant) {
+    public void prepareSuccessView(ShowHireApplicantPageOutputData outputData) {
+        ShowHireApplicantPageState state = showHireApplicantPageViewModel.getState();
+        state.setName(outputData.getName());
+        state.setPosition(outputData.getPosition());
+        state.setEmail(outputData.getEmail());
+        state.setEmployeeData("");
+        this.showHireApplicantPageViewModel.setState(state);
+        this.showHireApplicantPageViewModel.firePropertyChanged();
 
+        this.viewManagerModel.setActiveView(showHireApplicantPageViewModel.getViewName());
+        this.viewManagerModel.firePropertyChanged();
     }
 }

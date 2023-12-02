@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public interface HireApplicantDataAccessInterface {
-    public void addEmployee(Employee employee);
-    public HashMap<String, ArrayList<String>> getEmployees();
+    void addEmployee(Employee employee);
+    String getEmployeeData(Employee employee);
+    String getPresentableEmployees();
+    void clearCSV();
 }

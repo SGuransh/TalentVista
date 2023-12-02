@@ -1,6 +1,5 @@
 package view;
 
-import interface_adapter.HrDashboard.HrDashboardState;
 import interface_adapter.HrDashboard.HrDashboardViewModel;
 import interface_adapter.showApplicants.ShowApplicantsController;
 import interface_adapter.showEmployees.ShowEmployeesController;

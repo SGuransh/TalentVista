@@ -1,14 +1,19 @@
 package interface_adapter.showApplicants;
 
+import entity.Applicant;
+
+import java.util.ArrayList;
+
 public class ShowApplicantsState {
     private String applicantsToDelete = "";
     private String applicantToHire = "";
     private String dateToFilter = "";
-    private String skillToFilter = null;
+    private String skillToFilter = "";
     private String filesToUpload = "";
 
     private String positionToUpload = "";
     private String applicantsToDisplay = "";
+    private String filteredApplicants = "";
 
 
     public ShowApplicantsState(ShowApplicantsState copy) {
@@ -18,6 +23,7 @@ public class ShowApplicantsState {
         skillToFilter = copy.skillToFilter;
         filesToUpload = copy.filesToUpload;
         applicantsToDisplay = copy.applicantsToDisplay;
+        filteredApplicants = copy.filteredApplicants;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
@@ -49,6 +55,7 @@ public class ShowApplicantsState {
     public String getFilesToUpload() {
         return filesToUpload;
     }
+    public String getFilteredApplicants(){return filteredApplicants;}
 
 
     public void setApplicantsToDelete(String applicantsToDelete) {this.applicantsToDelete = applicantsToDelete;}
@@ -75,4 +82,5 @@ public class ShowApplicantsState {
         this.applicantsToDisplay = applicantsToDisplay;
     }
 
+    public void setFilteredApplicants(String filteredApplicants){this.filteredApplicants = filteredApplicants;}
 }

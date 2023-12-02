@@ -1,0 +1,31 @@
+name: 🐛 Bug
+description: Make an issue for a bug
+title: "[BUG] <title>"
+labels: [Bug, Needs Triage]
+body:
+- type: textarea
+  attributes:
+    label: Current situation
+    description: A description of what you are experiencing
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Plan to fix it
+    description: A description of how to fix the bug
+  validations:
+    required: true
+- type: dropdown
+  id: Engine_region
+  attributes:
+    label: What part of the codebase has the issue?
+    multiple: true
+    options:
+      - View
+      - CPVM
+      - Data Access
+      - Entities
+      - Use Case
+      - Cannot specify
+    
+  

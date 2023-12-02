@@ -9,8 +9,8 @@ public class FilterController {
     public FilterController(FilterInputBoundary filterUseCaseInteractor) {
         this.filterUseCaseInteractor = filterUseCaseInteractor;
     }
-    public void execute(String skill, String uploadDate){
-        FilterInputData inputData = new FilterInputData(skill, uploadDate);
+    public void execute(String uploadDate, String skill){
+        FilterInputData inputData = new FilterInputData(uploadDate, skill);
         filterUseCaseInteractor.execute(inputData);
     }
 }

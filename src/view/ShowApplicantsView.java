@@ -2,6 +2,7 @@ package view;
 
 import interface_adapter.ResumeParsing.ResumeParsingController;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.back.BackController;
 import interface_adapter.deleteApplicants.DeleteApplicantsController;
 import interface_adapter.filter.FilterController;
 import interface_adapter.showApplicants.ShowApplicantsState;
@@ -33,6 +34,7 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
     private final JButton deleteApplicants;
     private final JButton uploadFiles;
     private final JButton applyFilters;
+    private final JButton backButton;
     private final JTextField hireApplicant_in = new JTextField(10);
     private final JTextField deleteApplicants_in = new JTextField(10);
     private final JTextField uploadFiles_in = new JTextField(50);
@@ -43,7 +45,7 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
     public ShowApplicantsView(ViewManagerModel viewManagerModel, ShowApplicantsViewModel showApplicantsViewModel,
                               FilterController filterController, DeleteApplicantsController deleteApplicantsController,
                               ShowHireApplicantPageController showHireApplicantPageController,
-                              ResumeParsingController resumeParsingController) {
+                              ResumeParsingController resumeParsingController, BackController backController) {
         this.deleteApplicantsController = deleteApplicantsController;
         this.viewManagerModel = viewManagerModel;
         this.filterController = filterController;
@@ -59,7 +61,7 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
         LabelTextPanel applyFilters_info_date = new LabelTextPanel(
                 new JLabel(ShowApplicantsViewModel.FILTER_BY_UPLOAD_DATE_LABEL), applyFilters_in_date);
         LabelTextPanel applyFilters_info_skills = new LabelTextPanel(
-                new JLabel(ShowApplicantsViewModel.FILTER_BY_SKILL), applyFilters_in_skills);
+                new JLabel(ShowApplicantsViewModel.FILTER_BY_SKILL_LABEL), applyFilters_in_skills);
         LabelTextPanel hireApplicant_info = new LabelTextPanel(
                 new JLabel(ShowApplicantsViewModel.HIRING_TEXT_LABEL), hireApplicant_in);
         LabelTextPanel deleteApplicants_info = new LabelTextPanel(
@@ -79,6 +81,9 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
         buttons.add(uploadFiles);
         applyFilters = new JButton(ShowApplicantsViewModel.APPLY_FILTERS_ON_APPLICANTS_BUTTON_LABEL);
         buttons.add(applyFilters);
+        backButton = new JButton(ShowApplicantsViewModel.BACK_BUTTON_LABEL);
+        buttons.add(backButton);
+
 
 
 
@@ -263,11 +268,22 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
                     public void keyReleased(KeyEvent e) {
                     }
                 });
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        JLabel head = new JLabel("List of Applicants: ");
 
+        backButton.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(backButton)) {
+                            backController.execute();
+                        }
+                    }
+                }
+        );
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        JLabel head = new JLabel("<html><h2>APPLICANTS</h2>");
         applicants = new JLabel();
 
+//        applicants.setHorizontalAlignment(SwingConstants.LEFT);
         // adding things to the view
         // hireApplicant_in, deleteApplicants_in, uploadFiles_in, applyFilters_in_skills, applyFilters_in_date, uploadPosition_in
         this.add(title);
@@ -275,11 +291,22 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
         this.add(deleteApplicants_info);
         this.add(uploadFiles_info);
         this.add(applyFilters_info_date);
-        this.add(applyFilters_info_date);
+        this.add(applyFilters_info_skills);
         this.add(uploadPosition_info);
         this.add(buttons);
-        this.add(head);
-        this.add(applicants);
+//        this.add(Box.createRigidArea(new Dimension(0, 10))); // Adjust the height as needed
+//        this.add(head);
+        JPanel containerPanel = new JPanel((new FlowLayout(FlowLayout.LEFT)));
+        JPanel containerPanel2 = new JPanel((new FlowLayout(FlowLayout.LEFT)));
+        containerPanel2.add(applicants);
+
+        containerPanel.add(head);
+        this.add(containerPanel);
+        JFrame frame = new JFrame("Scrollable JPanel Example");
+        JScrollPane scrollPane = new JScrollPane(containerPanel2);
+        scrollPane.setPreferredSize(new Dimension(280, 180));
+       this.add(scrollPane);
+
 
     }
 
@@ -294,5 +321,18 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
         ShowApplicantsState state = showApplicantsViewModel.getState();
         String applicantsToDisplay = state.getApplicantsToDisplay();
         applicants.setText(applicantsToDisplay);
+        ShowApplicantsState state2 = (ShowApplicantsState) evt.getNewValue();
+        if (!state2.getFilteredApplicants().isEmpty()){
+            JOptionPane.showMessageDialog(this, state2.getFilteredApplicants());
+        }
+        showApplicantsViewModel.setState(new ShowApplicantsState());
+        showApplicantsViewModel.getState().setApplicantsToDisplay(state2.getApplicantsToDisplay());
+
+        hireApplicant_in.setText("");
+        deleteApplicants_in.setText("");
+        uploadFiles_in.setText("");
+        applyFilters_in_date.setText("");
+        applyFilters_in_skills.setText("");
+        uploadPosition_in.setText("");
     }
 }
