@@ -21,9 +21,10 @@ public class InMemoryUserDataAccessObject implements LoginUserDataAccessInterfac
     }
 
     @Override
-    public User get(String username) {
-        return null;
+    public String get(String username) {
+        return users.get(username);
     }
+
 
     public void ReadCsvToInMemory(){
         String csvFile = "src/data_access/defaultUser.csv";
