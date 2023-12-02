@@ -102,4 +102,15 @@ public class InMemoryEmployeeAccessObject implements HireApplicantDataAccessInte
         }
     }
 
+    public void clearCSV(){
+        String csvFilePath = "src/data_access/Employees.csv";
+        try {
+            PrintWriter writer = new PrintWriter(new FileWriter(csvFilePath));
+            writer.close();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

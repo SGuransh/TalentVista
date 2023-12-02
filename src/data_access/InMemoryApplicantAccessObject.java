@@ -192,4 +192,16 @@ public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInt
         }
     }
 
+    public void clearCSV(){
+        String csvFilePath = "src/data_access/Applicants.csv";
+        try {
+            PrintWriter writer = new PrintWriter(new FileWriter(csvFilePath));
+            writer.close();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
+
+

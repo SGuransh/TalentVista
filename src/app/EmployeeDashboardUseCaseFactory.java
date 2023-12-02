@@ -19,7 +19,7 @@ public class EmployeeDashboardUseCaseFactory {
         return new DashboardEmployeeView(showEmployeesViewModel, backController);
     }
 
-    private static BackController createBackUseCase(ViewManagerModel viewManagerModel, HrDashboardViewModel hrDashboardViewModel){
+    public static BackController createBackUseCase(ViewManagerModel viewManagerModel, HrDashboardViewModel hrDashboardViewModel){
         BackOutputBoundary backOutputBoundary = new BackPresenter(hrDashboardViewModel, viewManagerModel);
 
         BackInputBoundary backInteractor = new BackInteractor(backOutputBoundary);
