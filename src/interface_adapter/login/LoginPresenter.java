@@ -23,17 +23,20 @@ public class LoginPresenter implements LoginOutputBoundary {
 
     @Override
     public void prepareSuccessView(LoginOutputData response) {
-        // On success, switch to the logged in view.
-
-
         this.viewManagerModel.setActiveView(hrDashboardViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
 
     @Override
-    public void prepareFailView(String error) {
+    public void prepareFailView(String error, int errorType) {
         LoginState loginState = loginViewModel.getState();
-        loginState.setUsernameError(error);
-        loginViewModel.firePropertyChanged();
+        if (errorType == 1){
+            loginState.setUsernameError(error);
+            loginViewModel.firePropertyChanged();
+        }else if (errorType == 2){
+            loginState.setPasswordError(error);
+            loginViewModel.firePropertyChanged();
+        }
+
     }
 }
