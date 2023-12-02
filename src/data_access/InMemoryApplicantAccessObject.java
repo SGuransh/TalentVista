@@ -92,11 +92,13 @@ public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInt
             String phoneNum = contactInfo.get("phone");
             String position = applicant.getPosition();
             String HTMLContent = "<html>";
+            String uploadDate = applicant.getUploadDate();
             HTMLContent += "<h3>"+"<i>"+ ID + "</i>" + "&nbsp;&nbsp"+ "<span style=\"font-weight: normal;\">"+ name +"</span> " + "</h3>";
             HTMLContent += "<p>" + "<b>" +  "Email: "+"</b>" +email +"</p>";
             HTMLContent += "<p>" + "<b>" +  "Phone: "+"</b>" +phoneNum +"</p>";
             HTMLContent += "<p>" + "<b>" +  "Skills: "+"</b>" +skillsString +"</p>";
             HTMLContent += "<p>" + "<b>" +  "Position: "+"</b>" +position +"</p>";
+            HTMLContent += "<p>" + "<b>" +  "Upload Date: "+"</b>" +uploadDate +"</p>";
             HTMLContent +="<p>" + "_________________________" + "</p>";
 
 
