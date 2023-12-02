@@ -23,7 +23,5 @@ class ShowApplicantUseCaseFactoryTest {
 
         ShowApplicantsView showApplicantsView = ShowApplicantUseCaseFactory.create(hrDashboardViewModel, showApplicantsViewModel, showHireApplicantPageViewModel, viewManagerModel, applicantDAO);
         assert(showApplicantsView instanceof ShowApplicantsView);
-
-
     }
 }
