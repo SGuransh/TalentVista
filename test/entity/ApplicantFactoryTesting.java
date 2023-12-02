@@ -1,18 +1,17 @@
 package entity;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ApplicantFactoryTesting {
-    String filepath = "C:\\Users\\sgura\\IdeaProjects\\TalentVista\\test\\entity\\testResume.pdf";
+//    String filepath = "C:\\Users\\sgura\\IdeaProjects\\TalentVista\\test\\entity\\testResume.pdf";
+    String filepath = "test/entity/testResume.pdf";
     private ApplicantFactory af = new ApplicantFactory();
 
     @Test
     void testPassingResponse(){
+//        filepath = null;
         try {
             Applicant newApp = af.makeApplicantFromString(filepath, 1, "dev");
             assertEquals("Singh002", newApp.getId());

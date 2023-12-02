@@ -18,6 +18,8 @@ public class ShowApplicantsViewModel extends ViewModel {
     public static final String UPLOAD_TEXT_LABEL = "File or directory of the resumes";
     public static final String UPLOAD_POSITION_LABEL = "Enter position";
 
+    public static final String BACK_BUTTON_LABEL = "Back";
+
     public ShowApplicantsViewModel() {
         super("Show Applicants");
     }
