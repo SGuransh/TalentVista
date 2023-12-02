@@ -8,13 +8,10 @@ import use_case.showHireApplicantPage.ShowHireApplicantPageOutputData;
 public class ShowHireApplicantPagePresenter implements ShowHireApplicantPageOutputBoundary {
     private ViewManagerModel viewManagerModel;
     private final ShowHireApplicantPageViewModel showHireApplicantPageViewModel;
-    private final ShowApplicantsViewModel showApplicantsViewModel;
 
     public ShowHireApplicantPagePresenter(ViewManagerModel viewManagerModel,
-                                          ShowApplicantsViewModel showApplicantsViewModel,
                                           ShowHireApplicantPageViewModel showHireApplicantPageViewModel) {
         this.viewManagerModel = viewManagerModel;
-        this.showApplicantsViewModel = showApplicantsViewModel;
         this.showHireApplicantPageViewModel = showHireApplicantPageViewModel;
     }
 
