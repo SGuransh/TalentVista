@@ -53,4 +53,5 @@ class DeleteApplicantsControllerTest {
         controller.execute(idString);
         applicantsDAO.clearCSV();
     }
+
 }
