@@ -14,12 +14,12 @@ public class InMemoryEmployeeAccessObject implements HireApplicantDataAccessInte
 
         private final Map<String, Employee> employees = new HashMap<String, Employee>();
 
-    public Boolean existsApplicant(String id) {
-        return employees.containsKey(id);
+    public Boolean existsEmployee(String name) {
+        return employees.containsKey(name);
     }
     @Override
     public void addEmployee(Employee employee) {
-        if (existsApplicant(employee.getName())) {
+        if (existsEmployee(employee.getName())) {
             return;
         }
         employees.put(employee.getName(), employee);
