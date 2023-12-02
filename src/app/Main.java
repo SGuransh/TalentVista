@@ -62,7 +62,9 @@ public class Main {
         InMemoryApplicantAccessObject applicantsDataAccessObject = new InMemoryApplicantAccessObject();
         applicantsDataAccessObject.addApplicant(SHAHBAZ);
         ShowEmployeesDataAccessInterface employeeDataAccessObject = new InMemoryEmployeeAccessObject();
-        LoginUserDataAccessInterface userDataAccessObject = new InMemoryUserDataAccessObject();
+
+        InMemoryUserDataAccessObject userDataAccessObject = new InMemoryUserDataAccessObject();
+        userDataAccessObject.ReadCsvToInMemory();
 
         HrDashboardView hrDashboardView = HrDashboardUseCaseFactory.create(viewManagerModel, hrDashboardViewModel, showEmployeesViewModel, showApplicantsViewModel, applicantsDataAccessObject, employeeDataAccessObject);
         views.add(hrDashboardView, hrDashboardView.viewName);
