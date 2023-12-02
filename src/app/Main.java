@@ -2,6 +2,7 @@ package app;
 
 import data_access.InMemoryApplicantAccessObject;
 import data_access.InMemoryEmployeeAccessObject;
+import data_access.InMemoryUserDataAccessObject;
 import entity.Applicant;
 import entity.Employee;
 import entity.EmployeeFactory;
@@ -47,7 +48,7 @@ public class Main {
         // This information will be changed by a presenter object that is reporting the
         // results from the use case. The ViewModels are observable, and will
         // be observed by the Views.
-//        LoginViewModel loginViewModel = new LoginViewModel();
+        LoginViewModel loginViewModel = new LoginViewModel();
         HrDashboardViewModel hrDashboardViewModel = new HrDashboardViewModel();
         ShowEmployeesViewModel showEmployeesViewModel = new ShowEmployeesViewModel();
         ShowApplicantsViewModel showApplicantsViewModel = new ShowApplicantsViewModel();
@@ -60,6 +61,8 @@ public class Main {
         applicantsDataAccessObject.ReadDefaultCSV();
         InMemoryEmployeeAccessObject employeeDataAccessObject = new InMemoryEmployeeAccessObject();
         employeeDataAccessObject.ReadCsvToInMemory();
+        InMemoryUserDataAccessObject userDataAccessObject = new InMemoryUserDataAccessObject();
+        userDataAccessObject.ReadCsvToInMemory();
 
         HrDashboardView hrDashboardView = HrDashboardUseCaseFactory.create(viewManagerModel, hrDashboardViewModel, showEmployeesViewModel, showApplicantsViewModel, applicantsDataAccessObject, employeeDataAccessObject);
         views.add(hrDashboardView, hrDashboardView.viewName);
@@ -73,11 +76,11 @@ public class Main {
         HireApplicantView hireApplicantView = HireApplicantUseCaseFactory.create(viewManagerModel, showHireApplicantPageViewModel, hrDashboardViewModel, employeeDataAccessObject);
         views.add(hireApplicantView, hireApplicantView.viewName);
 
-//        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject);
-//        views.add(loginView, loginView.viewName);
+        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, hrDashboardViewModel, userDataAccessObject);
+        views.add(loginView, loginView.viewName);
 
 
-        viewManagerModel.setActiveView(hrDashboardView.viewName);
+        viewManagerModel.setActiveView(loginView.viewName);
         viewManagerModel.firePropertyChanged();
 
         application.pack();
