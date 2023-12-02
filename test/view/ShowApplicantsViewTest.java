@@ -1,5 +1,6 @@
 package view;
 
+<<<<<<< HEAD
 import app.*;
 import data_access.InMemoryApplicantAccessObject;
 import data_access.InMemoryEmployeeAccessObject;
@@ -15,10 +16,14 @@ import org.junit.After;
 
 import javax.swing.*;
 import java.awt.*;
+=======
+import org.junit.jupiter.api.Test;
+>>>>>>> a69d7083ad3f7a1a4c65de8ac8518766bbc3b0f2
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ShowApplicantsViewTest {
+<<<<<<< HEAD
     @Before
     public void setUp() {
         JFrame application = new JFrame("HR DASHBOARD");
@@ -64,6 +69,13 @@ class ShowApplicantsViewTest {
     @After
     public void tearDown() {
         // Clearing all the things in the Window
+=======
+
+
+    @Test
+    void actionPerformed() {
+//        ShowApplicantsView showApplicantsView = new ShowApplicantsView();
+>>>>>>> a69d7083ad3f7a1a4c65de8ac8518766bbc3b0f2
 
     }
 
