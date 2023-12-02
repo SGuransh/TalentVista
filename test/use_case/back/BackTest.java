@@ -17,6 +17,6 @@ public class BackTest {
         BackOutputBoundary presenter = new BackPresenter(hrDashboardViewModel, viewManagerModel);
         BackInputBoundary backButton = new BackInteractor(presenter);
         backButton.execute();
-        assertEquals(viewManagerModel.getActiveView(), hrDashboardViewModel.getViewName());a
+        assertEquals(viewManagerModel.getActiveView(), hrDashboardViewModel.getViewName());
     }
 }
