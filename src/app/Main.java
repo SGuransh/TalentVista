@@ -2,18 +2,17 @@ package app;
 
 import data_access.InMemoryApplicantAccessObject;
 import data_access.InMemoryEmployeeAccessObject;
+import data_access.InMemoryUserDataAccessObject;
 import entity.Applicant;
 import interface_adapter.HrDashboard.HrDashboardViewModel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.show_hire_applicant_page.ShowHireApplicantPageViewModel;
 import use_case.filter.FilterUserDataAccessInterface;
+import use_case.login.LoginUserDataAccessInterface;
 import use_case.showApplicants.ShowApplicantsDataAccessInterface;
 import use_case.showEmployees.ShowEmployeesDataAccessInterface;
-import view.DashboardEmployeeView;
-import view.HrDashboardView;
-import view.ShowApplicantsView;
-import view.ViewManager;
+import view.*;
 import app.HrDashboardUseCaseFactory;
 import interface_adapter.showEmployees.ShowEmployeesViewModel;
 import interface_adapter.showApplicants.ShowApplicantsViewModel;
@@ -46,7 +45,7 @@ public class Main {
         // This information will be changed by a presenter object that is reporting the
         // results from the use case. The ViewModels are observable, and will
         // be observed by the Views.
-        //LoginViewModel loginViewModel = new LoginViewModel();
+        LoginViewModel loginViewModel = new LoginViewModel();
         HrDashboardViewModel hrDashboardViewModel = new HrDashboardViewModel();
         ShowEmployeesViewModel showEmployeesViewModel = new ShowEmployeesViewModel();
         ShowApplicantsViewModel showApplicantsViewModel = new ShowApplicantsViewModel();
@@ -63,6 +62,7 @@ public class Main {
         InMemoryApplicantAccessObject applicantsDataAccessObject = new InMemoryApplicantAccessObject();
         applicantsDataAccessObject.addApplicant(SHAHBAZ);
         ShowEmployeesDataAccessInterface employeeDataAccessObject = new InMemoryEmployeeAccessObject();
+        LoginUserDataAccessInterface userDataAccessObject = new InMemoryUserDataAccessObject();
 
         HrDashboardView hrDashboardView = HrDashboardUseCaseFactory.create(viewManagerModel, hrDashboardViewModel, showEmployeesViewModel, showApplicantsViewModel, applicantsDataAccessObject, employeeDataAccessObject);
         views.add(hrDashboardView, hrDashboardView.viewName);
@@ -72,11 +72,12 @@ public class Main {
 
         ShowApplicantsView showApplicantsView = ShowApplicantUseCaseFactory.create(showApplicantsViewModel, showHireApplicantPageViewModel, viewManagerModel, applicantsDataAccessObject);
         views.add(showApplicantsView, showApplicantsView.viewName);
-//        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject);
-//        views.add(loginView, loginView.viewName);
+
+        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, hrDashboardViewModel, userDataAccessObject);
+        views.add(loginView, loginView.viewName);
 
 
-        viewManagerModel.setActiveView(hrDashboardView.viewName);
+        viewManagerModel.setActiveView(loginView.viewName);
         viewManagerModel.firePropertyChanged();
 
         application.pack();
