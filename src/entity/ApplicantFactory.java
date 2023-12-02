@@ -17,7 +17,8 @@ public class ApplicantFactory {
     public String stringFromFile(String fileLocation, Integer id) throws MalformedURLException, IOException {
         try {
 //            String apiKey = "JrtEnkroQW3FIvGTkp1JU139SDLuuITr0hYGIAi8";
-            String apiKey = "Pyo690Facd5t2QZfxKz3N2e6HYpYbxDLaNX8213x";
+//            String apiKey = "Pyo690Facd5t2QZfxKz3N2e6HYpYbxDLaNX8213x";
+            String apiKey = "OgC9YbOTCj5CY9S9JEOwNmJDH4ixvUD2zhXcQiEj";
             File fileToUpload;
 
             // Define the file to be uploaded
