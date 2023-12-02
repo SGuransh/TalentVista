@@ -10,7 +10,7 @@ public class ResumeParsingInputData {
         this.position = position;
     }
 
-    String getPath(){return path;}
+    public String getPath(){return path;}
 
-    String getPosition(){return position;}
+    public String getPosition(){return position;}
 }
