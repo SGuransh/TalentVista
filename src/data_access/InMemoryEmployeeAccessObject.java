@@ -6,11 +6,9 @@ import use_case.HireApplicantButton.HireApplicantDataAccessInterface;
 import use_case.showEmployees.ShowEmployeesDataAccessInterface;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
-public class InMemoryEmployeeAccessObject implements HireApplicantDataAccessInterface, ShowEmployeesDataAccessInterface {
+public class InMemoryEmployeeAccessObject implements HireApplicantDataAccessInterface, ShowEmployeesDataAccessInterface, Iterable<Employee> {
 
         private final Map<String, Employee> employees = new HashMap<String, Employee>();
 
@@ -39,8 +37,7 @@ public class InMemoryEmployeeAccessObject implements HireApplicantDataAccessInte
     @Override
     public String getPresentableEmployees() {
         StringBuilder presentableEmployees = new StringBuilder();
-        for (String employeeName: employees.keySet()){
-            Employee employee = employees.get(employeeName);
+        for (Employee employee: this){
             String name = employee.getName();
             Double salary = employee.getSalary();
             String position = employee.getPosition();
@@ -113,4 +110,41 @@ public class InMemoryEmployeeAccessObject implements HireApplicantDataAccessInte
         }
     }
 
+    @Override
+    public Iterator<Employee> iterator() {
+        return new EmployeeIterator();
+    }
+
+    class EmployeeIterator implements Iterator<Employee>{
+        private int curr;
+        public EmployeeIterator(){
+            curr = 0;
+        }
+        @Override
+        public boolean hasNext() {
+            return curr != employees.size();
+
+        }
+
+        @Override
+        public Employee next() {
+            if (this.hasNext()) {
+                Set<String> set = employees.keySet();
+                String[] list = set.toArray(new String[0]);
+                int prev = curr;
+                curr++;
+                return employees.get(list[prev]);
+            }else{
+                return null;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        InMemoryEmployeeAccessObject dao = new InMemoryEmployeeAccessObject();
+        dao.addEmployee(new Employee("Shahbaz", null, null,1.0, null, null));
+        for(Employee employee: dao) {
+            System.out.println(employee.getName());
+        }
+    }
 }

@@ -9,8 +9,9 @@ import use_case.showHireApplicantPage.ShowHireApplicantPageDataAccessInterface;
 
 import java.io.*;
 import java.util.*;
+import java.util.function.Consumer;
 
-public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInterface, DeleteApplicantsDataAccessInterface, ShowHireApplicantPageDataAccessInterface, ShowApplicantsDataAccessInterface, FilterUserDataAccessInterface {
+public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInterface, DeleteApplicantsDataAccessInterface, ShowHireApplicantPageDataAccessInterface, ShowApplicantsDataAccessInterface, FilterUserDataAccessInterface, Iterable<Applicant> {
     private final Map<String, Applicant> applicants = new HashMap<String, Applicant>();
     private Integer id = 0;
 
@@ -75,9 +76,7 @@ public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInt
 
     public String getPresentableApplicants() {
         StringBuilder presentableApplicants = new StringBuilder();
-        for (String applicantID : applicants.keySet()) {
-            Map<String, Applicant> applicantMap = applicants;
-            Applicant applicant = applicantMap.get(applicantID);
+        for (Applicant applicant : this) {
             String name = applicant.getName();
             String ID = applicant.getId();
             ArrayList<String> skillsArray = applicant.getSkills();
@@ -257,6 +256,53 @@ public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInt
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+
+    @Override
+    public Iterator<Applicant> iterator() {
+        return new ApplicantIterator();
+    }
+
+    class ApplicantIterator implements Iterator<Applicant>{
+        private int curr;
+        public ApplicantIterator(){
+            curr = 0;
+        }
+        @Override
+        public boolean hasNext() {
+            return curr != applicants.size();
+        }
+
+        @Override
+        public Applicant next() {
+            if (this.hasNext()) {
+                Set<String> set = applicants.keySet();
+                String[] list = set.toArray(new String[0]);
+                int prev = curr;
+                curr++;
+                return applicants.get(list[prev]);
+            }else{
+                return null;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        InMemoryApplicantAccessObject applicantsDAO = new InMemoryApplicantAccessObject();
+        ArrayList<String> skills = new ArrayList<>();
+        skills.add("apple");
+        HashMap contact = new HashMap<>();
+        contact.put("email", "1");
+        Applicant app1 = new Applicant("1", "Shahbaz", skills, null, contact,skills, null);
+        Applicant app2 = new Applicant("2", "Guransh", skills, null, contact,skills, null);
+        Applicant app3 = new Applicant("3", "Taha", skills, null, contact,skills, null);
+        applicantsDAO.addApplicant(app1);
+        applicantsDAO.addApplicant(app2);
+        applicantsDAO.addApplicant(app3);
+        for(Applicant applicant: applicantsDAO){
+            System.out.println(applicant.getName());
         }
     }
 }
