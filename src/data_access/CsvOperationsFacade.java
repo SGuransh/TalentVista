@@ -2,11 +2,11 @@ package data_access;
 
 public class CsvOperationsFacade {
 
-    private final ReadCsvToInMemory readCsvToInMemory;
-    private final SaveToCsv saveToCsv;
-    private final ClearCSV clearCSV;
+    private final ReadCsvBoundary readCsvToInMemory;
+    private final SaveToCsvBoundary saveToCsv;
+    private final ClearCsvBoundary clearCSV;
 
-    public CsvOperationsFacade(ReadCsvToInMemory readCsvToInMemory, SaveToCsv saveToCsv, ClearCSV clearCSV) {
+    public CsvOperationsFacade(ReadCsvBoundary readCsvToInMemory, SaveToCsvBoundary saveToCsv, ClearCsvBoundary clearCSV) {
         this.readCsvToInMemory = readCsvToInMemory;
         this.saveToCsv = saveToCsv;
         this.clearCSV = clearCSV;
@@ -16,9 +16,7 @@ public class CsvOperationsFacade {
         readCsvToInMemory.ReadCsvToInMemoryOperation();
     }
 
-    void saveToCsvOperation(){
-        saveToCsv.SaveToCsvOperation();
-    }
+    void saveToCsvOperation(){saveToCsv.SaveToCsvOperation();}
 
     void clearCsvOperation(){
         clearCSV.ClearCSVOperation();
