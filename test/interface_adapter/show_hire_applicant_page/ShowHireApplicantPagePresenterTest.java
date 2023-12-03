@@ -21,4 +21,16 @@ class ShowHireApplicantPagePresenterTest {
         assertEquals(state.getEmployeeData(), "");
         assertEquals(viewManagerModel.getActiveView(), showHireApplicantPageViewModel.getViewName());
     }
+
+    @Test
+    void testForState(){
+        ShowHireApplicantPageState state1 = new ShowHireApplicantPageState();
+        state1.setEmail("emaill");
+        state1.setName("LLLOOOO");
+        state1.setSalary("10000");
+        ShowHireApplicantPageState state2 = new ShowHireApplicantPageState(state1);
+        assertEquals(state2.getSalary(), "10000");
+        assertEquals(state2.getEmail(), "emaill");
+        assertEquals(state2.getName(), "LLLOOOO");
+    }
 }
