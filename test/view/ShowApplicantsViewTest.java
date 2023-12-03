@@ -156,11 +156,37 @@ class ShowApplicantsViewTest {
         backButtonButton.doClick();
 
         hireApplicant_in.addKeyListener(keyListener);
-        hireApplicant_in.;
         deleteApplicants_in.addKeyListener(keyListener);
         uploadFiles_in.addKeyListener(keyListener);
         applyFilters_in_skills.addKeyListener(keyListener);
         applyFilters_in_date.addKeyListener(keyListener);
         uploadPosition_in.addKeyListener(keyListener);
+
+        char keyChar = 'A';
+        int keyCode = KeyEvent.VK_UNDEFINED;
+
+        keyListener.keyTyped(new KeyEvent(hireApplicant_in, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
+        keyListener.keyPressed(new KeyEvent(hireApplicant_in, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
+        keyListener.keyReleased(new KeyEvent(hireApplicant_in, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
+
+        keyListener.keyTyped(new KeyEvent(deleteApplicants_in, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
+        keyListener.keyPressed(new KeyEvent(deleteApplicants_in, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
+        keyListener.keyReleased(new KeyEvent(deleteApplicants_in, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
+
+        keyListener.keyTyped(new KeyEvent(uploadFiles_in, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
+        keyListener.keyPressed(new KeyEvent(uploadFiles_in, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
+        keyListener.keyReleased(new KeyEvent(uploadFiles_in, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
+
+        keyListener.keyTyped(new KeyEvent(applyFilters_in_date, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
+        keyListener.keyPressed(new KeyEvent(applyFilters_in_date, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
+        keyListener.keyReleased(new KeyEvent(applyFilters_in_date, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
+
+        keyListener.keyTyped(new KeyEvent(applyFilters_in_skills, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
+        keyListener.keyPressed(new KeyEvent(applyFilters_in_skills, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
+        keyListener.keyReleased(new KeyEvent(applyFilters_in_skills, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
+
+        keyListener.keyTyped(new KeyEvent(uploadPosition_in, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
+        keyListener.keyPressed(new KeyEvent(uploadPosition_in, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
+        keyListener.keyReleased(new KeyEvent(uploadPosition_in, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
     }
 }
