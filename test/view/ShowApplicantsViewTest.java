@@ -1,85 +1,166 @@
 package view;
 
-<<<<<<< HEAD
-import app.*;
-import data_access.InMemoryApplicantAccessObject;
-import data_access.InMemoryEmployeeAccessObject;
-import interface_adapter.HrDashboard.HrDashboardViewModel;
+import interface_adapter.ResumeParsing.ResumeParsingController;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.back.BackController;
 import interface_adapter.deleteApplicants.DeleteApplicantsController;
+import interface_adapter.filter.FilterController;
+import interface_adapter.showApplicants.ShowApplicantsState;
 import interface_adapter.showApplicants.ShowApplicantsViewModel;
-import interface_adapter.showEmployees.ShowEmployeesViewModel;
-import interface_adapter.show_hire_applicant_page.ShowHireApplicantPageViewModel;
+import interface_adapter.show_hire_applicant_page.ShowHireApplicantPageController;
 import org.junit.jupiter.api.Test;
-import org.junit.Before;
-import org.junit.After;
+import use_case.back.BackInputBoundary;
+import use_case.deleteApplicants.DeleteApplicantsInputBoundary;
+import use_case.deleteApplicants.DeleteApplicantsInputData;
+import use_case.filter.FilterInputBoundary;
+import use_case.filter.FilterInputData;
+import use_case.resumeParsing.ResumeParsingInputBoundary;
+import use_case.resumeParsing.ResumeParsingInputData;
+import use_case.showHireApplicantPage.ShowHireApplicantPageInputBoundary;
+import use_case.showHireApplicantPage.ShowHireApplicantPageInputData;
 
 import javax.swing.*;
-import java.awt.*;
-=======
-import org.junit.jupiter.api.Test;
->>>>>>> a69d7083ad3f7a1a4c65de8ac8518766bbc3b0f2
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ShowApplicantsViewTest {
-<<<<<<< HEAD
-    @Before
-    public void setUp() {
-        JFrame application = new JFrame("HR DASHBOARD");
-        application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        CardLayout cardLayout = new CardLayout();
-
-        JPanel views = new JPanel(cardLayout);
-        application.add(views);
-
-        ViewManagerModel viewManagerModel = new ViewManagerModel();
-        new ViewManager(views, cardLayout, viewManagerModel);
-
-        HrDashboardViewModel hrDashboardViewModel = new HrDashboardViewModel();
-        ShowEmployeesViewModel showEmployeesViewModel = new ShowEmployeesViewModel();
+    @Test
+    void clickingButtons(){
         ShowApplicantsViewModel showApplicantsViewModel = new ShowApplicantsViewModel();
-        ShowHireApplicantPageViewModel showHireApplicantPageViewModel = new ShowHireApplicantPageViewModel();
+        ViewManagerModel viewManagerModel = new ViewManagerModel();
 
-        InMemoryApplicantAccessObject applicantsDataAccessObject = new InMemoryApplicantAccessObject();
-        applicantsDataAccessObject.ReadDefaultCSV();
-        InMemoryEmployeeAccessObject employeeDataAccessObject = new InMemoryEmployeeAccessObject();
-        employeeDataAccessObject.ReadCsvToInMemory();
+        // Making the fake interactors to initialize the controllers
 
-        HrDashboardView hrDashboardView = HrDashboardUseCaseFactory.create(viewManagerModel, hrDashboardViewModel, showEmployeesViewModel, showApplicantsViewModel, applicantsDataAccessObject, employeeDataAccessObject);
-        views.add(hrDashboardView, hrDashboardView.viewName);
+        FilterInputBoundary filterInteractor = new FilterInputBoundary() {
+            @Override
+            public void execute(FilterInputData inputData) {
 
-        DashboardEmployeeView employeeView = EmployeeDashboardUseCaseFactory.create(viewManagerModel,hrDashboardViewModel,showEmployeesViewModel);
-        views.add(employeeView, employeeView.viewName);
+            }
+        };
 
-        ShowApplicantsView showApplicantsView = ShowApplicantUseCaseFactory.create(hrDashboardViewModel, showApplicantsViewModel, showHireApplicantPageViewModel, viewManagerModel, applicantsDataAccessObject);
-        views.add(showApplicantsView, showApplicantsView.viewName);
+        DeleteApplicantsInputBoundary deleteInteractor = new DeleteApplicantsInputBoundary() {
+            @Override
+            public void execute(DeleteApplicantsInputData inputData) {
 
-        HireApplicantView hireApplicantView = HireApplicantUseCaseFactory.create(viewManagerModel, showHireApplicantPageViewModel, hrDashboardViewModel, employeeDataAccessObject);
-        views.add(hireApplicantView, hireApplicantView.viewName);
+            }
+        };
 
-        viewManagerModel.setActiveView(hrDashboardView.viewName);
-        viewManagerModel.firePropertyChanged();
+        ShowHireApplicantPageInputBoundary showHireApplicantPageInteractor = new ShowHireApplicantPageInputBoundary() {
+            @Override
+            public void execute(ShowHireApplicantPageInputData applicantID) {
 
-        application.pack();
-        application.setVisible(true);
-    }
+            }
+        };
 
-    @After
-    public void tearDown() {
-        // Clearing all the things in the Window
-=======
+        ResumeParsingInputBoundary resumeParsingInteractor = new ResumeParsingInputBoundary() {
+            @Override
+            public void execute(ResumeParsingInputData inputData) {
 
+            }
+        };
 
-    @Test
-    void actionPerformed() {
-//        ShowApplicantsView showApplicantsView = new ShowApplicantsView();
->>>>>>> a69d7083ad3f7a1a4c65de8ac8518766bbc3b0f2
+        BackInputBoundary backInputBoundary = new BackInputBoundary() {
+            @Override
+            public void execute() {
 
-    }
+            }
+        };
 
-    @Test
-    void propertyChange() {
+        // Making the fake controllers to initialize the view
+
+        FilterController filterController = new FilterController(filterInteractor);
+        DeleteApplicantsController deleteApplicantsController = new DeleteApplicantsController(deleteInteractor);
+        ShowHireApplicantPageController showHireApplicantPageController = new ShowHireApplicantPageController(showHireApplicantPageInteractor);
+        ResumeParsingController resumeParsingController = new ResumeParsingController(resumeParsingInteractor);
+        BackController backController = new BackController(backInputBoundary);
+
+        // Making the testing view
+
+        ShowApplicantsView view = new ShowApplicantsView(viewManagerModel, showApplicantsViewModel, filterController,
+                deleteApplicantsController, showHireApplicantPageController, resumeParsingController, backController);
+
+        // Referencing the buttons
+
+        JButton hireApplicantButton = view.hireApplicant;
+        JButton deleteApplicantsButton = view.deleteApplicants;
+        JButton uploadFilesButton = view.uploadFiles;
+        JButton applyFiltersButton = view.applyFilters;
+        JButton backButtonButton = view.backButton;
+
+        // Referencing the textfields
+
+        JTextField hireApplicant_in = view.hireApplicant_in;
+        JTextField deleteApplicants_in = view.deleteApplicants_in;
+        JTextField uploadFiles_in = view.uploadFiles_in;
+        JTextField applyFilters_in_skills = view.applyFilters_in_skills;
+        JTextField applyFilters_in_date = view.applyFilters_in_date;
+        JTextField uploadPosition_in = view.uploadPosition_in;
+
+        KeyListener keyListener = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        };
+
+        hireApplicantButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                assertEquals(hireApplicantButton, e.getSource());
+            }
+        }
+        );
+        deleteApplicantsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                assertEquals(deleteApplicantsButton, e.getSource());
+            }
+        });
+        uploadFilesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                assertEquals(uploadFilesButton, e.getSource());
+            }
+        });
+        applyFiltersButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                assertEquals(applyFiltersButton, e.getSource());
+            }
+        });
+        backButtonButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                assertEquals(backButtonButton, e.getSource());
+            }
+        });
+
+        hireApplicantButton.doClick();
+        deleteApplicantsButton.doClick();
+        uploadFilesButton.doClick();
+        applyFiltersButton.doClick();
+        backButtonButton.doClick();
+
+        hireApplicant_in.addKeyListener(keyListener);
+        hireApplicant_in.;
+        deleteApplicants_in.addKeyListener(keyListener);
+        uploadFiles_in.addKeyListener(keyListener);
+        applyFilters_in_skills.addKeyListener(keyListener);
+        applyFilters_in_date.addKeyListener(keyListener);
+        uploadPosition_in.addKeyListener(keyListener);
     }
 }

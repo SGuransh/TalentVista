@@ -30,17 +30,17 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
     private final ResumeParsingController resumeParsingController;
 
     JLabel applicants;
-    private final JButton hireApplicant;
-    private final JButton deleteApplicants;
-    private final JButton uploadFiles;
-    private final JButton applyFilters;
-    private final JButton backButton;
-    private final JTextField hireApplicant_in = new JTextField(10);
-    private final JTextField deleteApplicants_in = new JTextField(10);
-    private final JTextField uploadFiles_in = new JTextField(50);
-    private final JTextField applyFilters_in_skills = new JTextField(10);
-    private final JTextField applyFilters_in_date = new JTextField(10);
-    private final JTextField uploadPosition_in = new JTextField(10);
+    final JButton hireApplicant;
+    final JButton deleteApplicants;
+    final JButton uploadFiles;
+    final JButton applyFilters;
+    final JButton backButton;
+    final JTextField hireApplicant_in = new JTextField(10);
+    final JTextField deleteApplicants_in = new JTextField(10);
+    final JTextField uploadFiles_in = new JTextField(50);
+    final JTextField applyFilters_in_skills = new JTextField(10);
+    final JTextField applyFilters_in_date = new JTextField(10);
+    final JTextField uploadPosition_in = new JTextField(10);
 
     public ShowApplicantsView(ViewManagerModel viewManagerModel, ShowApplicantsViewModel showApplicantsViewModel,
                               FilterController filterController, DeleteApplicantsController deleteApplicantsController,
