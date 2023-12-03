@@ -5,5 +5,5 @@ import entity.User;
 public interface LoginUserDataAccessInterface {
     boolean existsByName(String identifier);
 
-    User get(String username);
+    String get(String username);
 }
