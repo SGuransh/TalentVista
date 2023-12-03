@@ -62,7 +62,7 @@ public class Main {
         InMemoryEmployeeAccessObject employeeDataAccessObject = new InMemoryEmployeeAccessObject();
         employeeDataAccessObject.ReadCsvToInMemory();
         InMemoryUserDataAccessObject userDataAccessObject = new InMemoryUserDataAccessObject();
-        userDataAccessObject.ReadCsvToInMemory();
+
 
         HrDashboardView hrDashboardView = HrDashboardUseCaseFactory.create(viewManagerModel, hrDashboardViewModel, showEmployeesViewModel, showApplicantsViewModel, applicantsDataAccessObject, employeeDataAccessObject);
         views.add(hrDashboardView, hrDashboardView.viewName);
