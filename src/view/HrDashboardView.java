@@ -17,8 +17,8 @@ public class HrDashboardView extends JPanel implements ActionListener, PropertyC
     private final ShowApplicantsController showApplicantsController;
 
     private final ShowEmployeesController showEmployeesController;
-    private final JButton showApplicants;
-    private final JButton showEmployees;
+     final JButton showApplicants;
+     final JButton showEmployees;
 
     public HrDashboardView(ShowApplicantsController showApplicantsController, ShowEmployeesController showEmployeesController, HrDashboardViewModel hrDashboardViewModel) {
         this.hrDashboardViewModel = hrDashboardViewModel;
@@ -69,13 +69,9 @@ public class HrDashboardView extends JPanel implements ActionListener, PropertyC
 
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
+    public void actionPerformed(ActionEvent e) {}
 
     @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-
-    }
+    public void propertyChange(PropertyChangeEvent evt) {}
 
 }

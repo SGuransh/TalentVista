@@ -24,6 +24,7 @@ public class ShowApplicantsState {
         filesToUpload = copy.filesToUpload;
         applicantsToDisplay = copy.applicantsToDisplay;
         filteredApplicants = copy.filteredApplicants;
+        positionToUpload = copy.positionToUpload;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.

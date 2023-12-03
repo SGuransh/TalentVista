@@ -20,12 +20,9 @@ public class HrDashboardViewModel extends ViewModel {
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     @Override
-    public void firePropertyChanged() {
-    }
+    public void firePropertyChanged() {}
 
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
-        support.addPropertyChangeListener(listener);
-    }
-
+        support.addPropertyChangeListener(listener);}
 }
