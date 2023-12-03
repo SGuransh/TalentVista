@@ -38,5 +38,7 @@ class HrDashboardViewTest {
         PropertyChangeEvent event1 = new PropertyChangeEvent(new Object(), "5", new Object(), new Object());
         hrDashboardView.actionPerformed(event);
         hrDashboardView.propertyChange(event1);
+        hrDashboardViewModel.firePropertyChanged();
+        hrDashboardViewModel.addPropertyChangeListener(null);
     }
 }
