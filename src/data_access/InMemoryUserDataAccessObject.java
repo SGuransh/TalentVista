@@ -11,10 +11,10 @@ import java.util.Map;
 public class InMemoryUserDataAccessObject implements LoginUserDataAccessInterface {
 
     private final Map<String, String> users = new HashMap<>();
-    /**
-     * @param identifier the user's username
-     * @return whether the user exists
-     */
+
+    public InMemoryUserDataAccessObject(){
+        ReadCsvToInMemory();
+    }
     @Override
     public boolean existsByName(String identifier) {
         return users.containsKey(identifier);

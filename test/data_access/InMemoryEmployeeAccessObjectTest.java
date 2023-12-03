@@ -3,8 +3,6 @@ package data_access;
 import entity.Employee;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class InMemoryEmployeeAccessObjectTest {
     @Test
     void successTest(){
