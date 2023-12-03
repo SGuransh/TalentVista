@@ -6,17 +6,23 @@ import use_case.HireApplicantButton.HireApplicantDataAccessInterface;
 import use_case.showEmployees.ShowEmployeesDataAccessInterface;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
-public class InMemoryEmployeeAccessObject implements HireApplicantDataAccessInterface, ShowEmployeesDataAccessInterface {
+public class InMemoryEmployeeAccessObject implements HireApplicantDataAccessInterface, ShowEmployeesDataAccessInterface, Iterable<Employee> {
 
         private final Map<String, Employee> employees = new HashMap<String, Employee>();
+
+        private final String filePath = "src/data_access/Employees.csv";
+
+    private CsvOperationsFacade csvOperationsFacade = new CsvOperationsFacade(new ReadCsvToInMemory(filePath, this),
+            new SaveToCsv(filePath, this),
+            new ClearCSV(filePath));
 
     public Boolean existsEmployee(String name) {
         return employees.containsKey(name);
     }
+
+    public Map<String, Employee> getEmployees(){return this.employees;}
     @Override
     public void addEmployee(Employee employee) {
         if (existsEmployee(employee.getName())) {
@@ -39,8 +45,7 @@ public class InMemoryEmployeeAccessObject implements HireApplicantDataAccessInte
     @Override
     public String getPresentableEmployees() {
         StringBuilder presentableEmployees = new StringBuilder();
-        for (String employeeName: employees.keySet()){
-            Employee employee = employees.get(employeeName);
+        for (Employee employee: this){
             String name = employee.getName();
             Double salary = employee.getSalary();
             String position = employee.getPosition();
@@ -57,60 +62,47 @@ public class InMemoryEmployeeAccessObject implements HireApplicantDataAccessInte
         return presentableEmployees.toString();
     }
 
-    public void ReadCsvToInMemory(){
-        String csvFile = "src/data_access/Employees.csv";
-        String line;
-        String csvSplitBy = ","; // CSV files typically use commas as separators
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-            while ((line = br.readLine()) != null) {
-                String[] data = line.split(csvSplitBy);
-                String name = data[0];
-                String password = data[1];
-                Double salary = Double.parseDouble(data[2]);
-                String position = data[3];
-                String email = data[4];
+    public void ReadCsvToInMemory(){csvOperationsFacade.ReadCsvOperation();}
 
-                Employee employee = new Employee(name, password, null, salary, position, email);
-                this.addEmployee(employee);
+    public void saveToCsv(){csvOperationsFacade.saveToCsvOperation();}
+
+    public void clearCSV(){csvOperationsFacade.clearCsvOperation();}
+
+    @Override
+    public Iterator<Employee> iterator() {
+        return new EmployeeIterator();
+    }
+
+    class EmployeeIterator implements Iterator<Employee>{
+        private int curr;
+        public EmployeeIterator(){
+            curr = 0;
+        }
+        @Override
+        public boolean hasNext() {
+            return curr != employees.size();
+
+        }
+
+        @Override
+        public Employee next() {
+            if (this.hasNext()) {
+                Set<String> set = employees.keySet();
+                String[] list = set.toArray(new String[0]);
+                int prev = curr;
+                curr++;
+                return employees.get(list[prev]);
+            }else{
+                return null;
             }
         }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
-    public void saveToCsv(){
-        String csvFilePath = "src/data_access/Employees.csv";
-
-        try {
-            // Open the CSV file in append mode (this will not truncate the file)
-            PrintWriter writer = new PrintWriter(new FileWriter(csvFilePath));
-
-            for (String key : this.employees.keySet()) {
-                String lineToWrite = "";
-                Employee employee = this.employees.get(key);
-                lineToWrite += employee.getName() + "," + employee.getPassword() + "," + employee.getSalary().toString() + "," + employee.getPosition()+ "," + employee.getEmail();
-                writer.println(lineToWrite);
-            }
-
-
-            // Close the writer to ensure changes are flushed and the file is released
-            writer.close();
-            System.out.println("CSV lines written successfully.");
-        } catch (IOException e) {
-            e.printStackTrace();
+    public static void main(String[] args) {
+        InMemoryEmployeeAccessObject dao = new InMemoryEmployeeAccessObject();
+        dao.addEmployee(new Employee("Shahbaz", null, null,1.0, null, null));
+        for(Employee employee: dao) {
+            System.out.println(employee.getName());
         }
     }
-
-    public void clearCSV(){
-        String csvFilePath = "src/data_access/Employees.csv";
-        try {
-            PrintWriter writer = new PrintWriter(new FileWriter(csvFilePath));
-            writer.close();
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
 }

@@ -9,10 +9,22 @@ import use_case.showHireApplicantPage.ShowHireApplicantPageDataAccessInterface;
 
 import java.io.*;
 import java.util.*;
+import java.util.function.Consumer;
 
-public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInterface, DeleteApplicantsDataAccessInterface, ShowHireApplicantPageDataAccessInterface, ShowApplicantsDataAccessInterface, FilterUserDataAccessInterface {
+public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInterface, DeleteApplicantsDataAccessInterface, ShowHireApplicantPageDataAccessInterface, ShowApplicantsDataAccessInterface, FilterUserDataAccessInterface, Iterable<Applicant> {
     private final Map<String, Applicant> applicants = new HashMap<String, Applicant>();
     private Integer id = 0;
+
+    private final String ApplicantsCsvPath = "src/data_access/Applicants.csv";
+
+    private final String DefaultApplicantsCsvPath = "src/data_access/Default_Applicants.csv";
+
+    private CsvOperationsFacade csvOperationsFacade =
+            new CsvOperationsFacade(new ReadCsvToInMemory(ApplicantsCsvPath, this),
+                    new SaveToCsv(ApplicantsCsvPath, this),
+                    new ClearCSV(ApplicantsCsvPath));
+
+    private CsvOperationsFacade defaultCsvFacade = new CsvOperationsFacade(new ReadCsvToInMemory(DefaultApplicantsCsvPath, this), null, null);
 
     @Override
     public Boolean existsApplicant(String id) {
@@ -40,7 +52,7 @@ public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInt
     @Override
     public void deleteApplicants(ArrayList<String> applicantIDs) {
         for (String applicantID: applicantIDs){
-            applicants.remove(applicantID);
+            applicants.remove(applicantID.trim());
         }
         saveToCsv();
     }
@@ -75,9 +87,7 @@ public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInt
 
     public String getPresentableApplicants() {
         StringBuilder presentableApplicants = new StringBuilder();
-        for (String applicantID : applicants.keySet()) {
-            Map<String, Applicant> applicantMap = applicants;
-            Applicant applicant = applicantMap.get(applicantID);
+        for (Applicant applicant : this) {
             String name = applicant.getName();
             String ID = applicant.getId();
             ArrayList<String> skillsArray = applicant.getSkills();
@@ -99,164 +109,63 @@ public class InMemoryApplicantAccessObject implements ResumeParsingDataAccessInt
             HTMLContent += "<p>" + "<b>" +  "Position: "+"</b>" +position +"</p>";
             HTMLContent += "<p>" + "<b>" +  "Upload Date: "+"</b>" +uploadDate +"</p>";
             HTMLContent +="<p>" + "_________________________" + "</p>";
-
-
-
             presentableApplicants.append(HTMLContent);
-
         }
         return presentableApplicants.toString();
     }
 
-    public void ReadCsvToInMemory() {
-        String csvFile = "src/data_access/Applicants.csv";
-        String line;
-        String csvSplitBy = ","; // CSV files typically use commas as separators
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+    public void ReadCsvToInMemory() {csvOperationsFacade.ReadCsvOperation();}
 
-            while ((line = br.readLine()) != null) {
+    public void saveToCsv(){csvOperationsFacade.saveToCsvOperation();}
 
-                line = line.trim();
-                String[] data = line.split(csvSplitBy);
-                if(data.length < 6){
-                    break;
-                }
-                String id = data[0];
-                String name = data[1];
-                String skillsString = data[2];
-                String uploadDate = data[3];
-                String personal_urls_String = data[4];
-                String contactInfo_String = data[5];
-                String position = data[6].trim();
+    public void clearCSV(){csvOperationsFacade.clearCsvOperation();}
 
-                skillsString = skillsString.replace("\u0016", ",").trim();
-                String[] skillsArray = skillsString.substring(1, skillsString.length()-1).split(", ");
+    public void ReadDefaultCSV() {defaultCsvFacade.ReadCsvOperation();}
 
-                personal_urls_String = personal_urls_String.replace("\u0016", ",").trim();
-                String[] urls_array = personal_urls_String.substring(1, personal_urls_String.length()-1).split(",");
 
-                contactInfo_String = contactInfo_String.replace("\u0016", ",");
-                // Convert the array to an ArrayList
-                ArrayList<String> skillsArrayList = new ArrayList<>(Arrays.asList(skillsArray));
-                //Converting URLS to HashMap
-                ArrayList<String> UrlsArrayList = new ArrayList<>(Arrays.asList(urls_array));
-                //Converting URLS to HashMap
+    @Override
+    public Iterator<Applicant> iterator() {
+        return new ApplicantIterator();
+    }
 
-                //Converting Contacts to HashMap
-                String[] contacts_String_noBracket = contactInfo_String.substring(1, contactInfo_String.length() - 1).split(", ");
+    class ApplicantIterator implements Iterator<Applicant>{
+        private int curr;
+        public ApplicantIterator(){
+            curr = 0;
+        }
+        @Override
+        public boolean hasNext() {
+            return curr != applicants.size();
+        }
 
-                HashMap<String, String> contacts_map = new HashMap<>();
-
-                for (String pair : contacts_String_noBracket) {
-                    String[] entry = pair.split("=");
-                    contacts_map.put(entry[0], entry[1]);
-                }
-                //Converting Contacts to HashMap
-
-                Applicant applicant = new Applicant(id, name, skillsArrayList, uploadDate, contacts_map, UrlsArrayList, position);
-                this.addApplicant(applicant);
-
+        @Override
+        public Applicant next() {
+            if (this.hasNext()) {
+                Set<String> set = applicants.keySet();
+                String[] list = set.toArray(new String[0]);
+                int prev = curr;
+                curr++;
+                return applicants.get(list[prev]);
+            }else{
+                return null;
             }
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
-    public void saveToCsv(){
-        String csvFilePath = "src/data_access/Applicants.csv";
-
-        try {
-            // Open the CSV file in append mode (this will not truncate the file)
-            PrintWriter writer = new PrintWriter(new FileWriter(csvFilePath));
-
-            int i = 0;
-            for (String key : this.applicants.keySet()) {
-                i++;
-                String lineToWrite = "";
-                Applicant applicant = this.applicants.get(key);
-                lineToWrite += applicant.getId() + "," + applicant.getName() + "," + applicant.getSkills().toString().replace(",", "\u0016") + "," + applicant.getUploadDate() + "," + applicant.personal_urls().toString().replace(",", "\u0016") + "," + applicant.getContactInfo().toString().replace(",", "\u0016") + "," + applicant.getPosition();
-
-                if(i == this.applicants.keySet().size()){
-                    writer.print(lineToWrite);
-                }else{
-                    writer.println(lineToWrite);
-                }
-
-            }
-
-            // Close the writer to ensure changes are flushed and the file is released
-            writer.close();
-
-            System.out.println("CSV lines written successfully.");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void clearCSV(){
-        String csvFilePath = "src/data_access/Applicants.csv";
-        try {
-            PrintWriter writer = new PrintWriter(new FileWriter(csvFilePath));
-            writer.close();
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void ReadDefaultCSV() {
-        String csvFile = "src/data_access/Default_Applicants.csv";
-        String line;
-        String csvSplitBy = ","; // CSV files typically use commas as separators
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-
-            while ((line = br.readLine()) != null) {
-
-                line = line.trim();
-                String[] data = line.split(csvSplitBy);
-                if(data.length < 6){
-                    break;
-                }
-                String id = data[0];
-                String name = data[1];
-                String skillsString = data[2];
-                String uploadDate = data[3];
-                String personal_urls_String = data[4];
-                String contactInfo_String = data[5];
-                String position = data[6].trim();
-
-                skillsString = skillsString.replace("\u0016", ",").trim();
-                String[] skillsArray = skillsString.substring(1, skillsString.length()-1).split(", ");
-
-                personal_urls_String = personal_urls_String.replace("\u0016", ",").trim();
-                String[] urls_array = personal_urls_String.substring(1, personal_urls_String.length()-1).split(",");
-
-                contactInfo_String = contactInfo_String.replace("\u0016", ",");
-                // Convert the array to an ArrayList
-                ArrayList<String> skillsArrayList = new ArrayList<>(Arrays.asList(skillsArray));
-                //Converting URLS to HashMap
-                ArrayList<String> UrlsArrayList = new ArrayList<>(Arrays.asList(urls_array));
-                //Converting URLS to HashMap
-
-                //Converting Contacts to HashMap
-                String[] contacts_String_noBracket = contactInfo_String.substring(1, contactInfo_String.length() - 1).split(", ");
-
-                HashMap<String, String> contacts_map = new HashMap<>();
-
-                for (String pair : contacts_String_noBracket) {
-                    String[] entry = pair.split("=");
-                    contacts_map.put(entry[0], entry[1]);
-                }
-                //Converting Contacts to HashMap
-
-                Applicant applicant = new Applicant(id, name, skillsArrayList, uploadDate, contacts_map, UrlsArrayList, position);
-                this.addApplicant(applicant);
-
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
+    public static void main(String[] args) {
+        InMemoryApplicantAccessObject applicantsDAO = new InMemoryApplicantAccessObject();
+        ArrayList<String> skills = new ArrayList<>();
+        skills.add("apple");
+        HashMap contact = new HashMap<>();
+        contact.put("email", "1");
+        Applicant app1 = new Applicant("1", "Shahbaz", skills, null, contact,skills, null);
+        Applicant app2 = new Applicant("2", "Guransh", skills, null, contact,skills, null);
+        Applicant app3 = new Applicant("3", "Taha", skills, null, contact,skills, null);
+        applicantsDAO.addApplicant(app1);
+        applicantsDAO.addApplicant(app2);
+        applicantsDAO.addApplicant(app3);
+        for(Applicant applicant: applicantsDAO){
+            System.out.println(applicant.getName());
         }
     }
 }
