@@ -249,7 +249,21 @@ class ShowApplicantsViewTest {
 
         showApplicantsViewModel.addPropertyChangeListener(view);
         showApplicantsViewModel.firePropertyChanged();
+    }
 
-
+    @Test
+    void stateTesting(){
+        ShowApplicantsState state1 = new ShowApplicantsState();
+        state1.setPositionToUpload("uploading");
+        state1.setApplicantToHire("hireee");
+        state1.setApplicantsToDelete("deleteeee");
+        state1.setDateToFilter("sateFilterrrr");
+        state1.setSkillToFilter("skillFilterr");
+        state1.setFilesToUpload("fileUpload");
+        ShowApplicantsState state2 = new ShowApplicantsState(state1);
+        assertEquals("uploading", state2.getPositionToUpload());
+        assertEquals("hireee", state2.getApplicantToHire());
+        assertEquals("deleteeee", state2.getApplicantsToDelete());
+        assertEquals("fileUpload", state2.getFilesToUpload());
     }
 }
