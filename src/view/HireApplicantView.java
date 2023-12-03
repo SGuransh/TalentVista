@@ -75,6 +75,7 @@ public class HireApplicantView extends JPanel implements ActionListener, Propert
         nameInputField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
+                System.out.println("HELLOOOO");
                 ShowHireApplicantPageState currentState = showHireApplicantPageViewModel.getState();
                 currentState.setName(nameInputField.getText() + e.getKeyChar());
                 showHireApplicantPageViewModel.setState(currentState);
@@ -166,7 +167,6 @@ public class HireApplicantView extends JPanel implements ActionListener, Propert
         nameInputField.setText(state.getName());
         positionInputField.setText(state.getPosition());
         emailInputField.setText(state.getEmail());
-        salaryInputField.setText("");
-    }
+        salaryInputField.setText("");}
 
 }
