@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class ClearCSV {
+public class ClearCSV implements ClearCsvBoundary {
     private String filePath;
 
     ClearCSV(String filePath){

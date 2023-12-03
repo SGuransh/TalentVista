@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ReadCsvToInMemory {
+public class ReadCsvToInMemory implements ReadCsvBoundary{
 
     private String filePath;
     private InMemoryApplicantAccessObject applicantDAO = null;
@@ -27,13 +27,7 @@ public class ReadCsvToInMemory {
         this.filePath = filePath;
         this.employeeDAO = employeeDAO;
     }
-    public void ReadCsvToInMemoryOperation(){
-        if(applicantDAO==null){
-            ReadCsvToMemoryEmployees();
-        }else{
-            ReadCsvToInMemoryApplicants();
-        }
-    }
+
    private  void ReadCsvToInMemoryApplicants() {
          String csvFile = filePath;
         String line;
@@ -108,6 +102,15 @@ public class ReadCsvToInMemory {
         }
         catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void ReadCsvToInMemoryOperation() {
+        if(applicantDAO==null){
+            ReadCsvToMemoryEmployees();
+        }else{
+            ReadCsvToInMemoryApplicants();
         }
     }
 }

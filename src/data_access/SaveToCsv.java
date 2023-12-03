@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SaveToCsv {
+public class SaveToCsv implements SaveToCsvBoundary{
     private String filePath;
     private InMemoryApplicantAccessObject applicantDAO = null;
     private InMemoryEmployeeAccessObject employeeDAO = null;
@@ -26,13 +26,7 @@ public class SaveToCsv {
         this.employeeDAO = employeeDAO;
     }
 
-    public void SaveToCsvOperation(){
-        if(applicantDAO==null){
-            SavetoCsvEmployees();
-        }else{
-            SavetoCsvApplicants();
-        }
-    }
+
     private void SavetoCsvApplicants(){
         String csvFilePath = filePath;
 
@@ -75,6 +69,15 @@ public class SaveToCsv {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void SaveToCsvOperation() {
+            if(applicantDAO==null){
+                SavetoCsvEmployees();
+            }else{
+                SavetoCsvApplicants();
+            }
     }
 }
 
