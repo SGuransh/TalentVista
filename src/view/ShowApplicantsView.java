@@ -312,7 +312,6 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
 
     @Override
     public void actionPerformed(ActionEvent evt) {
-//        JOptionPane.showConfirmDialog(this, )
     }
 
     @Override

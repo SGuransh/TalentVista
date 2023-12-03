@@ -100,23 +100,6 @@ class ShowApplicantsViewTest {
         JTextField applyFilters_in_date = view.applyFilters_in_date;
         JTextField uploadPosition_in = view.uploadPosition_in;
 
-        KeyListener keyListener = new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-
-            }
-        };
-
         hireApplicantButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -155,38 +138,118 @@ class ShowApplicantsViewTest {
         applyFiltersButton.doClick();
         backButtonButton.doClick();
 
-        hireApplicant_in.addKeyListener(keyListener);
-        deleteApplicants_in.addKeyListener(keyListener);
-        uploadFiles_in.addKeyListener(keyListener);
-        applyFilters_in_skills.addKeyListener(keyListener);
-        applyFilters_in_date.addKeyListener(keyListener);
-        uploadPosition_in.addKeyListener(keyListener);
+//        hireApplicant_in.addKeyListener(keyListener);
+//        deleteApplicants_in.addKeyListener(keyListener);
+//        uploadFiles_in.addKeyListener(keyListener);
+//        applyFilters_in_skills.addKeyListener(keyListener);
+//        applyFilters_in_date.addKeyListener(keyListener);
+//        uploadPosition_in.addKeyListener(keyListener);
 
         char keyChar = 'A';
         int keyCode = KeyEvent.VK_UNDEFINED;
 
+        JTextField hireApplicantIn = view.hireApplicant_in;
+        KeyListener[] listeners = hireApplicantIn.getKeyListeners();
+        KeyListener keyListener = listeners[0];
         keyListener.keyTyped(new KeyEvent(hireApplicant_in, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
-        keyListener.keyPressed(new KeyEvent(hireApplicant_in, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
-        keyListener.keyReleased(new KeyEvent(hireApplicant_in, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
+        keyListener.keyPressed(new KeyEvent(hireApplicant_in, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, keyCode, keyChar));
+        keyListener.keyReleased(new KeyEvent(hireApplicant_in, KeyEvent.KEY_RELEASED, System.currentTimeMillis(), 0, keyCode, keyChar));
 
+        JTextField deleteApplicantsIn = view.deleteApplicants_in;
+        listeners = deleteApplicantsIn.getKeyListeners();
+        keyListener = listeners[0];
         keyListener.keyTyped(new KeyEvent(deleteApplicants_in, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
-        keyListener.keyPressed(new KeyEvent(deleteApplicants_in, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
-        keyListener.keyReleased(new KeyEvent(deleteApplicants_in, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
+        keyListener.keyPressed(new KeyEvent(deleteApplicants_in, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, keyCode, keyChar));
+        keyListener.keyReleased(new KeyEvent(deleteApplicants_in, KeyEvent.KEY_RELEASED, System.currentTimeMillis(), 0, keyCode, keyChar));
 
+        JTextField uploadFilesIn = view.uploadFiles_in;
+        listeners = uploadFilesIn.getKeyListeners();
+        keyListener = listeners[0];
         keyListener.keyTyped(new KeyEvent(uploadFiles_in, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
-        keyListener.keyPressed(new KeyEvent(uploadFiles_in, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
-        keyListener.keyReleased(new KeyEvent(uploadFiles_in, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
+        keyListener.keyPressed(new KeyEvent(uploadFiles_in, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, keyCode, keyChar));
+        keyListener.keyReleased(new KeyEvent(uploadFiles_in, KeyEvent.KEY_RELEASED, System.currentTimeMillis(), 0, keyCode, keyChar));
 
+        JTextField applyFiltersInDate = view.applyFilters_in_date;
+        listeners = applyFiltersInDate.getKeyListeners();
+        keyListener = listeners[0];
         keyListener.keyTyped(new KeyEvent(applyFilters_in_date, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
-        keyListener.keyPressed(new KeyEvent(applyFilters_in_date, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
-        keyListener.keyReleased(new KeyEvent(applyFilters_in_date, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
+        keyListener.keyPressed(new KeyEvent(applyFilters_in_date, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, keyCode, keyChar));
+        keyListener.keyReleased(new KeyEvent(applyFilters_in_date, KeyEvent.KEY_RELEASED, System.currentTimeMillis(), 0, keyCode, keyChar));
 
+        JTextField applyFiltersInSkills = view.applyFilters_in_skills;
+        listeners = applyFiltersInSkills.getKeyListeners();
+        keyListener = listeners[0];
         keyListener.keyTyped(new KeyEvent(applyFilters_in_skills, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
-        keyListener.keyPressed(new KeyEvent(applyFilters_in_skills, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
-        keyListener.keyReleased(new KeyEvent(applyFilters_in_skills, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
+        keyListener.keyPressed(new KeyEvent(applyFilters_in_skills, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, keyCode, keyChar));
+        keyListener.keyReleased(new KeyEvent(applyFilters_in_skills, KeyEvent.KEY_RELEASED, System.currentTimeMillis(), 0, keyCode, keyChar));
 
+        JTextField uploadPositionIn = view.uploadPosition_in;
+        listeners = uploadPositionIn.getKeyListeners();
+        keyListener = listeners[0];
         keyListener.keyTyped(new KeyEvent(uploadPosition_in, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
-        keyListener.keyPressed(new KeyEvent(uploadPosition_in, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
-        keyListener.keyReleased(new KeyEvent(uploadPosition_in, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, keyCode, keyChar));
+        keyListener.keyPressed(new KeyEvent(uploadPosition_in, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, keyCode, keyChar));
+        keyListener.keyReleased(new KeyEvent(uploadPosition_in, KeyEvent.KEY_RELEASED, System.currentTimeMillis(), 0, keyCode, keyChar));
+    }
+
+    @Test
+    void checkPropertyChangedListener(){
+        ShowApplicantsViewModel showApplicantsViewModel = new ShowApplicantsViewModel();
+        ViewManagerModel viewManagerModel = new ViewManagerModel();
+
+        // Making the fake interactors to initialize the controllers
+
+        FilterInputBoundary filterInteractor = new FilterInputBoundary() {
+            @Override
+            public void execute(FilterInputData inputData) {
+
+            }
+        };
+
+        DeleteApplicantsInputBoundary deleteInteractor = new DeleteApplicantsInputBoundary() {
+            @Override
+            public void execute(DeleteApplicantsInputData inputData) {
+
+            }
+        };
+
+        ShowHireApplicantPageInputBoundary showHireApplicantPageInteractor = new ShowHireApplicantPageInputBoundary() {
+            @Override
+            public void execute(ShowHireApplicantPageInputData applicantID) {
+
+            }
+        };
+
+        ResumeParsingInputBoundary resumeParsingInteractor = new ResumeParsingInputBoundary() {
+            @Override
+            public void execute(ResumeParsingInputData inputData) {
+
+            }
+        };
+
+        BackInputBoundary backInputBoundary = new BackInputBoundary() {
+            @Override
+            public void execute() {
+
+            }
+        };
+
+        // Making the fake controllers to initialize the view
+
+        FilterController filterController = new FilterController(filterInteractor);
+        DeleteApplicantsController deleteApplicantsController = new DeleteApplicantsController(deleteInteractor);
+        ShowHireApplicantPageController showHireApplicantPageController = new ShowHireApplicantPageController(showHireApplicantPageInteractor);
+        ResumeParsingController resumeParsingController = new ResumeParsingController(resumeParsingInteractor);
+        BackController backController = new BackController(backInputBoundary);
+
+        // Making the testing view
+
+        ShowApplicantsView view = new ShowApplicantsView(viewManagerModel, showApplicantsViewModel, filterController,
+                deleteApplicantsController, showHireApplicantPageController, resumeParsingController, backController);
+
+
+        showApplicantsViewModel.addPropertyChangeListener(view);
+        showApplicantsViewModel.firePropertyChanged();
+
+
     }
 }
