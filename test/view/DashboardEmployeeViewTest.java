@@ -44,7 +44,6 @@ class DashboardEmployeeViewTest {
 
     @Test
     void propertyChange() {
-        PropertyChangeEvent event = new PropertyChangeEvent(new Object(), null, new Object(), new Object());
         ShowEmployeesViewModel showEmployeesViewModel = new ShowEmployeesViewModel();
         BackInputBoundary backInteractor = new BackInputBoundary() {
             @Override
@@ -54,7 +53,6 @@ class DashboardEmployeeViewTest {
         };
         BackController controller = new BackController(backInteractor);
         DashboardEmployeeView dashboardEmployeeView = new DashboardEmployeeView(showEmployeesViewModel,controller);
-        dashboardEmployeeView.propertyChange(event);
-
+        showEmployeesViewModel.firePropertyChanged();
     }
 }
