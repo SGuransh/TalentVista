@@ -23,6 +23,7 @@ public class ResumeParsingPresenter implements ResumeParsingOutputBoundary {
     public void prepareSuccessView(ResumeParsingOutputData applicantData) {
         ShowApplicantsState state = showApplicantsViewModel.getState();
         state.setApplicantsToDisplay(applicantData.getPresentableApplicants());
+        state.setNewlyAddedApplicants(applicantData.getPresentableApplicantsNEW());
         showApplicantsViewModel.setState(state);
         showApplicantsViewModel.firePropertyChanged();
     }

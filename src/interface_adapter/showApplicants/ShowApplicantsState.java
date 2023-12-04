@@ -14,6 +14,7 @@ public class ShowApplicantsState {
     private String positionToUpload = "";
     private String applicantsToDisplay = "";
     private String filteredApplicants = "";
+    private String newlyAddedApplicants = "";
 
 
     public ShowApplicantsState(ShowApplicantsState copy) {
@@ -25,6 +26,7 @@ public class ShowApplicantsState {
         applicantsToDisplay = copy.applicantsToDisplay;
         filteredApplicants = copy.filteredApplicants;
         positionToUpload = copy.positionToUpload;
+        newlyAddedApplicants = copy.filteredApplicants;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
@@ -58,6 +60,9 @@ public class ShowApplicantsState {
     }
     public String getFilteredApplicants(){return filteredApplicants;}
 
+    public String getNewlyAddedApplicants() {
+        return newlyAddedApplicants;
+    }
 
     public void setApplicantsToDelete(String applicantsToDelete) {this.applicantsToDelete = applicantsToDelete;}
 
@@ -84,4 +89,8 @@ public class ShowApplicantsState {
     }
 
     public void setFilteredApplicants(String filteredApplicants){this.filteredApplicants = filteredApplicants;}
+
+    public void setNewlyAddedApplicants(String newlyAddedApplicants) {
+        this.newlyAddedApplicants = newlyAddedApplicants;
+    }
 }
