@@ -20,6 +20,7 @@ public class DeleteApplicantsPresenter implements DeleteApplicantsOutputBoundary
     @Override
     public void prepareSuccessView(DeleteApplicantsOutputData outputData) {
         ShowApplicantsState state = showApplicantsViewModel.getState();
+        state.setRecentlyDeleted(outputData.getRecentlyDeleted());
         state.setApplicantsToDisplay(outputData.getApplicants());
         showApplicantsViewModel.setState(state);
         showApplicantsViewModel.firePropertyChanged();

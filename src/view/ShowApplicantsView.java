@@ -327,6 +327,9 @@ public class ShowApplicantsView extends JPanel implements ActionListener, Proper
         if (!state2.getNewlyAddedApplicants().isEmpty()){
             JOptionPane.showMessageDialog(this, state2.getNewlyAddedApplicants());
         }
+        if (!state2.getRecentlyDeleted().isEmpty()){
+            JOptionPane.showMessageDialog(this, state2.getRecentlyDeleted());
+        }
         showApplicantsViewModel.setState(new ShowApplicantsState());
         showApplicantsViewModel.getState().setApplicantsToDisplay(state2.getApplicantsToDisplay());
 
