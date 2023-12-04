@@ -3,7 +3,6 @@ package interface_adapter.deleteApplicants;
 import data_access.InMemoryApplicantAccessObject;
 import entity.Applicant;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.showApplicants.ShowApplicantsState;
 import interface_adapter.showApplicants.ShowApplicantsViewModel;
 import org.junit.jupiter.api.Test;
 import use_case.deleteApplicants.DeleteApplicantsOutputBoundary;
@@ -11,8 +10,6 @@ import use_case.deleteApplicants.DeleteApplicantsOutputData;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class DeleteApplicantsPresenterTest {
 
@@ -40,7 +37,8 @@ class DeleteApplicantsPresenterTest {
         String presentableApplicants = applicantsDAO.getPresentableApplicants();
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         ShowApplicantsViewModel showApplicantsViewModel = new ShowApplicantsViewModel();
-        DeleteApplicantsOutputData outputData = new DeleteApplicantsOutputData(presentableApplicants);
+        String recentlyDeleted = "";
+        DeleteApplicantsOutputData outputData = new DeleteApplicantsOutputData(presentableApplicants, recentlyDeleted);
 
         DeleteApplicantsOutputBoundary presenter = new DeleteApplicantsPresenter(viewManagerModel, showApplicantsViewModel);
         presenter.prepareSuccessView(outputData);
