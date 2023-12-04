@@ -58,7 +58,7 @@ public class Main {
 
 
         InMemoryApplicantAccessObject applicantsDataAccessObject = new InMemoryApplicantAccessObject();
-        applicantsDataAccessObject.ReadDefaultCSV();
+        applicantsDataAccessObject.ReadCsvToInMemory();
         InMemoryEmployeeAccessObject employeeDataAccessObject = new InMemoryEmployeeAccessObject();
         employeeDataAccessObject.ReadCsvToInMemory();
         InMemoryUserDataAccessObject userDataAccessObject = new InMemoryUserDataAccessObject();
